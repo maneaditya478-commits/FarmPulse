@@ -1,0 +1,47 @@
+{
+  "expo": {
+    "name": "AI Livestock Guardian",
+    "slug": "ai-livestock-guardian",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "livestockguardian",
+    "userInterfaceStyle": "light",
+    "android": {
+      "package": "com.alg.livestockguardian",
+      "adaptiveIcon": {
+        "backgroundColor": "#166534"
+      },
+      "permissions": [
+        "CAMERA",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "POST_NOTIFICATIONS"
+      ]
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow AI Livestock Guardian to photograph animals for identification and health records."
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Allow AI Livestock Guardian to find veterinary services near you."
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "color": "#166534"
+        }
+      ],
+      "expo-secure-store",
+      "expo-sqlite"
+    ],
+    "extra": {
+      "apiUrl": "http://10.0.2.2:8000/api/v1"
+    }
+  }
+}
