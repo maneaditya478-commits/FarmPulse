@@ -1,0 +1,40 @@
+# Environments and local secrets
+.env
+.env.*
+!.env.example
+*.local
+
+# Dependencies
+node_modules/
+.venv/
+venv/
+env/
+
+# Python caches and artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Build and distribution artifacts
+dist/
+build/
+.expo/
+*.tsbuildinfo
+
+# Databases and local storage
+*.db
+*.sqlite
+*.sqlite3
+uploads/
+local_test*.db
+smoke_test*.db
+
+# IDE, editor and OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log

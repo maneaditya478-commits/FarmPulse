@@ -1,0 +1,58 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-guardian}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD to a generated URL-safe password}
+      POSTGRES_DB: ${POSTGRES_DB:-livestock_guardian}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$${POSTGRES_USER}\" -d \"$${POSTGRES_DB}\""]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redisdata:/data
+
+  backend:
+    build: ./backend
+    environment:
+      ENVIRONMENT: ${ENVIRONMENT:-production}
+      DEBUG: "false"
+      DATABASE_URL: postgresql+psycopg2://${POSTGRES_USER:-guardian}:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD to a generated URL-safe password}@db:5432/${POSTGRES_DB:-livestock_guardian}
+      JWT_SECRET: ${JWT_SECRET:?Set JWT_SECRET to a generated secret of at least 32 characters}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      REDIS_URL: redis://redis:6379/0
+      ENABLE_BACKGROUND_TASKS: "true"
+      SEED_DEMO_DATA: ${SEED_DEMO_DATA:-false}
+      PUBLIC_BASE_URL: http://localhost:8000
+      CORS_ORIGINS: http://localhost:5173,http://127.0.0.1:5173
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    ports:
+      - "8000:8000"
+    volumes:
+      - uploads:/app/uploads
+
+  web:
+    build:
+      context: ./web
+      args:
+        VITE_API_URL: http://localhost:8000/api/v1
+    depends_on:
+      - backend
+    ports:
+      - "5173:80"
+
+volumes:
+  pgdata:
+  redisdata:
+  uploads:
