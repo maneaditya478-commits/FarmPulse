@@ -1,0 +1,155 @@
+uid=15_1 RootWebArea "AI Livestock Guardian" focusable focused url="http://127.0.0.1:5173/farmer/health"
+  uid=15_2 banner
+    uid=15_3 button focusable invalid="false"
+    uid=15_4 StaticText "Farmer"
+    uid=15_5 combobox "भाषा" expandable focusable hasPopup="menu" invalid="false" value="मराठी"
+      uid=15_6 option "English" focusable selectable
+      uid=15_7 option "हिन्दी" focusable selectable
+      uid=15_8 option "मराठी" focusable selectable selected
+    uid=15_9 button "सूचना" focusable invalid="false"
+    uid=15_10 button "R" focusable invalid="false"
+  uid=15_11 main
+    uid=15_12 heading "आरोग्य आणि पशुवैद्यक" level="1"
+    uid=15_13 StaticText "तुमच्या भाषेत लक्षणे सांगा. ऑर्केस्ट्रेटर फक्त आवश्यक एजंट चालवतो आणि तातडीची लक्षणे पशुवैद्याकडे पाठवतो."
+    uid=15_14 heading "लक्षणे नोंदवा" level="2"
+    uid=15_15 StaticText "एआय ट्रायाज फक्त सल्ला आहे. ते निदानाची पुष्टी, औषध किंवा डोस ठरवत नाही."
+    uid=15_16 form
+      uid=15_17 StaticText "प्राणी"
+      uid=15_18 combobox expandable focusable hasPopup="menu" invalid="false" value="Ganga (DEMO-C1) — Cattle"
+        uid=15_19 option "प्राणी निवडा" focusable selectable
+        uid=15_20 option "Sync Goat (SYNC-494C9A) — Goat" focusable selectable
+        uid=15_21 option "Kadaknath-10 (DEMO-K10) — Chicken" focusable selectable
+        uid=15_22 option "Kadaknath-09 (DEMO-K09) — Chicken" focusable selectable
+        uid=15_23 option "Kadaknath-08 (DEMO-K08) — Chicken" focusable selectable
+        uid=15_24 option "Kadaknath-07 (DEMO-K07) — Chicken" focusable selectable
+        uid=15_25 option "Kadaknath-06 (DEMO-K06) — Chicken" focusable selectable
+        uid=15_26 option "Kadaknath-05 (DEMO-K05) — Chicken" focusable selectable
+        uid=15_27 option "Kadaknath-04 (DEMO-K04) — Chicken" focusable selectable
+        uid=15_28 option "Kadaknath-03 (DEMO-K03) — Chicken" focusable selectable
+        uid=15_29 option "Kadaknath-02 (DEMO-K02) — Chicken" focusable selectable
+        uid=15_30 option "Kadaknath-01 (DEMO-K01) — Chicken" focusable selectable
+        uid=15_31 option "Bholi (DEMO-G5) — Goat" focusable selectable
+        uid=15_32 option "Rani (DEMO-G4) — Goat" focusable selectable
+        uid=15_33 option "Raja (DEMO-G3) — Goat" focusable selectable
+        uid=15_34 option "Moti (DEMO-G2) — Goat" focusable selectable
+        uid=15_35 option "Chhoti (DEMO-G1) — Goat" focusable selectable
+        uid=15_36 option "Sundari (DEMO-B2) — Buffalo" focusable selectable
+        uid=15_37 option "Bhagwanti (DEMO-B1) — Buffalo" focusable selectable
+        uid=15_38 option "Nandini (DEMO-C3) — Cattle" focusable selectable
+        uid=15_39 option "Lakshmi (DEMO-C2) — Cattle" focusable selectable
+        uid=15_40 option "Ganga (DEMO-C1) — Cattle" focusable selectable selected
+      uid=15_41 StaticText "जे दिसत आहे त्याचे वर्णन करा"
+      uid=15_42 textbox "उदा. गाईला दोन दिवसांपासून ताप आहे आणि दूध कमी झाले आहे…" editable="plaintext" focusable focused invalid="false" multiline required settable
+      uid=15_43 StaticText "लक्षणे किती दिवसांपासून आहेत तेही नमूद करा. मराठी, हिंदी आणि इंग्रजी समर्थित आहेत."
+      uid=15_44 StaticText "आढळलेली लक्षणे"
+      uid=15_45 button "ताप" focusable invalid="false"
+      uid=15_46 button "खोकला" focusable invalid="false"
+      uid=15_47 button "जुलाब" focusable invalid="false"
+      uid=15_48 button "भूक कमी" focusable invalid="false"
+      uid=15_49 button "दूध कमी" focusable invalid="false"
+      uid=15_50 button "लंगडणे" focusable invalid="false"
+      uid=15_51 button "सूज" focusable invalid="false"
+      uid=15_52 button "पोट फुगणे" focusable invalid="false"
+      uid=15_53 button "श्वास घेण्यास त्रास" focusable invalid="false"
+      uid=15_54 button "पाणी पीत नाही" focusable invalid="false"
+      uid=15_55 StaticText "भूक"
+      uid=15_56 combobox expandable focusable hasPopup="menu" invalid="false" value="नोंद नाही"
+        uid=15_57 option "नोंद नाही" focusable selectable selected
+        uid=15_58 option "सामान्य" focusable selectable
+        uid=15_59 option "कमी" focusable selectable
+        uid=15_60 option "खात नाही" focusable selectable
+      uid=15_61 StaticText "तापमान (°C)"
+      uid=15_62 spinbutton "उदा. 39.5" editable="plaintext" focusable invalid="false" settable valuemax="45" valuemin="30"
+      uid=15_63 button "ट्रायाज वर्कफ्लोमध्ये पाठवा" focusable invalid="false"
+    uid=15_64 StaticText "ट्रायाज निकाल"
+    uid=15_65 StaticText "critical"
+    uid=15_66 StaticText "critical"
+    uid=15_67 StaticText "8"
+    uid=15_68 StaticText "एजंट"
+    uid=15_69 StaticText "·"
+    uid=15_70 StaticText "0F8A0A2A"
+    uid=15_71 StaticText "Ganga साठी नोंद घेतली आहे. प्राथमिकता पातळी: गंभीर. आढळलेली लक्षणे: श्वास घेण्यास त्रास; ताप; पाणी पीत नाही. ⚠️ ही स्थिती पशुवैद्यकीय तपासणीची आवश्यकता दर्शवते. कृपया पशुवैद्यांशी संपर्क साधा. काळजी: स्वच्छ पिण्याचे पाणी आणि सावली उपलब्ध करा; तापमान आणि खाद्याची लिखित नोंद ठेवा; पशुवैद्यांच्या सल्ल्याशिवाय कोणतेही औषध देऊ नका; दिवसातून दोन वेळा तापमान मोजा आणि नोंद करा. आरोग्य नोंद क्रमांक: HC-261108-82FA21. पशुवैद्यकीय मदत विनंती Dr. Aarti Kulkarni यांना पाठवली आहे. पशुवैद्यकीय विनंती तयार केली आहे; तुमचा केस संदर्भ HC-261108-82FA21 आहे. टीप: हा सल्ला पशुवैद्यकीय निदान किंवा औषधोपचार नाही. औषधांचा वापर फक्त पशुवैद्यांच्या सल्ल्याने करा."
+    uid=15_72 StaticText "warning sign: difficulty breathing"
+    uid=15_73 StaticText "warning sign: not drinking water"
+    uid=15_74 StaticText "सल्लागार मार्गदर्शन"
+    uid=15_75 StaticText "स्वच्छ पिण्याचे पाणी आणि सावली उपलब्ध करा"
+    uid=15_76 StaticText "तापमान आणि खाद्याची लिखित नोंद ठेवा"
+    uid=15_77 StaticText "पशुवैद्यांच्या सल्ल्याशिवाय कोणतेही औषध देऊ नका"
+    uid=15_78 StaticText "दिवसातून दोन वेळा तापमान मोजा आणि नोंद करा"
+    uid=15_79 link "केस उघडा HC-261108-82FA21" focusable url="http://127.0.0.1:5173/farmer/health/a6660fb0-1d6a-40c7-8cfe-db0cd43940cc"
+      uid=15_80 StaticText "केस उघडा"
+      uid=15_81 StaticText "HC-261108-82FA21"
+    uid=15_82 StaticText "Veterinary appointment requested"
+    uid=15_83 StaticText "Agents used:"
+    uid=15_84 StaticText "intake, orchestrator, record, health, safety, vet, followup, respond"
+    uid=15_85 StaticText "."
+    uid=15_86 StaticText "हा निकाल निर्णय सहाय्य आहे, पशुवैद्यकीय निदान नाही."
+    uid=15_87 heading "तातडीची धोक्याची लक्षणे" level="2"
+    uid=15_88 StaticText "कोणतेही धोक्याचे लक्षण दिसल्यास त्वरित पशुवैद्याशी संपर्क करा. ही यादी निदान नाही."
+    uid=15_89 StaticText "श्वास घेण्यास त्रास"
+    uid=15_90 StaticText "उभे राहू शकत नाही"
+    uid=15_91 StaticText "पेटके येणे"
+    uid=15_92 StaticText "तीव्र रक्तस्राव"
+    uid=15_93 StaticText "पोट फुगणे"
+    uid=15_94 StaticText "तीव्र ताप"
+    uid=15_95 StaticText "पाणी पीत नाही"
+    uid=15_96 StaticText "अचानक मृत्यू"
+    uid=15_97 heading "केस इतिहास" level="2"
+    uid=15_98 combobox expandable focusable hasPopup="menu" invalid="false" value="All statuses"
+      uid=15_99 option "All statuses" focusable selectable selected
+      uid=15_100 option "Reported" focusable selectable
+      uid=15_101 option "Triaged" focusable selectable
+      uid=15_102 option "Assigned" focusable selectable
+      uid=15_103 option "In progress" focusable selectable
+      uid=15_104 option "Resolved" focusable selectable
+      uid=15_105 option "Closed" focusable selectable
+    uid=15_106 link "HC-261108-82FA21 critical डेमो ऑडिट: गंगाला कालपासून तीव्र ताप आहे आणि ती उभी राहू शकत नाही. श्वास घेण्यास त्रास होत आहे आणि पाणी पीत नाही. Ganga · 08 Nov, 01:57 pm assigned" focusable url="http://127.0.0.1:5173/farmer/health/a6660fb0-1d6a-40c7-8cfe-db0cd43940cc"
+      uid=15_107 StaticText "HC-261108-82FA21"
+      uid=15_108 StaticText "critical"
+      uid=15_109 StaticText "डेमो ऑडिट: गंगाला कालपासून तीव्र ताप आहे आणि ती उभी राहू शकत नाही. श्वास घेण्यास त्रास होत आहे आणि पाणी पीत नाही."
+      uid=15_110 StaticText "Ganga"
+      uid=15_111 StaticText "·"
+      uid=15_112 StaticText "08 Nov, 01:57 pm"
+      uid=15_113 StaticText "assigned"
+    uid=15_114 link "HC-261108-199A1E critical गायीला कालपासून तीव्र ताप आहे आणि ती उभी राहू शकत नाही. श्वास घेण्यास त्रास होत आहे आणि पाणी पीत नाही. Ganga · 08 Nov, 01:24 pm in progress" focusable url="http://127.0.0.1:5173/farmer/health/960f3d1a-5a51-42b0-a730-002ea0d156fc"
+      uid=15_115 StaticText "HC-261108-199A1E"
+      uid=15_116 StaticText "critical"
+      uid=15_117 StaticText "गायीला कालपासून तीव्र ताप आहे आणि ती उभी राहू शकत नाही. श्वास घेण्यास त्रास होत आहे आणि पाणी पीत नाही."
+      uid=15_118 StaticText "Ganga"
+      uid=15_119 StaticText "·"
+      uid=15_120 StaticText "08 Nov, 01:24 pm"
+      uid=15_121 StaticText "in progress"
+    uid=15_122 link "HC-261108-820AAD critical गायीला दोन दिवसांपासून ताप आहे आणि ती उभी राहू शकत नाही. Ganga · 08 Nov, 01:04 pm in progress" focusable url="http://127.0.0.1:5173/farmer/health/0825e0e5-2423-445e-9fb8-04bcd43e8a9f"
+      uid=15_123 StaticText "HC-261108-820AAD"
+      uid=15_124 StaticText "critical"
+      uid=15_125 StaticText "गायीला दोन दिवसांपासून ताप आहे आणि ती उभी राहू शकत नाही."
+      uid=15_126 StaticText "Ganga"
+      uid=15_127 StaticText "·"
+      uid=15_128 StaticText "08 Nov, 01:04 pm"
+      uid=15_129 StaticText "in progress"
+    uid=15_130 link "HC-261108-0379F9 medium माझी गाय दोन दिवसांपासून नीट खात नाही आणि दूध कमी देत आहे. Ganga · 08 Nov, 01:04 pm assigned" focusable url="http://127.0.0.1:5173/farmer/health/a5da1631-722e-40e1-b1fe-5372db287496"
+      uid=15_131 StaticText "HC-261108-0379F9"
+      uid=15_132 StaticText "medium"
+      uid=15_133 StaticText "माझी गाय दोन दिवसांपासून नीट खात नाही आणि दूध कमी देत आहे."
+      uid=15_134 StaticText "Ganga"
+      uid=15_135 StaticText "·"
+      uid=15_136 StaticText "08 Nov, 01:04 pm"
+      uid=15_137 StaticText "assigned"
+    uid=15_138 link "ALG-CASE-1001 medium माझी गाय दोन दिवसांपासून नीट खात नाही आणि दूध कमी देत आहे. Ganga · 06 Nov, 10:03 am in progress" focusable url="http://127.0.0.1:5173/farmer/health/2cab25d1-481b-4bd1-83a3-cfbdadcfc29e"
+      uid=15_139 StaticText "ALG-CASE-1001"
+      uid=15_140 StaticText "medium"
+      uid=15_141 StaticText "माझी गाय दोन दिवसांपासून नीट खात नाही आणि दूध कमी देत आहे."
+      uid=15_142 StaticText "Ganga"
+      uid=15_143 StaticText "·"
+      uid=15_144 StaticText "06 Nov, 10:03 am"
+      uid=15_145 StaticText "in progress"
+    uid=15_146 link "ALG-CASE-0998 medium Milk production dropped and one quarter felt warm. Lakshmi · 19 Oct, 01:03 pm resolved" focusable url="http://127.0.0.1:5173/farmer/health/5e86690a-e7fa-47f3-a7d9-e115bfbc74a7"
+      uid=15_147 StaticText "ALG-CASE-0998"
+      uid=15_148 StaticText "medium"
+      uid=15_149 StaticText "Milk production dropped and one quarter felt warm."
+      uid=15_150 StaticText "Lakshmi"
+      uid=15_151 StaticText "·"
+      uid=15_152 StaticText "19 Oct, 01:03 pm"
+      uid=15_153 StaticText "resolved"
+    uid=15_154 StaticText "डेमो डेटा स्पष्टपणे चिन्हांकित आहे. लसीकरण प्रोटोकॉल सत्यापित संदर्भांवर आधारित आहेत. पशुवैद्यकीय निर्णय अधिकृत तज्ञाद्वारे घेतले जातात."
+    uid=15_155 StaticText "Built for the GAVS Hackathon"

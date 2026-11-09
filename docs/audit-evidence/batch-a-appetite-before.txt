@@ -1,0 +1,12 @@
+F                                                                        [100%]
+================================== FAILURES ===================================
+________ test_stronger_appetite_sign_never_reduces_combination_urgency ________
+app\tests\test_triage_safety.py:90: in test_stronger_appetite_sign_never_reduces_combination_urgency
+    assert after["severity"] == "high"
+E   AssertionError: assert 'medium' == 'high'
+E     
+E     - high
+E     + medium
+=========================== short test summary info ===========================
+FAILED app/tests/test_triage_safety.py::test_stronger_appetite_sign_never_reduces_combination_urgency
+1 failed, 73 deselected in 0.43s

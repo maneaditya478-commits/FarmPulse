@@ -1,0 +1,24 @@
+.FF..................................................................... [ 24%]
+........................................................................ [ 48%]
+........................................................................ [ 72%]
+........................................................................ [ 96%]
+.........                                                                [100%]
+================================== FAILURES ===================================
+___________ test_standard_health_advisory_passes_output_screen[hi] ____________
+app\tests\test_llm_safety.py:203: in test_standard_health_advisory_passes_output_screen
+    assert safety_scan(text) == (True, None)
+E   AssertionError: assert (False, 'unsafe_prescription') == (True, None)
+E     
+E     At index 0 diff: False != True
+E     Use -v to get more diff
+___________ test_standard_health_advisory_passes_output_screen[mr] ____________
+app\tests\test_llm_safety.py:203: in test_standard_health_advisory_passes_output_screen
+    assert safety_scan(text) == (True, None)
+E   AssertionError: assert (False, 'unsafe_prescription') == (True, None)
+E     
+E     At index 0 diff: False != True
+E     Use -v to get more diff
+=========================== short test summary info ===========================
+FAILED app/tests/test_llm_safety.py::test_standard_health_advisory_passes_output_screen[hi]
+FAILED app/tests/test_llm_safety.py::test_standard_health_advisory_passes_output_screen[mr]
+2 failed, 295 passed in 6.35s

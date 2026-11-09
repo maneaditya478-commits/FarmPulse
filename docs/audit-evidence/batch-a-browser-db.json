@@ -1,0 +1,178 @@
+{
+  "source": "isolated labelled sample browser smoke database",
+  "case": {
+    "id": "a11859a11e8d4ad894e9d33a73080960",
+    "case_code": "HC-261108-50E313",
+    "severity": "critical",
+    "requires_vet": 1,
+    "is_sample": 1,
+    "triage": {
+      "severity": "critical",
+      "requires_vet": true,
+      "symptoms": [
+        "breathing_difficulty"
+      ],
+      "findings": [
+        "श्वास घेण्यास त्रास"
+      ],
+      "reasons": [
+        "warning sign: difficulty breathing",
+        "reported signs require veterinary review"
+      ],
+      "advice": [
+        "स्वच्छ पिण्याचे पाणी आणि सावली उपलब्ध करा",
+        "तापमान आणि खाद्याची लिखित नोंद ठेवा",
+        "पशुवैद्यांच्या सल्ल्याशिवाय कोणतेही औषध देऊ नका"
+      ],
+      "duration_days": null,
+      "normal_temp_c": 38.5,
+      "temperature_c": null,
+      "rule_status": "needs vet review",
+      "needs_vet_review": true,
+      "disclaimer": "Rule thresholds need vet review; clinical accuracy is not established. Not a diagnosis or prescription.",
+      "generated_on": "2026-11-08"
+    }
+  },
+  "visits": [
+    {
+      "status": "requested",
+      "scheduled_at": null
+    }
+  ],
+  "assistant_interactions": [
+    {
+      "intent": "health",
+      "escalated": 0,
+      "detected_language": "mr",
+      "workflow": {
+        "trace": [
+          {
+            "agent": "intake",
+            "status": "ok",
+            "detail": "normalized input (24 chars), language=mr",
+            "at": "2026-11-08T14:46:25.352214+00:00"
+          },
+          {
+            "agent": "orchestrator",
+            "status": "ok",
+            "detail": "intent=health; plan=record -> health -> safety -> vet -> followup; local rule engine",
+            "at": "2026-11-08T14:46:25.353295+00:00"
+          },
+          {
+            "agent": "record",
+            "status": "ok",
+            "detail": "resolved animal=none",
+            "at": "2026-11-08T14:46:25.360466+00:00"
+          },
+          {
+            "agent": "record",
+            "status": "warning",
+            "detail": "no animal matched; urgency assessment continues without creating a case",
+            "at": "2026-11-08T14:46:25.360492+00:00"
+          },
+          {
+            "agent": "health",
+            "status": "ok",
+            "detail": "severity=low, requires_vet=False, signs=0",
+            "at": "2026-11-08T14:46:25.363622+00:00"
+          },
+          {
+            "agent": "safety",
+            "status": "ok",
+            "detail": "no clinical record to gate",
+            "at": "2026-11-08T14:46:25.364420+00:00"
+          },
+          {
+            "agent": "vet",
+            "status": "ok",
+            "detail": "nearby_professionals=2; request_created=False",
+            "at": "2026-11-08T14:46:25.366709+00:00"
+          },
+          {
+            "agent": "followup",
+            "status": "ok",
+            "detail": "scheduled=False",
+            "at": "2026-11-08T14:46:25.367329+00:00"
+          },
+          {
+            "agent": "respond",
+            "status": "ok",
+            "detail": "composed localized response",
+            "at": "2026-11-08T14:46:25.368036+00:00"
+          }
+        ],
+        "case_id": null,
+        "appointment_id": null,
+        "halt_reason": "animal_not_resolved",
+        "safety_events": []
+      }
+    },
+    {
+      "intent": "health",
+      "escalated": 1,
+      "detected_language": "mr",
+      "workflow": {
+        "trace": [
+          {
+            "agent": "intake",
+            "status": "ok",
+            "detail": "normalized input (20 chars), language=mr",
+            "at": "2026-11-08T14:45:59.981062+00:00"
+          },
+          {
+            "agent": "orchestrator",
+            "status": "ok",
+            "detail": "intent=health; plan=record -> health -> safety -> vet -> followup; local rule engine",
+            "at": "2026-11-08T14:45:59.982341+00:00"
+          },
+          {
+            "agent": "record",
+            "status": "ok",
+            "detail": "resolved animal=none",
+            "at": "2026-11-08T14:45:59.988083+00:00"
+          },
+          {
+            "agent": "record",
+            "status": "warning",
+            "detail": "no animal matched; urgency assessment continues without creating a case",
+            "at": "2026-11-08T14:45:59.988094+00:00"
+          },
+          {
+            "agent": "health",
+            "status": "ok",
+            "detail": "severity=critical, requires_vet=True, signs=1",
+            "at": "2026-11-08T14:45:59.990957+00:00"
+          },
+          {
+            "agent": "safety",
+            "status": "ok",
+            "detail": "no clinical record to gate",
+            "at": "2026-11-08T14:45:59.991877+00:00"
+          },
+          {
+            "agent": "vet",
+            "status": "ok",
+            "detail": "nearby_professionals=2; request_created=False",
+            "at": "2026-11-08T14:45:59.993946+00:00"
+          },
+          {
+            "agent": "followup",
+            "status": "ok",
+            "detail": "scheduled=False",
+            "at": "2026-11-08T14:45:59.994652+00:00"
+          },
+          {
+            "agent": "respond",
+            "status": "ok",
+            "detail": "composed localized response",
+            "at": "2026-11-08T14:45:59.995758+00:00"
+          }
+        ],
+        "case_id": null,
+        "appointment_id": null,
+        "halt_reason": "animal_not_resolved",
+        "safety_events": []
+      }
+    }
+  ]
+}

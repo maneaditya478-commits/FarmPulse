@@ -1,0 +1,12 @@
+........................................................................ [ 20%]
+........................................................................ [ 40%]
+........................................................................ [ 61%]
+........................................................................ [ 81%]
+..................................................................       [100%]
+============================== warnings summary ===============================
+app/tests/test_market_finance.py::test_market_trends_require_district_and_category
+  C:\Users\manea\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py:59: StarletteDeprecationWarning: 'HTTP_422_UNPROCESSABLE_ENTITY' is deprecated. Use 'HTTP_422_UNPROCESSABLE_CONTENT' instead.
+    response = await handler(conn, exc)  # type: ignore[arg-type]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+354 passed, 1 warning in 7.42s

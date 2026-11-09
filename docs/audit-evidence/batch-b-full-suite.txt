@@ -1,0 +1,18 @@
+........................................................................ [ 18%]
+........................................................................ [ 37%]
+........................................................................ [ 56%]
+........................................................................ [ 75%]
+........................................................................ [ 94%]
+......................                                                   [100%]
+============================== warnings summary ===============================
+app/tests/test_authorization.py::test_h03_record_case_must_belong_to_same_animal
+app/tests/test_health_workflow.py::test_incomplete_assessment_rejected
+  C:\Users\manea\AppData\Local\Programs\Python\Python313\Lib\site-packages\anyio\_backends\_asyncio.py:986: StarletteDeprecationWarning: 'HTTP_422_UNPROCESSABLE_ENTITY' is deprecated. Use 'HTTP_422_UNPROCESSABLE_CONTENT' instead.
+    result = context.run(func, *args)
+
+app/tests/test_market_finance.py::test_market_trends_require_district_and_category
+  C:\Users\manea\AppData\Local\Programs\Python\Python313\Lib\site-packages\starlette\_exception_handler.py:59: StarletteDeprecationWarning: 'HTTP_422_UNPROCESSABLE_ENTITY' is deprecated. Use 'HTTP_422_UNPROCESSABLE_CONTENT' instead.
+    response = await handler(conn, exc)  # type: ignore[arg-type]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+382 passed, 3 warnings in 20.16s

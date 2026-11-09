@@ -1,0 +1,59 @@
+BATCH B — BROWSER SMOKE EVIDENCE (authorization)
+Date: 2026-11-09
+Isolated servers (separate from the running :8000/:5173 demo):
+  API: http://127.0.0.1:8001  DATABASE_URL=sqlite:///backend/batch_b_browser.db  SEED_DEMO_DATA=true
+       CORS_ORIGINS includes http://localhost:5174
+  Web: http://localhost:5174  VITE_API_URL=http://localhost:8001/api/v1
+Method: in-app browser driven via DOM (native value setters + form.requestSubmit) and
+        same-origin fetch. Screenshot surface was unavailable
+        (NATIVE_BROWSER_VIEWPORT_UNAVAILABLE); structural DOM + API responses captured instead.
+
+=== M03 — password change keeps session, invalidates old token ===
+1. Login ramesh@alg.demo / Demo@1234 -> 200, redirected to /farmer, role=farmer, token stored.
+2. Captured pre-change token (length 323) as window.__oldToken.
+3. /farmer/profile -> Change password form: current=Demo@1234, new=Demo@5678 -> submit.
+   Result:
+     successVisible ("Password updated.") = true
+     stillLoggedIn (token present)        = true
+     tokenChanged (new != old)            = true
+     path                                 = /farmer/profile (session preserved)
+4. Token invalidation check (same-origin fetch to /users/me):
+     old token -> HTTP 401, error.code = "invalid_token"
+     new token -> HTTP 200
+   NOTE: an earlier regex flagged errorVisible=true; this was a false positive matching the
+   "Current password" field label, not an error message. The success banner was present.
+
+=== H02 — consent-based cooperative membership ===
+1. Login coop.pune@alg.demo / Demo@1234 -> 200, /coop, role=cooperative.
+2. /coop/members initial table (seeded, consented):
+     Savitri Shinde (savitri@alg.demo)  PDMC-1043  animals=5   status=active
+     Ramesh Patil   (ramesh@alg.demo)   PDMC-1042  animals=20  status=active
+3. Registered a fresh farmer via public POST /auth/register:
+     smoke.farmer@example.com / Demo@1234 -> HTTP 201, role=farmer.
+4. UI "Add member" modal -> farmer_email=smoke.farmer@example.com -> submit.
+   Members table after reload:
+     Smoke Farmer (smoke.farmer@example.com)  CM-2371E4  animals=0  status=PENDING
+     Savitri Shinde                                            animals=5  status=active
+     Ramesh Patil                                              animals=20 status=active
+   => New invite is PENDING with animal_count 0 (no data access before consent).
+5. Consent loop (API; no farmer-facing invitation UI exists by design — see limitations):
+     login smoke.farmer@example.com -> 200
+     GET /users/cooperative/invitations -> 1 item:
+        status=pending, cooperative="Pune District Milk Cooperative"
+        id=9130b019-f2a0-4e79-a849-c4f8d7c3bcae
+     POST /users/cooperative/invitations/{id}/decision {decision:"accept"} -> HTTP 200, status=active
+6. DB verification (batch_b_browser.db):
+     cooperative_memberships JOIN users WHERE email='smoke.farmer@example.com'
+       -> status='active', consented_at='2026-11-09 07:49:18.539111'
+     (consented_at is persisted but not exposed in CooperativeMemberOut response schema.)
+7. /coop/members after consent + reload:
+     Smoke Farmer   status=active
+     Savitri Shinde status=active
+     Ramesh Patil   status=active
+
+=== Outcome ===
+M03 and H02 user-visible flows confirmed working in a real browser against the fixed backend.
+Password change rotates the token and preserves the session; the old token is rejected (401).
+Cooperative invites start pending with no data access; farmer consent activates membership and
+records consented_at. All other Batch B findings are covered by the backend regression suite
+(28 tests) and the mobile Node SQLite test; see batch-b-full-suite.txt and batch-b-mobile-test.txt.

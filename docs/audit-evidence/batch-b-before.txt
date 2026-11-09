@@ -1,0 +1,1034 @@
+F.FF.F...FFFFFFFFFF.FFFFFFFF                                             [100%]
+================================== FAILURES ===================================
+____________ test_h01_unlinked_cooperative_sees_no_medical_records ____________
+
+client = <starlette.testclient.TestClient object at 0x00000269EF9E0980>
+admin_headers = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ZjMzZjNmMC00MGMzLTQzNzktOTViNS1hY2FiZWMwYmY...kaWFuIiwiZW1haWwiOiJhZG1pbkBhbGcuZGVtbyIsIm5hbWUiOiJBbml0YSBEZXNobXVraCJ9.h80DrPn0vZpCaaSaL9XIe4hM9OAx_b1ZhBZIARgjwhw'}
+
+    def test_h01_unlinked_cooperative_sees_no_medical_records(client, admin_headers):
+        coop, _ = _register(client, role="cooperative", admin_headers=admin_headers)
+        response = client.get("/api/v1/health/records", headers=coop)
+        assert response.status_code == 200
+>       assert response.json() == [], "unlinked cooperative must not read global medical records"
+E       AssertionError: unlinked cooperative must not read global medical records
+E       assert [{'id': '8a22...gnosis', ...}] == []
+E         
+E         Left contains one more item: {'id': '8a22c8cd-dfd2-4cc9-a86d-8d9a0a96a9e6', 'animal_id': 'd9704a22-a22d-4930-81fc-2d7fa2fecec8', 'case_id': '17c4f3b4-895e-44b6-8ccb-61a8c3c020c2', 'record_type': 'diagnosis', ...}
+E         Use -v to get more diff
+
+app\tests\test_authorization.py:97: AssertionError
+---------------------------- Captured stderr setup ----------------------------
+2026-11-09 12:59:58,322 DEBUG asyncio Using proactor: IocpProactor
+2026-11-09 13:00:00,322 INFO alg.app Seeded demo dataset (users=6)
+2026-11-09 13:00:00,599 INFO alg.access POST /api/v1/auth/login 200 275.1ms request_id=9d68262f-b0f5-4e11-a4bb-0ee337daf3d8
+2026-11-09 13:00:00,600 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/login "HTTP/1.1 200 OK"
+----------------------------- Captured log setup ------------------------------
+DEBUG    asyncio:proactor_events.py:631 Using proactor: IocpProactor
+INFO     alg.app:main.py:53 Seeded demo dataset (users=6)
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/login 200 275.1ms request_id=9d68262f-b0f5-4e11-a4bb-0ee337daf3d8
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/login "HTTP/1.1 200 OK"
+---------------------------- Captured stderr call -----------------------------
+2026-11-09 13:00:00,886 INFO alg.access POST /api/v1/users 201 283.9ms request_id=3d89d7af-349e-4ba7-addc-55e89553c9ac
+2026-11-09 13:00:00,887 INFO httpx2 HTTP Request: POST http://testserver/api/v1/users "HTTP/1.1 201 Created"
+2026-11-09 13:00:01,157 INFO alg.access POST /api/v1/auth/login 200 269.2ms request_id=a0a17159-7bca-4e00-bc51-13f286e306ee
+2026-11-09 13:00:01,158 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/login "HTTP/1.1 200 OK"
+2026-11-09 13:00:01,208 INFO alg.access GET /api/v1/health/records 200 49.4ms request_id=253a4585-c5e8-41b4-b1af-d2464dd6b176
+2026-11-09 13:00:01,209 INFO httpx2 HTTP Request: GET http://testserver/api/v1/health/records "HTTP/1.1 200 OK"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 POST /api/v1/users 201 283.9ms request_id=3d89d7af-349e-4ba7-addc-55e89553c9ac
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/users "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/login 200 269.2ms request_id=a0a17159-7bca-4e00-bc51-13f286e306ee
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/login "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 GET /api/v1/health/records 200 49.4ms request_id=253a4585-c5e8-41b4-b1af-d2464dd6b176
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/health/records "HTTP/1.1 200 OK"
+_________________ test_h02_membership_requires_farmer_consent _________________
+
+client = <starlette.testclient.TestClient object at 0x00000269EF9E0980>
+admin_headers = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ZjMzZjNmMC00MGMzLTQzNzktOTViNS1hY2FiZWMwYmY...kaWFuIiwiZW1haWwiOiJhZG1pbkBhbGcuZGVtbyIsIm5hbWUiOiJBbml0YSBEZXNobXVraCJ9.h80DrPn0vZpCaaSaL9XIe4hM9OAx_b1ZhBZIARgjwhw'}
+
+    def test_h02_membership_requires_farmer_consent(client, admin_headers):
+        farmer, farmer_user = _register(client)
+        animal = _create_animal(client, farmer)
+        coop, _ = _register(client, role="cooperative", admin_headers=admin_headers)
+    
+        invited = client.post(
+            "/api/v1/users/cooperative/members",
+            headers=coop,
+            json={"farmer_email": farmer_user["email"]},
+        )
+        assert invited.status_code == 201, invited.text
+        membership = invited.json()
+>       assert membership["status"] == "pending", "membership must await farmer consent, not self-activate"
+E       AssertionError: membership must await farmer consent, not self-activate
+E       assert 'active' == 'pending'
+E         
+E         - pending
+E         + active
+
+app\tests\test_authorization.py:124: AssertionError
+---------------------------- Captured stderr call -----------------------------
+2026-11-09 13:00:02,448 INFO alg.access POST /api/v1/auth/register 201 265.1ms request_id=0e8791c1-fb79-4264-827f-a588482b604c
+2026-11-09 13:00:02,449 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+2026-11-09 13:00:02,453 INFO alg.access GET /api/v1/animals/species 200 3.4ms request_id=02c5185f-330d-4f4c-9ea1-c0432d505986
+2026-11-09 13:00:02,454 INFO httpx2 HTTP Request: GET http://testserver/api/v1/animals/species "HTTP/1.1 200 OK"
+2026-11-09 13:00:02,472 INFO alg.access POST /api/v1/animals 201 16.7ms request_id=03e3c4a9-71f7-45fb-9fc7-27af16a646cf
+2026-11-09 13:00:02,473 INFO httpx2 HTTP Request: POST http://testserver/api/v1/animals "HTTP/1.1 201 Created"
+2026-11-09 13:00:02,737 INFO alg.access POST /api/v1/users 201 263.6ms request_id=d5aa656e-4a79-4bae-996d-907b963eef7a
+2026-11-09 13:00:02,738 INFO httpx2 HTTP Request: POST http://testserver/api/v1/users "HTTP/1.1 201 Created"
+2026-11-09 13:00:03,006 INFO alg.access POST /api/v1/auth/login 200 266.2ms request_id=96457794-6517-4d93-ae53-d30597231a30
+2026-11-09 13:00:03,007 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/login "HTTP/1.1 200 OK"
+2026-11-09 13:00:03,019 INFO alg.access POST /api/v1/users/cooperative/members 201 10.5ms request_id=cf3d9587-0437-4e32-9a7a-96e5cfaaeac6
+2026-11-09 13:00:03,020 INFO httpx2 HTTP Request: POST http://testserver/api/v1/users/cooperative/members "HTTP/1.1 201 Created"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/register 201 265.1ms request_id=0e8791c1-fb79-4264-827f-a588482b604c
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 GET /api/v1/animals/species 200 3.4ms request_id=02c5185f-330d-4f4c-9ea1-c0432d505986
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/animals/species "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/animals 201 16.7ms request_id=03e3c4a9-71f7-45fb-9fc7-27af16a646cf
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/animals "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 POST /api/v1/users 201 263.6ms request_id=d5aa656e-4a79-4bae-996d-907b963eef7a
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/users "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/login 200 266.2ms request_id=96457794-6517-4d93-ae53-d30597231a30
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/login "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/users/cooperative/members 201 10.5ms request_id=cf3d9587-0437-4e32-9a7a-96e5cfaaeac6
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/users/cooperative/members "HTTP/1.1 201 Created"
+___________________ test_h02_farmer_can_decline_membership ____________________
+
+client = <starlette.testclient.TestClient object at 0x00000269EF9E0980>
+admin_headers = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ZjMzZjNmMC00MGMzLTQzNzktOTViNS1hY2FiZWMwYmY...kaWFuIiwiZW1haWwiOiJhZG1pbkBhbGcuZGVtbyIsIm5hbWUiOiJBbml0YSBEZXNobXVraCJ9.h80DrPn0vZpCaaSaL9XIe4hM9OAx_b1ZhBZIARgjwhw'}
+
+    def test_h02_farmer_can_decline_membership(client, admin_headers):
+        farmer, farmer_user = _register(client)
+        animal = _create_animal(client, farmer)
+        coop, _ = _register(client, role="cooperative", admin_headers=admin_headers)
+        invited = client.post(
+            "/api/v1/users/cooperative/members",
+            headers=coop,
+            json={"farmer_email": farmer_user["email"]},
+        )
+        assert invited.status_code == 201, invited.text
+        membership = invited.json()
+    
+        declined = client.post(
+            f"/api/v1/users/cooperative/invitations/{membership['id']}/decision",
+            headers=farmer,
+            json={"decision": "decline"},
+        )
+>       assert declined.status_code == 200, declined.text
+E       AssertionError: {"error":{"code":"not_found","message":"Not Found"}}
+E       assert 404 == 200
+E        +  where 404 = <Response [404 Not Found]>.status_code
+
+app\tests\test_authorization.py:162: AssertionError
+---------------------------- Captured stderr call -----------------------------
+2026-11-09 13:00:03,304 INFO alg.access POST /api/v1/auth/register 201 267.5ms request_id=e72bf5ce-6ef4-4e2b-abdb-b007c7212b09
+2026-11-09 13:00:03,305 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+2026-11-09 13:00:03,309 INFO alg.access GET /api/v1/animals/species 200 2.7ms request_id=cbd83e32-2ac2-4f76-aca6-a6c275a4ee63
+2026-11-09 13:00:03,309 INFO httpx2 HTTP Request: GET http://testserver/api/v1/animals/species "HTTP/1.1 200 OK"
+2026-11-09 13:00:03,322 INFO alg.access POST /api/v1/animals 201 11.5ms request_id=abc29855-ffe5-405d-9602-6a085831caec
+2026-11-09 13:00:03,323 INFO httpx2 HTTP Request: POST http://testserver/api/v1/animals "HTTP/1.1 201 Created"
+2026-11-09 13:00:03,596 INFO alg.access POST /api/v1/users 201 272.1ms request_id=97f332f2-ab43-4c73-b872-6c7b7a686f3a
+2026-11-09 13:00:03,597 INFO httpx2 HTTP Request: POST http://testserver/api/v1/users "HTTP/1.1 201 Created"
+2026-11-09 13:00:03,865 INFO alg.access POST /api/v1/auth/login 200 267.0ms request_id=aab893ce-711e-4472-b297-c19fc897d3ba
+2026-11-09 13:00:03,865 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/login "HTTP/1.1 200 OK"
+2026-11-09 13:00:03,874 INFO alg.access POST /api/v1/users/cooperative/members 201 7.6ms request_id=86c40dc7-a290-475d-a2ff-8d99784b8881
+2026-11-09 13:00:03,875 INFO httpx2 HTTP Request: POST http://testserver/api/v1/users/cooperative/members "HTTP/1.1 201 Created"
+2026-11-09 13:00:03,942 INFO alg.access POST /api/v1/users/cooperative/invitations/916fa3cf-bc33-4177-af06-0950ac62ed3f/decision 404 66.2ms request_id=45c19402-f648-455c-8dc7-2ea1867e0178
+2026-11-09 13:00:03,942 INFO httpx2 HTTP Request: POST http://testserver/api/v1/users/cooperative/invitations/916fa3cf-bc33-4177-af06-0950ac62ed3f/decision "HTTP/1.1 404 Not Found"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/register 201 267.5ms request_id=e72bf5ce-6ef4-4e2b-abdb-b007c7212b09
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 GET /api/v1/animals/species 200 2.7ms request_id=cbd83e32-2ac2-4f76-aca6-a6c275a4ee63
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/animals/species "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/animals 201 11.5ms request_id=abc29855-ffe5-405d-9602-6a085831caec
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/animals "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 POST /api/v1/users 201 272.1ms request_id=97f332f2-ab43-4c73-b872-6c7b7a686f3a
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/users "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/login 200 267.0ms request_id=aab893ce-711e-4472-b297-c19fc897d3ba
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/login "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/users/cooperative/members 201 7.6ms request_id=86c40dc7-a290-475d-a2ff-8d99784b8881
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/users/cooperative/members "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 POST /api/v1/users/cooperative/invitations/916fa3cf-bc33-4177-af06-0950ac62ed3f/decision 404 66.2ms request_id=45c19402-f648-455c-8dc7-2ea1867e0178
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/users/cooperative/invitations/916fa3cf-bc33-4177-af06-0950ac62ed3f/decision "HTTP/1.1 404 Not Found"
+_______________ test_h03_record_case_must_belong_to_same_animal _______________
+
+client = <starlette.testclient.TestClient object at 0x00000269EF9E0980>
+admin_headers = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ZjMzZjNmMC00MGMzLTQzNzktOTViNS1hY2FiZWMwYmY...kaWFuIiwiZW1haWwiOiJhZG1pbkBhbGcuZGVtbyIsIm5hbWUiOiJBbml0YSBEZXNobXVraCJ9.h80DrPn0vZpCaaSaL9XIe4hM9OAx_b1ZhBZIARgjwhw'}
+vet_headers = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0NGRmN2EyMC03ZjE1LTQ3NzUtOWUzYy03NDNlZjNlNmQ...VtYWlsIjoiZHIuYWFydGlAYWxnLmRlbW8iLCJuYW1lIjoiRHIuIEFhcnRpIEt1bGthcm5pIn0._C4ZEOfqoGDsgK41JWuZoOkOscRC9BE3heVoKZDYBdg'}
+
+    def test_h03_record_case_must_belong_to_same_animal(client, admin_headers, vet_headers):
+        other_farmer = login(client, "savitri@alg.demo")
+        foreign_cases = client.get("/api/v1/health/cases", headers=other_farmer).json()["items"]
+        assert foreign_cases
+        foreign_case = foreign_cases[0]
+    
+        accessible = client.get("/api/v1/animals?page_size=1", headers=vet_headers).json()["items"]
+        assert accessible
+        response = client.post(
+            "/api/v1/health/records",
+            headers=vet_headers,
+            json={
+                "animal_id": accessible[0]["id"],
+                "case_id": foreign_case["id"],
+                "record_type": "note",
+                "title": "Cross-animal linkage attempt",
+            },
+        )
+>       assert response.status_code == 422, "record must not link an accessible animal to another animal's case"
+E       AssertionError: record must not link an accessible animal to another animal's case
+E       assert 201 == 422
+E        +  where 201 = <Response [201 Created]>.status_code
+
+app\tests\test_authorization.py:206: AssertionError
+---------------------------- Captured stderr setup ----------------------------
+2026-11-09 13:00:05,316 INFO alg.access POST /api/v1/auth/login 200 268.3ms request_id=88b9e407-419d-43a4-bee0-488f713a869b
+2026-11-09 13:00:05,317 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/login "HTTP/1.1 200 OK"
+----------------------------- Captured log setup ------------------------------
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/login 200 268.3ms request_id=88b9e407-419d-43a4-bee0-488f713a869b
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/login "HTTP/1.1 200 OK"
+---------------------------- Captured stderr call -----------------------------
+2026-11-09 13:00:05,581 INFO alg.access POST /api/v1/auth/login 200 262.2ms request_id=4725fa13-8730-4a0d-ad59-c34c9a0a2e49
+2026-11-09 13:00:05,582 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/login "HTTP/1.1 200 OK"
+2026-11-09 13:00:05,605 INFO alg.access GET /api/v1/health/cases 200 22.2ms request_id=34517a62-463b-4409-9563-f588254091ef
+2026-11-09 13:00:05,606 INFO httpx2 HTTP Request: GET http://testserver/api/v1/health/cases "HTTP/1.1 200 OK"
+2026-11-09 13:00:05,615 INFO alg.access GET /api/v1/animals 200 8.5ms request_id=68238bd2-cd76-45fa-a9da-1672aeade182
+2026-11-09 13:00:05,616 INFO httpx2 HTTP Request: GET http://testserver/api/v1/animals?page_size=1 "HTTP/1.1 200 OK"
+2026-11-09 13:00:05,628 INFO alg.access POST /api/v1/health/records 201 10.9ms request_id=17d72fb6-3aec-4cd9-bdd3-4835037d9dbb
+2026-11-09 13:00:05,629 INFO httpx2 HTTP Request: POST http://testserver/api/v1/health/records "HTTP/1.1 201 Created"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/login 200 262.2ms request_id=4725fa13-8730-4a0d-ad59-c34c9a0a2e49
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/login "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 GET /api/v1/health/cases 200 22.2ms request_id=34517a62-463b-4409-9563-f588254091ef
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/health/cases "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 GET /api/v1/animals 200 8.5ms request_id=68238bd2-cd76-45fa-a9da-1672aeade182
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/animals?page_size=1 "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/health/records 201 10.9ms request_id=17d72fb6-3aec-4cd9-bdd3-4835037d9dbb
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/health/records "HTTP/1.1 201 Created"
+______________ test_h04_unverified_vet_cannot_confirm_assessment ______________
+
+client = <starlette.testclient.TestClient object at 0x00000269EF9E0980>
+admin_headers = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ZjMzZjNmMC00MGMzLTQzNzktOTViNS1hY2FiZWMwYmY...kaWFuIiwiZW1haWwiOiJhZG1pbkBhbGcuZGVtbyIsIm5hbWUiOiJBbml0YSBEZXNobXVraCJ9.h80DrPn0vZpCaaSaL9XIe4hM9OAx_b1ZhBZIARgjwhw'}
+
+    def test_h04_unverified_vet_cannot_confirm_assessment(client, admin_headers):
+        vet, _, _, case_id = _assigned_unverified_vet(client, admin_headers)
+        response = client.patch(
+            f"/api/v1/health/cases/{case_id}",
+            headers=vet,
+            json={"vet_diagnosis": "Unverified claim", "vet_treatment": "Unverified plan", "status": "in_progress"},
+        )
+>       assert response.status_code == 403, "unverified professional must not confirm assessments"
+E       AssertionError: unverified professional must not confirm assessments
+E       assert 200 == 403
+E        +  where 200 = <Response [200 OK]>.status_code
+
+app\tests\test_authorization.py:321: AssertionError
+---------------------------- Captured stderr call -----------------------------
+2026-11-09 13:00:06,950 INFO alg.access POST /api/v1/auth/register 201 269.5ms request_id=7ec5b795-5c3d-493b-89c2-8276d3a5a7ce
+2026-11-09 13:00:06,952 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+2026-11-09 13:00:06,956 INFO alg.access GET /api/v1/animals/species 200 3.0ms request_id=60e70cf6-d9bd-486a-b9ef-06e185894b80
+2026-11-09 13:00:06,957 INFO httpx2 HTTP Request: GET http://testserver/api/v1/animals/species "HTTP/1.1 200 OK"
+2026-11-09 13:00:06,972 INFO alg.access POST /api/v1/animals 201 14.2ms request_id=4cd045b9-ee05-40d2-911d-7000c41f7c93
+2026-11-09 13:00:06,973 INFO httpx2 HTTP Request: POST http://testserver/api/v1/animals "HTTP/1.1 201 Created"
+2026-11-09 13:00:07,025 INFO alg.access POST /api/v1/health/cases 201 50.4ms request_id=bbb45108-10a5-4e57-bb47-00f17ed3656e
+2026-11-09 13:00:07,026 INFO httpx2 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+2026-11-09 13:00:07,292 INFO alg.access POST /api/v1/auth/register 201 265.5ms request_id=d3633e70-c16b-40fc-ba13-b8b7f4d04fec
+2026-11-09 13:00:07,293 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+2026-11-09 13:00:07,299 INFO alg.access GET /api/v1/veterinarians/me 200 4.9ms request_id=c651dd25-5d51-4f73-82fb-7cec5bccde77
+2026-11-09 13:00:07,300 INFO httpx2 HTTP Request: GET http://testserver/api/v1/veterinarians/me "HTTP/1.1 200 OK"
+2026-11-09 13:00:07,319 INFO alg.access POST /api/v1/health/cases/122c0b31-7418-44c2-8d39-526e3dd98333/assign 200 18.1ms request_id=1e0fdb81-2b5a-40bb-99ed-815af6ec0d83
+2026-11-09 13:00:07,320 INFO httpx2 HTTP Request: POST http://testserver/api/v1/health/cases/122c0b31-7418-44c2-8d39-526e3dd98333/assign "HTTP/1.1 200 OK"
+2026-11-09 13:00:07,343 INFO alg.access PATCH /api/v1/health/cases/122c0b31-7418-44c2-8d39-526e3dd98333 200 22.0ms request_id=bb56f4d3-e43a-4505-89f7-5487498ff3c7
+2026-11-09 13:00:07,344 INFO httpx2 HTTP Request: PATCH http://testserver/api/v1/health/cases/122c0b31-7418-44c2-8d39-526e3dd98333 "HTTP/1.1 200 OK"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/register 201 269.5ms request_id=7ec5b795-5c3d-493b-89c2-8276d3a5a7ce
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 GET /api/v1/animals/species 200 3.0ms request_id=60e70cf6-d9bd-486a-b9ef-06e185894b80
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/animals/species "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/animals 201 14.2ms request_id=4cd045b9-ee05-40d2-911d-7000c41f7c93
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/animals "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 POST /api/v1/health/cases 201 50.4ms request_id=bbb45108-10a5-4e57-bb47-00f17ed3656e
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/register 201 265.5ms request_id=d3633e70-c16b-40fc-ba13-b8b7f4d04fec
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 GET /api/v1/veterinarians/me 200 4.9ms request_id=c651dd25-5d51-4f73-82fb-7cec5bccde77
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/veterinarians/me "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/health/cases/122c0b31-7418-44c2-8d39-526e3dd98333/assign 200 18.1ms request_id=1e0fdb81-2b5a-40bb-99ed-815af6ec0d83
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/health/cases/122c0b31-7418-44c2-8d39-526e3dd98333/assign "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 PATCH /api/v1/health/cases/122c0b31-7418-44c2-8d39-526e3dd98333 200 22.0ms request_id=bb56f4d3-e43a-4505-89f7-5487498ff3c7
+INFO     httpx2:_client.py:1084 HTTP Request: PATCH http://testserver/api/v1/health/cases/122c0b31-7418-44c2-8d39-526e3dd98333 "HTTP/1.1 200 OK"
+____________ test_h04_unverified_vet_cannot_create_approved_record ____________
+
+client = <starlette.testclient.TestClient object at 0x00000269EF9E0980>
+admin_headers = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ZjMzZjNmMC00MGMzLTQzNzktOTViNS1hY2FiZWMwYmY...kaWFuIiwiZW1haWwiOiJhZG1pbkBhbGcuZGVtbyIsIm5hbWUiOiJBbml0YSBEZXNobXVraCJ9.h80DrPn0vZpCaaSaL9XIe4hM9OAx_b1ZhBZIARgjwhw'}
+
+    def test_h04_unverified_vet_cannot_create_approved_record(client, admin_headers):
+        vet, _, animal, _ = _assigned_unverified_vet(client, admin_headers)
+        response = client.post(
+            "/api/v1/health/records",
+            headers=vet,
+            json={"animal_id": animal["id"], "record_type": "diagnosis", "title": "Unverified diagnosis"},
+        )
+>       assert response.status_code == 403
+E       assert 201 == 403
+E        +  where 201 = <Response [201 Created]>.status_code
+
+app\tests\test_authorization.py:333: AssertionError
+---------------------------- Captured stderr call -----------------------------
+2026-11-09 13:00:07,624 INFO alg.access POST /api/v1/auth/register 201 265.3ms request_id=9eb45659-d3f7-4fef-865a-a2fa419e1c07
+2026-11-09 13:00:07,625 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+2026-11-09 13:00:07,629 INFO alg.access GET /api/v1/animals/species 200 2.6ms request_id=54eafe51-8395-48e8-8cff-56627c5ba99d
+2026-11-09 13:00:07,629 INFO httpx2 HTTP Request: GET http://testserver/api/v1/animals/species "HTTP/1.1 200 OK"
+2026-11-09 13:00:07,642 INFO alg.access POST /api/v1/animals 201 11.9ms request_id=57b1e5de-f7fa-46c6-9fe6-1bf13dffee1f
+2026-11-09 13:00:07,643 INFO httpx2 HTTP Request: POST http://testserver/api/v1/animals "HTTP/1.1 201 Created"
+2026-11-09 13:00:07,687 INFO alg.access POST /api/v1/health/cases 201 42.6ms request_id=9e9bfecc-0d93-490c-96c0-9ae5be214e3e
+2026-11-09 13:00:07,688 INFO httpx2 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+2026-11-09 13:00:07,956 INFO alg.access POST /api/v1/auth/register 201 266.5ms request_id=54d78589-d371-4fb8-bb0c-ee95cbffa53b
+2026-11-09 13:00:07,957 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+2026-11-09 13:00:07,961 INFO alg.access GET /api/v1/veterinarians/me 200 3.6ms request_id=3636241f-7acc-4205-b565-6bfb956bffce
+2026-11-09 13:00:07,962 INFO httpx2 HTTP Request: GET http://testserver/api/v1/veterinarians/me "HTTP/1.1 200 OK"
+2026-11-09 13:00:07,979 INFO alg.access POST /api/v1/health/cases/0c2e1631-2d43-4073-a283-0b97eee29381/assign 200 15.7ms request_id=c309e206-5cb2-44e6-8e65-4993bf392bbe
+2026-11-09 13:00:07,980 INFO httpx2 HTTP Request: POST http://testserver/api/v1/health/cases/0c2e1631-2d43-4073-a283-0b97eee29381/assign "HTTP/1.1 200 OK"
+2026-11-09 13:00:07,989 INFO alg.access POST /api/v1/health/records 201 8.6ms request_id=0110865e-77f4-408c-a734-d2467fd1693d
+2026-11-09 13:00:07,990 INFO httpx2 HTTP Request: POST http://testserver/api/v1/health/records "HTTP/1.1 201 Created"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/register 201 265.3ms request_id=9eb45659-d3f7-4fef-865a-a2fa419e1c07
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 GET /api/v1/animals/species 200 2.6ms request_id=54eafe51-8395-48e8-8cff-56627c5ba99d
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/animals/species "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/animals 201 11.9ms request_id=57b1e5de-f7fa-46c6-9fe6-1bf13dffee1f
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/animals "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 POST /api/v1/health/cases 201 42.6ms request_id=9e9bfecc-0d93-490c-96c0-9ae5be214e3e
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/register 201 266.5ms request_id=54d78589-d371-4fb8-bb0c-ee95cbffa53b
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 GET /api/v1/veterinarians/me 200 3.6ms request_id=3636241f-7acc-4205-b565-6bfb956bffce
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/veterinarians/me "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/health/cases/0c2e1631-2d43-4073-a283-0b97eee29381/assign 200 15.7ms request_id=c309e206-5cb2-44e6-8e65-4993bf392bbe
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/health/cases/0c2e1631-2d43-4073-a283-0b97eee29381/assign "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/health/records 201 8.6ms request_id=0110865e-77f4-408c-a734-d2467fd1693d
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/health/records "HTTP/1.1 201 Created"
+_______________ test_h04_unverified_vet_cannot_decide_approval ________________
+
+client = <starlette.testclient.TestClient object at 0x00000269EF9E0980>
+admin_headers = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ZjMzZjNmMC00MGMzLTQzNzktOTViNS1hY2FiZWMwYmY...kaWFuIiwiZW1haWwiOiJhZG1pbkBhbGcuZGVtbyIsIm5hbWUiOiJBbml0YSBEZXNobXVraCJ9.h80DrPn0vZpCaaSaL9XIe4hM9OAx_b1ZhBZIARgjwhw'}
+
+    def test_h04_unverified_vet_cannot_decide_approval(client, admin_headers):
+        vet, _, _, case_id = _assigned_unverified_vet(client, admin_headers)
+        approvals = client.get("/api/v1/health/approvals", headers=vet).json()
+        pending = [item for item in approvals if item["case_id"] == case_id and item["status"] == "pending"]
+        assert pending, "critical case should raise a pending safety approval"
+        response = client.post(
+            f"/api/v1/health/approvals/{pending[0]['id']}/decision",
+            headers=vet,
+            json={"decision": "approved", "reason": "unverified attempt"},
+        )
+>       assert response.status_code == 403
+E       assert 200 == 403
+E        +  where 200 = <Response [200 OK]>.status_code
+
+app\tests\test_authorization.py:346: AssertionError
+---------------------------- Captured stderr call -----------------------------
+2026-11-09 13:00:08,278 INFO alg.access POST /api/v1/auth/register 201 270.7ms request_id=939511e9-3082-43dc-a2b0-6b397189e1a2
+2026-11-09 13:00:08,279 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+2026-11-09 13:00:08,282 INFO alg.access GET /api/v1/animals/species 200 2.5ms request_id=41cb17bf-56eb-4ad4-8e76-d38fc47bcfbb
+2026-11-09 13:00:08,283 INFO httpx2 HTTP Request: GET http://testserver/api/v1/animals/species "HTTP/1.1 200 OK"
+2026-11-09 13:00:08,296 INFO alg.access POST /api/v1/animals 201 11.7ms request_id=30edf3fb-45f6-4d53-95e1-1c7847b57a32
+2026-11-09 13:00:08,297 INFO httpx2 HTTP Request: POST http://testserver/api/v1/animals "HTTP/1.1 201 Created"
+2026-11-09 13:00:08,333 INFO alg.access POST /api/v1/health/cases 201 34.2ms request_id=57d6df7e-8290-4321-bf4a-dc6584eb2f9d
+2026-11-09 13:00:08,334 INFO httpx2 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+2026-11-09 13:00:08,598 INFO alg.access POST /api/v1/auth/register 201 262.9ms request_id=28fc0e99-2693-4851-820b-e4b6a0428277
+2026-11-09 13:00:08,599 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+2026-11-09 13:00:08,604 INFO alg.access GET /api/v1/veterinarians/me 200 3.9ms request_id=adf8cfe9-dd13-45a8-9141-aead6e55008b
+2026-11-09 13:00:08,605 INFO httpx2 HTTP Request: GET http://testserver/api/v1/veterinarians/me "HTTP/1.1 200 OK"
+2026-11-09 13:00:08,624 INFO alg.access POST /api/v1/health/cases/c7eb58e4-7562-444a-a9c7-258b28f2a950/assign 200 18.1ms request_id=ca3be9e5-a9d7-4b0e-a4a8-96e439d44888
+2026-11-09 13:00:08,625 INFO httpx2 HTTP Request: POST http://testserver/api/v1/health/cases/c7eb58e4-7562-444a-a9c7-258b28f2a950/assign "HTTP/1.1 200 OK"
+2026-11-09 13:00:08,632 INFO alg.access GET /api/v1/health/approvals 200 6.3ms request_id=dd7198dc-64a5-4b77-9c83-79d17112a99a
+2026-11-09 13:00:08,633 INFO httpx2 HTTP Request: GET http://testserver/api/v1/health/approvals "HTTP/1.1 200 OK"
+2026-11-09 13:00:08,646 INFO alg.access POST /api/v1/health/approvals/e304aba5-48fb-414c-b94e-3db08c636ec7/decision 200 11.1ms request_id=d0cb8347-2b9f-4c21-b59e-c818f00b7d94
+2026-11-09 13:00:08,647 INFO httpx2 HTTP Request: POST http://testserver/api/v1/health/approvals/e304aba5-48fb-414c-b94e-3db08c636ec7/decision "HTTP/1.1 200 OK"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/register 201 270.7ms request_id=939511e9-3082-43dc-a2b0-6b397189e1a2
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 GET /api/v1/animals/species 200 2.5ms request_id=41cb17bf-56eb-4ad4-8e76-d38fc47bcfbb
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/animals/species "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/animals 201 11.7ms request_id=30edf3fb-45f6-4d53-95e1-1c7847b57a32
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/animals "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 POST /api/v1/health/cases 201 34.2ms request_id=57d6df7e-8290-4321-bf4a-dc6584eb2f9d
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/register 201 262.9ms request_id=28fc0e99-2693-4851-820b-e4b6a0428277
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 GET /api/v1/veterinarians/me 200 3.9ms request_id=adf8cfe9-dd13-45a8-9141-aead6e55008b
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/veterinarians/me "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/health/cases/c7eb58e4-7562-444a-a9c7-258b28f2a950/assign 200 18.1ms request_id=ca3be9e5-a9d7-4b0e-a4a8-96e439d44888
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/health/cases/c7eb58e4-7562-444a-a9c7-258b28f2a950/assign "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 GET /api/v1/health/approvals 200 6.3ms request_id=dd7198dc-64a5-4b77-9c83-79d17112a99a
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/health/approvals "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/health/approvals/e304aba5-48fb-414c-b94e-3db08c636ec7/decision 200 11.1ms request_id=d0cb8347-2b9f-4c21-b59e-c818f00b7d94
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/health/approvals/e304aba5-48fb-414c-b94e-3db08c636ec7/decision "HTTP/1.1 200 OK"
+______________ test_h04_unverified_vet_cannot_verify_vaccination ______________
+
+client = <starlette.testclient.TestClient object at 0x00000269EF9E0980>
+admin_headers = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ZjMzZjNmMC00MGMzLTQzNzktOTViNS1hY2FiZWMwYmY...kaWFuIiwiZW1haWwiOiJhZG1pbkBhbGcuZGVtbyIsIm5hbWUiOiJBbml0YSBEZXNobXVraCJ9.h80DrPn0vZpCaaSaL9XIe4hM9OAx_b1ZhBZIARgjwhw'}
+
+    def test_h04_unverified_vet_cannot_verify_vaccination(client, admin_headers):
+        vet, _, animal, _ = _assigned_unverified_vet(client, admin_headers)
+        rows = client.get(f"/api/v1/vaccinations?animal_id={animal['id']}", headers=vet).json()
+        assert rows
+        response = client.post(
+            f"/api/v1/vaccinations/{rows[0]['id']}/verify",
+            headers=vet,
+            json={"verified": True, "batch_no": "FAKE-BATCH", "certificate_ref": "FAKE-CERT"},
+        )
+>       assert response.status_code == 403
+E       assert 200 == 403
+E        +  where 200 = <Response [200 OK]>.status_code
+
+app\tests\test_authorization.py:358: AssertionError
+---------------------------- Captured stderr call -----------------------------
+2026-11-09 13:00:08,933 INFO alg.access POST /api/v1/auth/register 201 265.9ms request_id=94463bf2-20bf-42c2-b676-ddaf46ce0168
+2026-11-09 13:00:08,934 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+2026-11-09 13:00:08,937 INFO alg.access GET /api/v1/animals/species 200 2.6ms request_id=cb95611a-9734-492d-ba87-dfb3f37aed0f
+2026-11-09 13:00:08,938 INFO httpx2 HTTP Request: GET http://testserver/api/v1/animals/species "HTTP/1.1 200 OK"
+2026-11-09 13:00:08,951 INFO alg.access POST /api/v1/animals 201 11.5ms request_id=e2e5c527-fb5e-4e2d-93f4-5a33a7b2e223
+2026-11-09 13:00:08,951 INFO httpx2 HTTP Request: POST http://testserver/api/v1/animals "HTTP/1.1 201 Created"
+2026-11-09 13:00:08,987 INFO alg.access POST /api/v1/health/cases 201 34.4ms request_id=aa790ff8-8700-4485-aafc-c7c80a6b7b04
+2026-11-09 13:00:08,988 INFO httpx2 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+2026-11-09 13:00:09,255 INFO alg.access POST /api/v1/auth/register 201 266.0ms request_id=eb2cc953-effd-4828-a0bd-444c84fa8fe2
+2026-11-09 13:00:09,256 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+2026-11-09 13:00:09,260 INFO alg.access GET /api/v1/veterinarians/me 200 3.5ms request_id=836c631b-a297-4b55-b3c3-c09a34a7166b
+2026-11-09 13:00:09,261 INFO httpx2 HTTP Request: GET http://testserver/api/v1/veterinarians/me "HTTP/1.1 200 OK"
+2026-11-09 13:00:09,278 INFO alg.access POST /api/v1/health/cases/057e94b8-359d-42a5-a906-f4d45b6a4b59/assign 200 15.9ms request_id=46db77c6-dea7-4d90-8b43-ad46025d5f93
+2026-11-09 13:00:09,279 INFO httpx2 HTTP Request: POST http://testserver/api/v1/health/cases/057e94b8-359d-42a5-a906-f4d45b6a4b59/assign "HTTP/1.1 200 OK"
+2026-11-09 13:00:09,293 INFO alg.access GET /api/v1/vaccinations 200 13.4ms request_id=154d2bf5-faea-495d-bfac-af45e6148938
+2026-11-09 13:00:09,294 INFO httpx2 HTTP Request: GET http://testserver/api/v1/vaccinations?animal_id=69cbf2b1-a7af-46f6-abb9-21bb0d242ecb "HTTP/1.1 200 OK"
+2026-11-09 13:00:09,308 INFO alg.access POST /api/v1/vaccinations/f9fd9961-6580-4280-9557-b1693ca92949/verify 200 13.5ms request_id=7e2d7107-37aa-4c54-a87a-d2f8821c1a14
+2026-11-09 13:00:09,309 INFO httpx2 HTTP Request: POST http://testserver/api/v1/vaccinations/f9fd9961-6580-4280-9557-b1693ca92949/verify "HTTP/1.1 200 OK"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/register 201 265.9ms request_id=94463bf2-20bf-42c2-b676-ddaf46ce0168
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 GET /api/v1/animals/species 200 2.6ms request_id=cb95611a-9734-492d-ba87-dfb3f37aed0f
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/animals/species "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/animals 201 11.5ms request_id=e2e5c527-fb5e-4e2d-93f4-5a33a7b2e223
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/animals "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 POST /api/v1/health/cases 201 34.4ms request_id=aa790ff8-8700-4485-aafc-c7c80a6b7b04
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/register 201 266.0ms request_id=eb2cc953-effd-4828-a0bd-444c84fa8fe2
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 GET /api/v1/veterinarians/me 200 3.5ms request_id=836c631b-a297-4b55-b3c3-c09a34a7166b
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/veterinarians/me "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/health/cases/057e94b8-359d-42a5-a906-f4d45b6a4b59/assign 200 15.9ms request_id=46db77c6-dea7-4d90-8b43-ad46025d5f93
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/health/cases/057e94b8-359d-42a5-a906-f4d45b6a4b59/assign "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 GET /api/v1/vaccinations 200 13.4ms request_id=154d2bf5-faea-495d-bfac-af45e6148938
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/vaccinations?animal_id=69cbf2b1-a7af-46f6-abb9-21bb0d242ecb "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/vaccinations/f9fd9961-6580-4280-9557-b1693ca92949/verify 200 13.5ms request_id=7e2d7107-37aa-4c54-a87a-d2f8821c1a14
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/vaccinations/f9fd9961-6580-4280-9557-b1693ca92949/verify "HTTP/1.1 200 OK"
+____________ test_h04_unverified_vet_recording_gets_no_attestation ____________
+
+client = <starlette.testclient.TestClient object at 0x00000269EF9E0980>
+admin_headers = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ZjMzZjNmMC00MGMzLTQzNzktOTViNS1hY2FiZWMwYmY...kaWFuIiwiZW1haWwiOiJhZG1pbkBhbGcuZGVtbyIsIm5hbWUiOiJBbml0YSBEZXNobXVraCJ9.h80DrPn0vZpCaaSaL9XIe4hM9OAx_b1ZhBZIARgjwhw'}
+
+    def test_h04_unverified_vet_recording_gets_no_attestation(client, admin_headers):
+        vet, _, animal, _ = _assigned_unverified_vet(client, admin_headers)
+        rows = client.get(f"/api/v1/vaccinations?animal_id={animal['id']}", headers=vet).json()
+        target = next(row for row in rows if row["status"] != "given")
+        response = client.post(
+            "/api/v1/vaccinations",
+            headers=vet,
+            json={
+                "animal_id": animal["id"],
+                "vaccine_id": target["vaccine_id"],
+                "administered_on": date.today().isoformat(),
+                "batch_no": "UNVERIFIED-BATCH",
+            },
+        )
+        assert response.status_code == 201, response.text
+>       assert response.json()["verified_by"] is None, "unverified professional must not attest vaccinations"
+E       AssertionError: unverified professional must not attest vaccinations
+E       assert '665c95e9-f855-4ad7-925c-bd1a0a8213a5' is None
+
+app\tests\test_authorization.py:376: AssertionError
+---------------------------- Captured stderr call -----------------------------
+2026-11-09 13:00:09,590 INFO alg.access POST /api/v1/auth/register 201 265.9ms request_id=9f64f4c2-0e6a-4287-8e90-7dca76271eee
+2026-11-09 13:00:09,591 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+2026-11-09 13:00:09,595 INFO alg.access GET /api/v1/animals/species 200 2.5ms request_id=e2a7a627-110c-4167-8384-400a243601e2
+2026-11-09 13:00:09,595 INFO httpx2 HTTP Request: GET http://testserver/api/v1/animals/species "HTTP/1.1 200 OK"
+2026-11-09 13:00:09,609 INFO alg.access POST /api/v1/animals 201 13.0ms request_id=39382af6-38ba-44a4-9040-cbb60bcded4e
+2026-11-09 13:00:09,610 INFO httpx2 HTTP Request: POST http://testserver/api/v1/animals "HTTP/1.1 201 Created"
+2026-11-09 13:00:09,647 INFO alg.access POST /api/v1/health/cases 201 35.9ms request_id=38d5cf22-5d74-438f-81ba-4331f78c1d38
+2026-11-09 13:00:09,648 INFO httpx2 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+2026-11-09 13:00:09,917 INFO alg.access POST /api/v1/auth/register 201 267.9ms request_id=0344420d-446b-47ed-aaf0-9b12c8c11f51
+2026-11-09 13:00:09,918 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+2026-11-09 13:00:09,922 INFO alg.access GET /api/v1/veterinarians/me 200 3.5ms request_id=1d5b746b-6f80-4410-ba70-aa1ebd0595d9
+2026-11-09 13:00:09,923 INFO httpx2 HTTP Request: GET http://testserver/api/v1/veterinarians/me "HTTP/1.1 200 OK"
+2026-11-09 13:00:09,940 INFO alg.access POST /api/v1/health/cases/4250918b-9a80-43ff-9f03-4e99b9cb986b/assign 200 15.3ms request_id=4267f273-99cc-4126-aaa1-036e214ebc58
+2026-11-09 13:00:09,941 INFO httpx2 HTTP Request: POST http://testserver/api/v1/health/cases/4250918b-9a80-43ff-9f03-4e99b9cb986b/assign "HTTP/1.1 200 OK"
+2026-11-09 13:00:09,950 INFO alg.access GET /api/v1/vaccinations 200 7.4ms request_id=8eea7d82-5e2e-4fe9-a77e-9aa18c781185
+2026-11-09 13:00:09,950 INFO httpx2 HTTP Request: GET http://testserver/api/v1/vaccinations?animal_id=3dc148a6-72c3-4732-a276-2b24f487e319 "HTTP/1.1 200 OK"
+2026-11-09 13:00:09,968 INFO alg.access POST /api/v1/vaccinations 201 16.6ms request_id=f25fc7ef-c2c8-4ae4-bbc1-298067a28496
+2026-11-09 13:00:09,969 INFO httpx2 HTTP Request: POST http://testserver/api/v1/vaccinations "HTTP/1.1 201 Created"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/register 201 265.9ms request_id=9f64f4c2-0e6a-4287-8e90-7dca76271eee
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 GET /api/v1/animals/species 200 2.5ms request_id=e2a7a627-110c-4167-8384-400a243601e2
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/animals/species "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/animals 201 13.0ms request_id=39382af6-38ba-44a4-9040-cbb60bcded4e
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/animals "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 POST /api/v1/health/cases 201 35.9ms request_id=38d5cf22-5d74-438f-81ba-4331f78c1d38
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/register 201 267.9ms request_id=0344420d-446b-47ed-aaf0-9b12c8c11f51
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 GET /api/v1/veterinarians/me 200 3.5ms request_id=1d5b746b-6f80-4410-ba70-aa1ebd0595d9
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/veterinarians/me "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/health/cases/4250918b-9a80-43ff-9f03-4e99b9cb986b/assign 200 15.3ms request_id=4267f273-99cc-4126-aaa1-036e214ebc58
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/health/cases/4250918b-9a80-43ff-9f03-4e99b9cb986b/assign "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 GET /api/v1/vaccinations 200 7.4ms request_id=8eea7d82-5e2e-4fe9-a77e-9aa18c781185
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/vaccinations?animal_id=3dc148a6-72c3-4732-a276-2b24f487e319 "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/vaccinations 201 16.6ms request_id=f25fc7ef-c2c8-4ae4-bbc1-298067a28496
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/vaccinations "HTTP/1.1 201 Created"
+_______________ test_h04_credential_change_resets_verification ________________
+
+client = <starlette.testclient.TestClient object at 0x00000269EF9E0980>
+admin_headers = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ZjMzZjNmMC00MGMzLTQzNzktOTViNS1hY2FiZWMwYmY...kaWFuIiwiZW1haWwiOiJhZG1pbkBhbGcuZGVtbyIsIm5hbWUiOiJBbml0YSBEZXNobXVraCJ9.h80DrPn0vZpCaaSaL9XIe4hM9OAx_b1ZhBZIARgjwhw'}
+
+    def test_h04_credential_change_resets_verification(client, admin_headers):
+        vet, profile, _, _ = _assigned_unverified_vet(client, admin_headers)
+        verified = client.post(
+            f"/api/v1/admin/veterinarians/{profile['id']}/verify",
+            headers=admin_headers,
+            json={"verified": True, "note": "batch B test"},
+        )
+        assert verified.status_code == 200, verified.text
+        assert verified.json()["verified"] is True
+        changed = client.post(
+            "/api/v1/veterinarians/me",
+            headers=vet,
+            json={
+                "registration_no": f"NEW-{uuid.uuid4().hex[:8].upper()}",
+                "qualification": "BVSc",
+                "district": "Pune",
+            },
+        )
+        assert changed.status_code == 201, changed.text
+>       assert changed.json()["verified"] is False, "changed registration must require re-verification"
+E       AssertionError: changed registration must require re-verification
+E       assert True is False
+
+app\tests\test_authorization.py:399: AssertionError
+---------------------------- Captured stderr call -----------------------------
+2026-11-09 13:00:10,248 INFO alg.access POST /api/v1/auth/register 201 264.7ms request_id=4f7402fb-492c-407b-aedb-d4dfaee6b774
+2026-11-09 13:00:10,249 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+2026-11-09 13:00:10,253 INFO alg.access GET /api/v1/animals/species 200 2.5ms request_id=3a1d4643-d2b0-401f-8b7c-83a4f10f9ce3
+2026-11-09 13:00:10,254 INFO httpx2 HTTP Request: GET http://testserver/api/v1/animals/species "HTTP/1.1 200 OK"
+2026-11-09 13:00:10,271 INFO alg.access POST /api/v1/animals 201 15.9ms request_id=e06efb57-20e1-4095-bc0a-072af39760be
+2026-11-09 13:00:10,271 INFO httpx2 HTTP Request: POST http://testserver/api/v1/animals "HTTP/1.1 201 Created"
+2026-11-09 13:00:10,310 INFO alg.access POST /api/v1/health/cases 201 37.6ms request_id=e8bf51f2-2d93-4d78-b68c-c783a91ad178
+2026-11-09 13:00:10,311 INFO httpx2 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+2026-11-09 13:00:10,574 INFO alg.access POST /api/v1/auth/register 201 262.2ms request_id=ac7b9c46-6fc7-4b30-99d5-3a796031928f
+2026-11-09 13:00:10,575 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+2026-11-09 13:00:10,579 INFO alg.access GET /api/v1/veterinarians/me 200 3.5ms request_id=39521193-e3ea-4240-b586-9e176504446d
+2026-11-09 13:00:10,580 INFO httpx2 HTTP Request: GET http://testserver/api/v1/veterinarians/me "HTTP/1.1 200 OK"
+2026-11-09 13:00:10,596 INFO alg.access POST /api/v1/health/cases/5b231417-3244-4c8c-9e35-db6d1289a684/assign 200 15.3ms request_id=e4fd2bac-7160-452d-9148-c36cec0bae93
+2026-11-09 13:00:10,597 INFO httpx2 HTTP Request: POST http://testserver/api/v1/health/cases/5b231417-3244-4c8c-9e35-db6d1289a684/assign "HTTP/1.1 200 OK"
+2026-11-09 13:00:10,609 INFO alg.access POST /api/v1/admin/veterinarians/b4f197fc-8ec2-4f3f-a9c1-511db5cba027/verify 200 10.1ms request_id=e00cd859-b72f-48db-9e41-ee8d584a0d46
+2026-11-09 13:00:10,609 INFO httpx2 HTTP Request: POST http://testserver/api/v1/admin/veterinarians/b4f197fc-8ec2-4f3f-a9c1-511db5cba027/verify "HTTP/1.1 200 OK"
+2026-11-09 13:00:10,620 INFO alg.access POST /api/v1/veterinarians/me 201 9.9ms request_id=e833fda9-7c6a-4648-83bc-3c7c37b5a112
+2026-11-09 13:00:10,621 INFO httpx2 HTTP Request: POST http://testserver/api/v1/veterinarians/me "HTTP/1.1 201 Created"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/register 201 264.7ms request_id=4f7402fb-492c-407b-aedb-d4dfaee6b774
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 GET /api/v1/animals/species 200 2.5ms request_id=3a1d4643-d2b0-401f-8b7c-83a4f10f9ce3
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/animals/species "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/animals 201 15.9ms request_id=e06efb57-20e1-4095-bc0a-072af39760be
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/animals "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 POST /api/v1/health/cases 201 37.6ms request_id=e8bf51f2-2d93-4d78-b68c-c783a91ad178
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/register 201 262.2ms request_id=ac7b9c46-6fc7-4b30-99d5-3a796031928f
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 GET /api/v1/veterinarians/me 200 3.5ms request_id=39521193-e3ea-4240-b586-9e176504446d
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/veterinarians/me "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/health/cases/5b231417-3244-4c8c-9e35-db6d1289a684/assign 200 15.3ms request_id=e4fd2bac-7160-452d-9148-c36cec0bae93
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/health/cases/5b231417-3244-4c8c-9e35-db6d1289a684/assign "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/admin/veterinarians/b4f197fc-8ec2-4f3f-a9c1-511db5cba027/verify 200 10.1ms request_id=e00cd859-b72f-48db-9e41-ee8d584a0d46
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/admin/veterinarians/b4f197fc-8ec2-4f3f-a9c1-511db5cba027/verify "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/veterinarians/me 201 9.9ms request_id=e833fda9-7c6a-4648-83bc-3c7c37b5a112
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/veterinarians/me "HTTP/1.1 201 Created"
+__________ test_h05_farmer_edit_invalidates_professional_attestation __________
+
+client = <starlette.testclient.TestClient object at 0x00000269EF9E0980>
+admin_headers = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ZjMzZjNmMC00MGMzLTQzNzktOTViNS1hY2FiZWMwYmY...kaWFuIiwiZW1haWwiOiJhZG1pbkBhbGcuZGVtbyIsIm5hbWUiOiJBbml0YSBEZXNobXVraCJ9.h80DrPn0vZpCaaSaL9XIe4hM9OAx_b1ZhBZIARgjwhw'}
+vet_headers = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0NGRmN2EyMC03ZjE1LTQ3NzUtOWUzYy03NDNlZjNlNmQ...VtYWlsIjoiZHIuYWFydGlAYWxnLmRlbW8iLCJuYW1lIjoiRHIuIEFhcnRpIEt1bGthcm5pIn0._C4ZEOfqoGDsgK41JWuZoOkOscRC9BE3heVoKZDYBdg'}
+
+    def test_h05_farmer_edit_invalidates_professional_attestation(client, admin_headers, vet_headers):
+        farmer, _ = _register(client)
+        animal = _create_animal(client, farmer)
+        _report_case(client, farmer, animal["id"])
+        vet_profile = client.get("/api/v1/veterinarians/me", headers=vet_headers).json()
+        cases = client.get("/api/v1/health/cases", headers=farmer).json()["items"]
+        case_id = cases[0]["id"]
+        assigned = client.post(
+            f"/api/v1/health/cases/{case_id}/assign",
+            headers=admin_headers,
+            json={"vet_id": vet_profile["id"]},
+        )
+        assert assigned.status_code == 200, assigned.text
+    
+        rows = client.get(f"/api/v1/vaccinations?animal_id={animal['id']}", headers=farmer).json()
+        target = next(row for row in rows if row["status"] != "given")
+        attested = client.post(
+            "/api/v1/vaccinations",
+            headers=vet_headers,
+            json={
+                "animal_id": animal["id"],
+                "vaccine_id": target["vaccine_id"],
+                "administered_on": date.today().isoformat(),
+                "batch_no": "VET-BATCH-1",
+            },
+        )
+        assert attested.status_code == 201, attested.text
+        assert attested.json()["verified_by"] == vet_profile["id"]
+        assert attested.json()["certificate_ref"]
+    
+        changed = client.post(
+            "/api/v1/vaccinations",
+            headers=farmer,
+            json={
+                "animal_id": animal["id"],
+                "vaccine_id": target["vaccine_id"],
+                "administered_on": (date.today() - timedelta(days=3)).isoformat(),
+                "batch_no": "FARMER-CHANGED",
+            },
+        )
+        assert changed.status_code == 201, changed.text
+        body = changed.json()
+>       assert body["verified_by"] is None, "farmer-edited administration must invalidate the professional attestation"
+E       AssertionError: farmer-edited administration must invalidate the professional attestation
+E       assert '1257ae46-e29a-4a49-84b4-7b1e27ff88f5' is None
+
+app\tests\test_authorization.py:445: AssertionError
+---------------------------- Captured stderr call -----------------------------
+2026-11-09 13:00:10,907 INFO alg.access POST /api/v1/auth/register 201 269.1ms request_id=24637c84-a9ad-4000-9317-e0f6fafda9a6
+2026-11-09 13:00:10,908 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+2026-11-09 13:00:10,913 INFO alg.access GET /api/v1/animals/species 200 2.9ms request_id=74532241-6832-42e0-9c00-83f3e020ed5c
+2026-11-09 13:00:10,914 INFO httpx2 HTTP Request: GET http://testserver/api/v1/animals/species "HTTP/1.1 200 OK"
+2026-11-09 13:00:10,929 INFO alg.access POST /api/v1/animals 201 14.6ms request_id=86079361-40c5-4bf7-8e19-9f89829d7086
+2026-11-09 13:00:10,930 INFO httpx2 HTTP Request: POST http://testserver/api/v1/animals "HTTP/1.1 201 Created"
+2026-11-09 13:00:10,980 INFO alg.access POST /api/v1/health/cases 201 48.7ms request_id=5c5a009e-e248-4d9e-87d4-1fe810877de4
+2026-11-09 13:00:10,981 INFO httpx2 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+2026-11-09 13:00:10,986 INFO alg.access GET /api/v1/veterinarians/me 200 3.4ms request_id=856b7825-1b9d-4fb1-b9bf-6c9d48ff48f8
+2026-11-09 13:00:10,987 INFO httpx2 HTTP Request: GET http://testserver/api/v1/veterinarians/me "HTTP/1.1 200 OK"
+2026-11-09 13:00:10,998 INFO alg.access GET /api/v1/health/cases 200 10.7ms request_id=84fab97f-5d39-4561-ac55-7a997994ca20
+2026-11-09 13:00:10,999 INFO httpx2 HTTP Request: GET http://testserver/api/v1/health/cases "HTTP/1.1 200 OK"
+2026-11-09 13:00:11,017 INFO alg.access POST /api/v1/health/cases/48b8e413-0e91-493d-8c9c-31bd9b32cc87/assign 200 16.1ms request_id=3866a927-a7a8-4026-8e6d-7c63023b54e0
+2026-11-09 13:00:11,017 INFO httpx2 HTTP Request: POST http://testserver/api/v1/health/cases/48b8e413-0e91-493d-8c9c-31bd9b32cc87/assign "HTTP/1.1 200 OK"
+2026-11-09 13:00:11,027 INFO alg.access GET /api/v1/vaccinations 200 7.9ms request_id=0967c52d-b8fa-43a5-9320-73f7dd75d6a1
+2026-11-09 13:00:11,028 INFO httpx2 HTTP Request: GET http://testserver/api/v1/vaccinations?animal_id=69ab02c9-7ba2-49f7-a4bd-f1728869a9d4 "HTTP/1.1 200 OK"
+2026-11-09 13:00:11,042 INFO alg.access POST /api/v1/vaccinations 201 13.0ms request_id=ee6d90e9-eec8-46ba-875f-961c435ff539
+2026-11-09 13:00:11,042 INFO httpx2 HTTP Request: POST http://testserver/api/v1/vaccinations "HTTP/1.1 201 Created"
+2026-11-09 13:00:11,057 INFO alg.access POST /api/v1/vaccinations 201 13.3ms request_id=7505769c-28dc-4811-b7d8-e13c01fce70f
+2026-11-09 13:00:11,058 INFO httpx2 HTTP Request: POST http://testserver/api/v1/vaccinations "HTTP/1.1 201 Created"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/register 201 269.1ms request_id=24637c84-a9ad-4000-9317-e0f6fafda9a6
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 GET /api/v1/animals/species 200 2.9ms request_id=74532241-6832-42e0-9c00-83f3e020ed5c
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/animals/species "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/animals 201 14.6ms request_id=86079361-40c5-4bf7-8e19-9f89829d7086
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/animals "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 POST /api/v1/health/cases 201 48.7ms request_id=5c5a009e-e248-4d9e-87d4-1fe810877de4
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 GET /api/v1/veterinarians/me 200 3.4ms request_id=856b7825-1b9d-4fb1-b9bf-6c9d48ff48f8
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/veterinarians/me "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 GET /api/v1/health/cases 200 10.7ms request_id=84fab97f-5d39-4561-ac55-7a997994ca20
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/health/cases "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/health/cases/48b8e413-0e91-493d-8c9c-31bd9b32cc87/assign 200 16.1ms request_id=3866a927-a7a8-4026-8e6d-7c63023b54e0
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/health/cases/48b8e413-0e91-493d-8c9c-31bd9b32cc87/assign "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 GET /api/v1/vaccinations 200 7.9ms request_id=0967c52d-b8fa-43a5-9320-73f7dd75d6a1
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/vaccinations?animal_id=69ab02c9-7ba2-49f7-a4bd-f1728869a9d4 "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/vaccinations 201 13.0ms request_id=ee6d90e9-eec8-46ba-875f-961c435ff539
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/vaccinations "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 POST /api/v1/vaccinations 201 13.3ms request_id=7505769c-28dc-4811-b7d8-e13c01fce70f
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/vaccinations "HTTP/1.1 201 Created"
+__________ test_h06_cooperative_sync_write_matches_online_forbidden ___________
+
+client = <starlette.testclient.TestClient object at 0x00000269EF9E0980>
+coop_headers = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0MjliMWYyNi1iYjBlLTQ2NzQtOTI4Ny1kMmUwYTRkNjR...B1bmVAYWxnLmRlbW8iLCJuYW1lIjoiUHVuZSBEaXN0cmljdCBNaWxrIENvb3BlcmF0aXZlIn0.U9VqmAMsoIbivaQcjG0N9AtbjZQ8ZLsF7yvoeknXl6k'}
+farmer_headers = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjYTc3MmU5My03YjZiLTQ3ZGYtOTYxMC1mM2ZhNTMyMTA...yZGlhbiIsImVtYWlsIjoicmFtZXNoQGFsZy5kZW1vIiwibmFtZSI6IlJhbWVzaCBQYXRpbCJ9.z62NyEZD-Ep-2FmpE0R02S_JxoJlqh4l5G38dfulYrE'}
+
+    def test_h06_cooperative_sync_write_matches_online_forbidden(client, coop_headers, farmer_headers):
+        animal = client.get("/api/v1/animals?page_size=1", headers=coop_headers).json()["items"][0]
+        online = client.post(
+            "/api/v1/nutrition/feed",
+            headers=coop_headers,
+            json={"animal_id": animal["id"], "feed_type": "green_fodder", "quantity_kg": 5},
+        )
+        assert online.status_code == 403
+        results = _sync(
+            client,
+            coop_headers,
+            [_sync_op("feed_record", {"animal_id": animal["id"], "feed_type": "green_fodder", "quantity_kg": 5})],
+        )
+>       assert results[0]["status"] == "error", "sync must enforce the same role gate as the online route"
+E       AssertionError: sync must enforce the same role gate as the online route
+E       assert 'applied' == 'error'
+E         
+E         - error
+E         + applied
+
+app\tests\test_authorization.py:463: AssertionError
+---------------------------- Captured stderr call -----------------------------
+2026-11-09 13:00:11,081 INFO alg.access GET /api/v1/animals 200 6.6ms request_id=a193da3f-eac2-422e-8cb1-a74be866c425
+2026-11-09 13:00:11,082 INFO httpx2 HTTP Request: GET http://testserver/api/v1/animals?page_size=1 "HTTP/1.1 200 OK"
+2026-11-09 13:00:11,088 INFO alg.access POST /api/v1/nutrition/feed 403 4.6ms request_id=a74f314f-b911-4751-9de2-e6fbff9e8a77
+2026-11-09 13:00:11,089 INFO httpx2 HTTP Request: POST http://testserver/api/v1/nutrition/feed "HTTP/1.1 403 Forbidden"
+2026-11-09 13:00:11,105 INFO alg.access POST /api/v1/sync/batch 200 14.9ms request_id=629e9a93-a427-41ef-9a9d-b65aaf6e719d
+2026-11-09 13:00:11,106 INFO httpx2 HTTP Request: POST http://testserver/api/v1/sync/batch "HTTP/1.1 200 OK"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 GET /api/v1/animals 200 6.6ms request_id=a193da3f-eac2-422e-8cb1-a74be866c425
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/animals?page_size=1 "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/nutrition/feed 403 4.6ms request_id=a74f314f-b911-4751-9de2-e6fbff9e8a77
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/nutrition/feed "HTTP/1.1 403 Forbidden"
+INFO     alg.access:middleware.py:30 POST /api/v1/sync/batch 200 14.9ms request_id=629e9a93-a427-41ef-9a9d-b65aaf6e719d
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/sync/batch "HTTP/1.1 200 OK"
+_________________ test_h06_sync_rejects_out_of_range_payloads _________________
+
+client = <starlette.testclient.TestClient object at 0x00000269EF9E0980>
+farmer_headers = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjYTc3MmU5My03YjZiLTQ3ZGYtOTYxMC1mM2ZhNTMyMTA...yZGlhbiIsImVtYWlsIjoicmFtZXNoQGFsZy5kZW1vIiwibmFtZSI6IlJhbWVzaCBQYXRpbCJ9.z62NyEZD-Ep-2FmpE0R02S_JxoJlqh4l5G38dfulYrE'}
+
+    def test_h06_sync_rejects_out_of_range_payloads(client, farmer_headers):
+        animal = client.get("/api/v1/animals?page_size=1", headers=farmer_headers).json()["items"][0]
+        farm_id = animal["farm_id"]
+        operations = [
+            _sync_op("environmental_record", {"farm_id": farm_id, "temperature_c": 999}),
+            _sync_op("feed_record", {"animal_id": animal["id"], "feed_type": "silage", "quantity_kg": -5}),
+            _sync_op("feed_record", {"animal_id": animal["id"], "feed_type": "silage", "quantity_kg": 5, "cost": -1}),
+            _sync_op("water_record", {"animal_id": animal["id"], "litres": -10}),
+        ]
+        results = _sync(client, farmer_headers, operations)
+>       assert all(result["status"] == "error" for result in results), results
+E       AssertionError: [{'idempotency_key': 'batchb-4dae1c68b8194204b12fe4178bf36044', 'entity_type': 'environmental_record', 'entity_id': '8...6e9bae', 'entity_type': 'water_record', 'entity_id': '7e0cef65-6456-4a19-b726-b2ca29935ef8', 'status': 'applied', ...}]
+E       assert False
+E        +  where False = all(<generator object test_h06_sync_rejects_out_of_range_payloads.<locals>.<genexpr> at 0x00000269EFD7F100>)
+
+app\tests\test_authorization.py:476: AssertionError
+---------------------------- Captured stderr call -----------------------------
+2026-11-09 13:00:11,128 INFO alg.access GET /api/v1/animals 200 6.3ms request_id=804a103f-78a2-4311-80da-360a11946aa5
+2026-11-09 13:00:11,129 INFO httpx2 HTTP Request: GET http://testserver/api/v1/animals?page_size=1 "HTTP/1.1 200 OK"
+2026-11-09 13:00:11,163 INFO alg.access POST /api/v1/sync/batch 200 33.2ms request_id=77c398bd-3c68-413f-bea1-3468e3cf6a8a
+2026-11-09 13:00:11,164 INFO httpx2 HTTP Request: POST http://testserver/api/v1/sync/batch "HTTP/1.1 200 OK"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 GET /api/v1/animals 200 6.3ms request_id=804a103f-78a2-4311-80da-360a11946aa5
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/animals?page_size=1 "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/sync/batch 200 33.2ms request_id=77c398bd-3c68-413f-bea1-3468e3cf6a8a
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/sync/batch "HTTP/1.1 200 OK"
+__________ test_h06_sync_update_operation_only_supported_for_animals __________
+
+client = <starlette.testclient.TestClient object at 0x00000269EF9E0980>
+farmer_headers = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjYTc3MmU5My03YjZiLTQ3ZGYtOTYxMC1mM2ZhNTMyMTA...yZGlhbiIsImVtYWlsIjoicmFtZXNoQGFsZy5kZW1vIiwibmFtZSI6IlJhbWVzaCBQYXRpbCJ9.z62NyEZD-Ep-2FmpE0R02S_JxoJlqh4l5G38dfulYrE'}
+
+    def test_h06_sync_update_operation_only_supported_for_animals(client, farmer_headers):
+        animal = client.get("/api/v1/animals?page_size=1", headers=farmer_headers).json()["items"][0]
+        results = _sync(
+            client,
+            farmer_headers,
+            [
+                _sync_op(
+                    "feed_record",
+                    {"animal_id": animal["id"], "feed_type": "silage", "quantity_kg": 5},
+                    operation="update",
+                    entity_id=animal["id"],
+                )
+            ],
+        )
+>       assert results[0]["status"] == "error", "non-animal entities have no online update route; sync must not create instead"
+E       AssertionError: non-animal entities have no online update route; sync must not create instead
+E       assert 'applied' == 'error'
+E         
+E         - error
+E         + applied
+
+app\tests\test_authorization.py:493: AssertionError
+---------------------------- Captured stderr call -----------------------------
+2026-11-09 13:00:11,192 INFO alg.access GET /api/v1/animals 200 7.8ms request_id=886ed3f3-18ce-4185-934e-130639915de8
+2026-11-09 13:00:11,193 INFO httpx2 HTTP Request: GET http://testserver/api/v1/animals?page_size=1 "HTTP/1.1 200 OK"
+2026-11-09 13:00:11,209 INFO alg.access POST /api/v1/sync/batch 200 14.7ms request_id=9c53f3b6-4699-46d5-9d39-2c9fcf834b20
+2026-11-09 13:00:11,210 INFO httpx2 HTTP Request: POST http://testserver/api/v1/sync/batch "HTTP/1.1 200 OK"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 GET /api/v1/animals 200 7.8ms request_id=886ed3f3-18ce-4185-934e-130639915de8
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/animals?page_size=1 "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/sync/batch 200 14.7ms request_id=9c53f3b6-4699-46d5-9d39-2c9fcf834b20
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/sync/batch "HTTP/1.1 200 OK"
+____________ test_m02_unlinked_cooperative_appointment_count_zero _____________
+
+client = <starlette.testclient.TestClient object at 0x00000269EF9E0980>
+admin_headers = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ZjMzZjNmMC00MGMzLTQzNzktOTViNS1hY2FiZWMwYmY...kaWFuIiwiZW1haWwiOiJhZG1pbkBhbGcuZGVtbyIsIm5hbWUiOiJBbml0YSBEZXNobXVraCJ9.h80DrPn0vZpCaaSaL9XIe4hM9OAx_b1ZhBZIARgjwhw'}
+
+    def test_m02_unlinked_cooperative_appointment_count_zero(client, admin_headers):
+        coop, _ = _register(client, role="cooperative", admin_headers=admin_headers)
+        overview = client.get("/api/v1/analytics/overview", headers=coop).json()
+>       assert overview["upcoming_appointments"] == 0
+E       assert 9 == 0
+
+app\tests\test_authorization.py:511: AssertionError
+---------------------------- Captured stderr call -----------------------------
+2026-11-09 13:00:11,515 INFO alg.access POST /api/v1/users 201 264.8ms request_id=98c47911-f0f3-42d4-b67d-76bdb461e4c9
+2026-11-09 13:00:11,516 INFO httpx2 HTTP Request: POST http://testserver/api/v1/users "HTTP/1.1 201 Created"
+2026-11-09 13:00:11,787 INFO alg.access POST /api/v1/auth/login 200 270.5ms request_id=1d427a59-93b4-4d89-bf4d-dd9b9ec71c93
+2026-11-09 13:00:11,788 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/login "HTTP/1.1 200 OK"
+2026-11-09 13:00:11,811 INFO alg.access GET /api/v1/analytics/overview 200 22.2ms request_id=c8e92aa0-9109-43ef-949b-c80afe2aed17
+2026-11-09 13:00:11,812 INFO httpx2 HTTP Request: GET http://testserver/api/v1/analytics/overview "HTTP/1.1 200 OK"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 POST /api/v1/users 201 264.8ms request_id=98c47911-f0f3-42d4-b67d-76bdb461e4c9
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/users "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/login 200 270.5ms request_id=1d427a59-93b4-4d89-bf4d-dd9b9ec71c93
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/login "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 GET /api/v1/analytics/overview 200 22.2ms request_id=c8e92aa0-9109-43ef-949b-c80afe2aed17
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/analytics/overview "HTTP/1.1 200 OK"
+_____________ test_m02_farmer_without_farm_sees_no_foreign_alerts _____________
+
+client = <starlette.testclient.TestClient object at 0x00000269EF9E0980>
+admin_headers = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ZjMzZjNmMC00MGMzLTQzNzktOTViNS1hY2FiZWMwYmY...kaWFuIiwiZW1haWwiOiJhZG1pbkBhbGcuZGVtbyIsIm5hbWUiOiJBbml0YSBEZXNobXVraCJ9.h80DrPn0vZpCaaSaL9XIe4hM9OAx_b1ZhBZIARgjwhw'}
+
+    def test_m02_farmer_without_farm_sees_no_foreign_alerts(client, admin_headers):
+        created = client.post(
+            "/api/v1/users",
+            headers=admin_headers,
+            json={
+                "email": f"batchb.nofarm.{uuid.uuid4().hex[:8]}@example.com",
+                "password": PASSWORD,
+                "full_name": "No Farm Farmer",
+                "role": "farmer",
+            },
+        )
+        assert created.status_code == 201, created.text
+        headers = login(client, created.json()["email"])
+        overview = client.get("/api/v1/analytics/overview", headers=headers).json()
+        assert overview["total_animals"] == 0
+>       assert not [alert for alert in overview["alerts"] if alert["type"] == "environment"], (
+            "farmer without a farm must not see other farms' environmental alerts"
+        )
+E       AssertionError: farmer without a farm must not see other farms' environmental alerts
+E       assert not [{'type': 'environment', 'severity': 'high', 'message': 'High ambient temperature may increase heat stress risk.'}]
+
+app\tests\test_authorization.py:529: AssertionError
+---------------------------- Captured stderr call -----------------------------
+2026-11-09 13:00:12,103 INFO alg.access POST /api/v1/users 201 264.9ms request_id=247e937a-7bc3-47af-af2b-251ae9fc8af9
+2026-11-09 13:00:12,103 INFO httpx2 HTTP Request: POST http://testserver/api/v1/users "HTTP/1.1 201 Created"
+2026-11-09 13:00:12,373 INFO alg.access POST /api/v1/auth/login 200 268.1ms request_id=3c7edab7-eccb-4cac-8262-c880dd562bc4
+2026-11-09 13:00:12,374 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/login "HTTP/1.1 200 OK"
+2026-11-09 13:00:12,387 INFO alg.access GET /api/v1/analytics/overview 200 11.7ms request_id=81023014-75bd-4e7f-982f-5b8659866c2d
+2026-11-09 13:00:12,388 INFO httpx2 HTTP Request: GET http://testserver/api/v1/analytics/overview "HTTP/1.1 200 OK"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 POST /api/v1/users 201 264.9ms request_id=247e937a-7bc3-47af-af2b-251ae9fc8af9
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/users "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/login 200 268.1ms request_id=3c7edab7-eccb-4cac-8262-c880dd562bc4
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/login "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 GET /api/v1/analytics/overview 200 11.7ms request_id=81023014-75bd-4e7f-982f-5b8659866c2d
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/analytics/overview "HTTP/1.1 200 OK"
+_______________ test_m02_vet_case_trends_scoped_to_assignments ________________
+
+client = <starlette.testclient.TestClient object at 0x00000269EF9E0980>
+
+    def test_m02_vet_case_trends_scoped_to_assignments(client):
+        vet = login(client, "dr.vikram@alg.demo")
+        since = (date.today() - timedelta(days=29)).isoformat()
+        assigned = client.get("/api/v1/health/cases?page_size=100", headers=vet).json()["items"]
+        expected_total = sum(1 for case in assigned if case["opened_at"][:10] >= since)
+        trends = client.get("/api/v1/analytics/trends?days=30", headers=vet).json()
+        actual_total = sum(entry["total"] for entry in trends["health_cases"])
+>       assert actual_total == expected_total, "vet case trends must cover only assigned cases"
+E       AssertionError: vet case trends must cover only assigned cases
+E       assert 11 == 0
+
+app\tests\test_authorization.py:541: AssertionError
+---------------------------- Captured stderr call -----------------------------
+2026-11-09 13:00:12,676 INFO alg.access POST /api/v1/auth/login 200 263.9ms request_id=63f0479c-f59c-4955-baa8-bd0afe9d8803
+2026-11-09 13:00:12,677 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/login "HTTP/1.1 200 OK"
+2026-11-09 13:00:12,685 INFO alg.access GET /api/v1/health/cases 200 6.3ms request_id=63bf6983-873d-4b59-8979-65c21e0ded05
+2026-11-09 13:00:12,686 INFO httpx2 HTTP Request: GET http://testserver/api/v1/health/cases?page_size=100 "HTTP/1.1 200 OK"
+2026-11-09 13:00:12,694 INFO alg.access GET /api/v1/analytics/trends 200 7.2ms request_id=9ced37fd-b8d2-4621-8c31-d0743db0dca1
+2026-11-09 13:00:12,694 INFO httpx2 HTTP Request: GET http://testserver/api/v1/analytics/trends?days=30 "HTTP/1.1 200 OK"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/login 200 263.9ms request_id=63f0479c-f59c-4955-baa8-bd0afe9d8803
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/login "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 GET /api/v1/health/cases 200 6.3ms request_id=63bf6983-873d-4b59-8979-65c21e0ded05
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/health/cases?page_size=100 "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 GET /api/v1/analytics/trends 200 7.2ms request_id=9ced37fd-b8d2-4621-8c31-d0743db0dca1
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/analytics/trends?days=30 "HTTP/1.1 200 OK"
+______________ test_m02_vet_finance_excludes_unassigned_animals _______________
+
+client = <starlette.testclient.TestClient object at 0x00000269EF9E0980>
+
+    def test_m02_vet_finance_excludes_unassigned_animals(client):
+        vet = login(client, "dr.aarti@alg.demo")
+        milk_rows = client.get("/api/v1/finance/milk?days=30", headers=vet).json()
+        expected = round(sum(row["litres"] * (row["price_per_litre"] if row["price_per_litre"] is not None else 35.0) for row in milk_rows), 2)
+        summary = client.get("/api/v1/finance/summary?days=30", headers=vet).json()
+>       assert summary["milk_revenue"] == expected, "vet finance must not include unassigned sibling-animal revenue"
+E       AssertionError: vet finance must not include unassigned sibling-animal revenue
+E       assert 55894.0 == 20148.4
+
+app\tests\test_authorization.py:549: AssertionError
+---------------------------- Captured stderr call -----------------------------
+2026-11-09 13:00:12,974 INFO alg.access POST /api/v1/auth/login 200 264.4ms request_id=528aa8d7-47e2-4d5d-8ce8-2baad9d04454
+2026-11-09 13:00:12,975 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/login "HTTP/1.1 200 OK"
+2026-11-09 13:00:12,985 INFO alg.access GET /api/v1/finance/milk 200 8.5ms request_id=7aaaa49a-91d2-4c70-a6f8-928f5cbed56d
+2026-11-09 13:00:12,986 INFO httpx2 HTTP Request: GET http://testserver/api/v1/finance/milk?days=30 "HTTP/1.1 200 OK"
+2026-11-09 13:00:12,996 INFO alg.access GET /api/v1/finance/summary 200 8.9ms request_id=297425b8-2e92-4f29-bf50-f006ff77fad4
+2026-11-09 13:00:12,997 INFO httpx2 HTTP Request: GET http://testserver/api/v1/finance/summary?days=30 "HTTP/1.1 200 OK"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/login 200 264.4ms request_id=528aa8d7-47e2-4d5d-8ce8-2baad9d04454
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/login "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 GET /api/v1/finance/milk 200 8.5ms request_id=7aaaa49a-91d2-4c70-a6f8-928f5cbed56d
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/finance/milk?days=30 "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 GET /api/v1/finance/summary 200 8.9ms request_id=297425b8-2e92-4f29-bf50-f006ff77fad4
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/finance/summary?days=30 "HTTP/1.1 200 OK"
+_______________ test_m03_password_change_invalidates_old_tokens _______________
+
+client = <starlette.testclient.TestClient object at 0x00000269EF9E0980>
+
+    def test_m03_password_change_invalidates_old_tokens(client):
+        headers, user = _register(client)
+        old_token = headers["Authorization"].split(" ", 1)[1]
+        wrong = client.post(
+            "/api/v1/auth/change-password",
+            headers=headers,
+            json={"current_password": "wrong-password", "new_password": "NewPass@1234"},
+        )
+        assert wrong.status_code == 400
+        changed = client.post(
+            "/api/v1/auth/change-password",
+            headers=headers,
+            json={"current_password": PASSWORD, "new_password": "NewPass@1234"},
+        )
+        assert changed.status_code == 200, changed.text
+        body = changed.json()
+>       assert body.get("access_token"), "password change should return a fresh token"
+E       AssertionError: password change should return a fresh token
+E       assert None
+E        +  where None = <built-in method get of dict object at 0x00000269F0583640>('access_token')
+E        +    where <built-in method get of dict object at 0x00000269F0583640> = {'message': 'Password updated successfully'}.get
+
+app\tests\test_authorization.py:569: AssertionError
+---------------------------- Captured stderr call -----------------------------
+2026-11-09 13:00:13,285 INFO alg.access POST /api/v1/auth/register 201 268.4ms request_id=3cf42370-dceb-49e3-8799-5b5b3b256df9
+2026-11-09 13:00:13,286 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+2026-11-09 13:00:13,549 INFO alg.access POST /api/v1/auth/change-password 400 262.3ms request_id=1d119853-3728-4b7f-ab38-84932b5f6b70
+2026-11-09 13:00:13,550 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/change-password "HTTP/1.1 400 Bad Request"
+2026-11-09 13:00:14,086 INFO alg.access POST /api/v1/auth/change-password 200 535.0ms request_id=3c0140b8-ffef-495d-a261-953a0b4e8046
+2026-11-09 13:00:14,087 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/change-password "HTTP/1.1 200 OK"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/register 201 268.4ms request_id=3cf42370-dceb-49e3-8799-5b5b3b256df9
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/change-password 400 262.3ms request_id=1d119853-3728-4b7f-ab38-84932b5f6b70
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/change-password "HTTP/1.1 400 Bad Request"
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/change-password 200 535.0ms request_id=3c0140b8-ffef-495d-a261-953a0b4e8046
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/change-password "HTTP/1.1 200 OK"
+________________ test_m03_profile_patch_cannot_change_password ________________
+
+client = <starlette.testclient.TestClient object at 0x00000269EF9E0980>
+
+    def test_m03_profile_patch_cannot_change_password(client):
+        headers, user = _register(client)
+        response = client.patch("/api/v1/users/me", headers=headers, json={"password": "Sneaky@12345"})
+>       assert response.status_code == 400, "self-service password change must require the current password via /auth/change-password"
+E       AssertionError: self-service password change must require the current password via /auth/change-password
+E       assert 200 == 400
+E        +  where 200 = <Response [200 OK]>.status_code
+
+app\tests\test_authorization.py:582: AssertionError
+---------------------------- Captured stderr call -----------------------------
+2026-11-09 13:00:14,406 INFO alg.access POST /api/v1/auth/register 201 299.8ms request_id=5fc9822f-fb0a-44ff-8216-3a89b9d12bdf
+2026-11-09 13:00:14,407 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+2026-11-09 13:00:14,675 INFO alg.access PATCH /api/v1/users/me 200 267.4ms request_id=7c9cad94-b9b7-480d-ab8f-899eebf8e833
+2026-11-09 13:00:14,676 INFO httpx2 HTTP Request: PATCH http://testserver/api/v1/users/me "HTTP/1.1 200 OK"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/register 201 299.8ms request_id=5fc9822f-fb0a-44ff-8216-3a89b9d12bdf
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 PATCH /api/v1/users/me 200 267.4ms request_id=7c9cad94-b9b7-480d-ab8f-899eebf8e833
+INFO     httpx2:_client.py:1084 HTTP Request: PATCH http://testserver/api/v1/users/me "HTTP/1.1 200 OK"
+______________ test_m03_admin_password_reset_invalidates_tokens _______________
+
+client = <starlette.testclient.TestClient object at 0x00000269EF9E0980>
+admin_headers = {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ZjMzZjNmMC00MGMzLTQzNzktOTViNS1hY2FiZWMwYmY...kaWFuIiwiZW1haWwiOiJhZG1pbkBhbGcuZGVtbyIsIm5hbWUiOiJBbml0YSBEZXNobXVraCJ9.h80DrPn0vZpCaaSaL9XIe4hM9OAx_b1ZhBZIARgjwhw'}
+
+    def test_m03_admin_password_reset_invalidates_tokens(client, admin_headers):
+        headers, user = _register(client)
+        reset = client.patch(
+            f"/api/v1/users/{user['id']}",
+            headers=admin_headers,
+            json={"password": "AdminReset@123"},
+        )
+        assert reset.status_code == 200, reset.text
+        stale = client.get("/api/v1/auth/me", headers=headers)
+>       assert stale.status_code == 401
+E       assert 200 == 401
+E        +  where 200 = <Response [200 OK]>.status_code
+
+app\tests\test_authorization.py:597: AssertionError
+---------------------------- Captured stderr call -----------------------------
+2026-11-09 13:00:14,961 INFO alg.access POST /api/v1/auth/register 201 269.4ms request_id=b1f0a7b6-668e-4968-93b6-1127edc951e6
+2026-11-09 13:00:14,962 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+2026-11-09 13:00:15,235 INFO alg.access PATCH /api/v1/users/08256375-b35a-42de-a5b3-63994c97ec0b 200 271.7ms request_id=bb935f29-915f-401c-99f7-5c50bbe6a6fc
+2026-11-09 13:00:15,236 INFO httpx2 HTTP Request: PATCH http://testserver/api/v1/users/08256375-b35a-42de-a5b3-63994c97ec0b "HTTP/1.1 200 OK"
+2026-11-09 13:00:15,239 INFO alg.access GET /api/v1/auth/me 200 2.6ms request_id=e3bf12e8-1a4c-4d54-8eda-9f2e5d40ab48
+2026-11-09 13:00:15,240 INFO httpx2 HTTP Request: GET http://testserver/api/v1/auth/me "HTTP/1.1 200 OK"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/register 201 269.4ms request_id=b1f0a7b6-668e-4968-93b6-1127edc951e6
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 PATCH /api/v1/users/08256375-b35a-42de-a5b3-63994c97ec0b 200 271.7ms request_id=bb935f29-915f-401c-99f7-5c50bbe6a6fc
+INFO     httpx2:_client.py:1084 HTTP Request: PATCH http://testserver/api/v1/users/08256375-b35a-42de-a5b3-63994c97ec0b "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 GET /api/v1/auth/me 200 2.6ms request_id=e3bf12e8-1a4c-4d54-8eda-9f2e5d40ab48
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/auth/me "HTTP/1.1 200 OK"
+___________________ test_m03_token_without_expiry_rejected ____________________
+
+client = <starlette.testclient.TestClient object at 0x00000269EF9E0980>
+
+    def test_m03_token_without_expiry_rejected(client):
+        headers, user = _register(client)
+        payload = {
+            "sub": user["id"],
+            "role": user["role"],
+            "iat": int(datetime.now(UTC).timestamp()),
+            "iss": "ai-livestock-guardian",
+        }
+        token = jwt.encode(payload, settings.jwt_secret, algorithm=settings.jwt_algorithm)
+        response = client.get("/api/v1/auth/me", headers=_headers_from_token(token))
+>       assert response.status_code == 401, "tokens without an exp claim must be rejected"
+E       AssertionError: tokens without an exp claim must be rejected
+E       assert 200 == 401
+E        +  where 200 = <Response [200 OK]>.status_code
+
+app\tests\test_authorization.py:610: AssertionError
+---------------------------- Captured stderr call -----------------------------
+2026-11-09 13:00:15,529 INFO alg.access POST /api/v1/auth/register 201 267.0ms request_id=3ea899ba-32fa-413a-a59a-8b8114f726d9
+2026-11-09 13:00:15,530 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+2026-11-09 13:00:15,534 INFO alg.access GET /api/v1/auth/me 200 2.1ms request_id=27328ca9-c99e-47c3-b324-1ff32ff865e8
+2026-11-09 13:00:15,534 INFO httpx2 HTTP Request: GET http://testserver/api/v1/auth/me "HTTP/1.1 200 OK"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/register 201 267.0ms request_id=3ea899ba-32fa-413a-a59a-8b8114f726d9
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/register "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 GET /api/v1/auth/me 200 2.1ms request_id=27328ca9-c99e-47c3-b324-1ff32ff865e8
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/auth/me "HTTP/1.1 200 OK"
+=========================== short test summary info ===========================
+FAILED app/tests/test_authorization.py::test_h01_unlinked_cooperative_sees_no_medical_records
+FAILED app/tests/test_authorization.py::test_h02_membership_requires_farmer_consent
+FAILED app/tests/test_authorization.py::test_h02_farmer_can_decline_membership
+FAILED app/tests/test_authorization.py::test_h03_record_case_must_belong_to_same_animal
+FAILED app/tests/test_authorization.py::test_h04_unverified_vet_cannot_confirm_assessment
+FAILED app/tests/test_authorization.py::test_h04_unverified_vet_cannot_create_approved_record
+FAILED app/tests/test_authorization.py::test_h04_unverified_vet_cannot_decide_approval
+FAILED app/tests/test_authorization.py::test_h04_unverified_vet_cannot_verify_vaccination
+FAILED app/tests/test_authorization.py::test_h04_unverified_vet_recording_gets_no_attestation
+FAILED app/tests/test_authorization.py::test_h04_credential_change_resets_verification
+FAILED app/tests/test_authorization.py::test_h05_farmer_edit_invalidates_professional_attestation
+FAILED app/tests/test_authorization.py::test_h06_cooperative_sync_write_matches_online_forbidden
+FAILED app/tests/test_authorization.py::test_h06_sync_rejects_out_of_range_payloads
+FAILED app/tests/test_authorization.py::test_h06_sync_update_operation_only_supported_for_animals
+FAILED app/tests/test_authorization.py::test_m02_unlinked_cooperative_appointment_count_zero
+FAILED app/tests/test_authorization.py::test_m02_farmer_without_farm_sees_no_foreign_alerts
+FAILED app/tests/test_authorization.py::test_m02_vet_case_trends_scoped_to_assignments
+FAILED app/tests/test_authorization.py::test_m02_vet_finance_excludes_unassigned_animals
+FAILED app/tests/test_authorization.py::test_m03_password_change_invalidates_old_tokens
+FAILED app/tests/test_authorization.py::test_m03_profile_patch_cannot_change_password
+FAILED app/tests/test_authorization.py::test_m03_admin_password_reset_invalidates_tokens
+FAILED app/tests/test_authorization.py::test_m03_token_without_expiry_rejected
+22 failed, 6 passed in 17.31s

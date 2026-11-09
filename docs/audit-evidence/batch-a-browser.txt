@@ -1,0 +1,21 @@
+Batch A browser smoke evidence — 2026-11-08
+
+Environment: isolated local SQLite batch_a_browser.db with explicitly labelled demo seed; FastAPI 127.0.0.1:8001 and Vite 127.0.0.1:5174. The existing application database was not used for these writes. No real Gemini requests or medical examination occurred.
+
+Observed through the actual web forms using DOM input/change/requestSubmit events:
+1. Local Ramesh demo sign-in reached the farmer dashboard.
+2. Health form: selected Ganga, entered neutral Marathi text 'निरीक्षण नोंदवले', selected only the 'श्वास घेण्यास त्रास' chip, submitted.
+   - Visible case HC-261108-50E313, id a11859a1-1e8d-4ad8-94e9-d33a73080960.
+   - Visible critical severity, veterinary request, and all eight health workflow nodes.
+   - Visible Marathi immediate-contact warning, do-not-wait guidance and statement that rule limits need veterinary review and clinical accuracy is not established.
+   - The request is not a confirmed appointment or completed professional review.
+3. Assistant form with no animal selected: 'माझी गाय बेशुद्ध आहे'.
+   - Visible critical urgency, immediate veterinary-contact guidance, and select-animal prompt; full health/safety/vet/follow-up trace.
+   - No claim of a created case or appointment.
+4. Assistant form: 'श्वास घेण्यास त्रास नाही'.
+   - Latest exchange did not show critical severity or immediate-emergency replacement. The preceding unrelated urgent exchange remained in chat history.
+5. Console inspection on the assistant page: zero error messages; two existing React Router future-flag warnings.
+
+Cleanup: isolated smoke servers stopped and the session-created SQLite database removed after exporting database evidence; original application servers/database left unchanged.
+
+Limits: browser DOM behavior verified, not visual screenshot fidelity. Native Android/Expo SQLite/voice/camera/network-loss interactions remain unverified because no device/emulator/Android SDK is available. Web code was not changed. Mobile change only retains the selected language in the queued health payload.

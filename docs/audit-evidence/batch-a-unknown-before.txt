@@ -1,0 +1,20 @@
+FF                                                                       [100%]
+================================== FAILURES ===================================
+__ test_normal_observation_does_not_dismiss_unknown_complaint[observation0] ___
+app\tests\test_triage_safety.py:64: in test_normal_observation_does_not_dismiss_unknown_complaint
+    assert result["severity"] == "medium"
+E   AssertionError: assert 'low' == 'medium'
+E     
+E     - medium
+E     + low
+__ test_normal_observation_does_not_dismiss_unknown_complaint[observation1] ___
+app\tests\test_triage_safety.py:64: in test_normal_observation_does_not_dismiss_unknown_complaint
+    assert result["severity"] == "medium"
+E   AssertionError: assert 'low' == 'medium'
+E     
+E     - medium
+E     + low
+=========================== short test summary info ===========================
+FAILED app/tests/test_triage_safety.py::test_normal_observation_does_not_dismiss_unknown_complaint[observation0]
+FAILED app/tests/test_triage_safety.py::test_normal_observation_does_not_dismiss_unknown_complaint[observation1]
+2 failed, 74 deselected in 0.43s

@@ -1,0 +1,1849 @@
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF.F.FFFFFF...FFFFFFF..F.F..FF [ 24%]
+FFFFFFFFFFFFFFFFFFFFF.FF.FFFFFFFFFFFF.FFFFFFFFFFFFF..FF................. [ 49%]
+.FFF.......FFFFF..FFF..FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF [ 74%]
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF.......F.....FFFFFFFFF.....FFFFFF..... [ 99%]
+.                                                                        [100%]
+================================== FAILURES ===================================
+_ test_all_audit_and_shipped_warning_phrases_escalate[en-difficulty breathing] _
+app\tests\test_triage_safety.py:30: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert result["rule_status"] == "needs vet review"
+           ^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'rule_status'
+___ test_all_audit_and_shipped_warning_phrases_escalate[en-unable to stand] ___
+app\tests\test_triage_safety.py:30: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert result["rule_status"] == "needs vet review"
+           ^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'rule_status'
+_____ test_all_audit_and_shipped_warning_phrases_escalate[en-convulsion] ______
+app\tests\test_triage_safety.py:30: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert result["rule_status"] == "needs vet review"
+           ^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'rule_status'
+___ test_all_audit_and_shipped_warning_phrases_escalate[en-severe bleeding] ___
+app\tests\test_triage_safety.py:30: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert result["rule_status"] == "needs vet review"
+           ^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'rule_status'
+________ test_all_audit_and_shipped_warning_phrases_escalate[en-bloat] ________
+app\tests\test_triage_safety.py:30: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert result["rule_status"] == "needs vet review"
+           ^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'rule_status'
+_____ test_all_audit_and_shipped_warning_phrases_escalate[en-high fever] ______
+app\tests\test_triage_safety.py:28: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert result["severity"] == "critical", text
+E   AssertionError: high fever
+E   assert 'medium' == 'critical'
+E     
+E     - critical
+E     + medium
+____ test_all_audit_and_shipped_warning_phrases_escalate[en-not drinking] _____
+app\tests\test_triage_safety.py:30: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert result["rule_status"] == "needs vet review"
+           ^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'rule_status'
+____ test_all_audit_and_shipped_warning_phrases_escalate[en-sudden death0] ____
+app\tests\test_triage_safety.py:27: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert extract_symptoms(text), text
+E   AssertionError: sudden death
+E   assert []
+E    +  where [] = extract_symptoms('sudden death')
+_ test_all_audit_and_shipped_warning_phrases_escalate[hi-\u0938\u093e\u0902\u0938 \u0932\u0947\u0928\u0947 \u092e\u0947\u0902 \u0924\u0915\u0932\u0940\u092b] _
+app\tests\test_triage_safety.py:30: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert result["rule_status"] == "needs vet review"
+           ^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'rule_status'
+_ test_all_audit_and_shipped_warning_phrases_escalate[hi-\u0916\u0921\u093c\u0947 \u0928\u0939\u0940\u0902 \u0939\u094b \u092a\u093e \u0930\u0939\u0947] _
+app\tests\test_triage_safety.py:27: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert extract_symptoms(text), text
+E   AssertionError: खड़े नहीं हो पा रहे
+E   assert []
+E    +  where [] = extract_symptoms('खड़े नहीं हो पा रहे')
+_ test_all_audit_and_shipped_warning_phrases_escalate[hi-\u0926\u094c\u0930\u093e \u092f\u093e \u0910\u0902\u0920\u0928] _
+app\tests\test_triage_safety.py:30: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert result["rule_status"] == "needs vet review"
+           ^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'rule_status'
+_ test_all_audit_and_shipped_warning_phrases_escalate[hi-\u0917\u0902\u092d\u0940\u0930 \u0930\u0915\u094d\u0924\u0938\u094d\u0930\u093e\u0935] _
+app\tests\test_triage_safety.py:30: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert result["rule_status"] == "needs vet review"
+           ^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'rule_status'
+_ test_all_audit_and_shipped_warning_phrases_escalate[hi-\u092a\u0947\u091f \u092b\u0942\u0932\u0928\u093e] _
+app\tests\test_triage_safety.py:30: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert result["rule_status"] == "needs vet review"
+           ^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'rule_status'
+_ test_all_audit_and_shipped_warning_phrases_escalate[hi-\u0924\u0947\u091c\u093c \u092c\u0941\u0916\u093e\u0930] _
+app\tests\test_triage_safety.py:28: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert result["severity"] == "critical", text
+E   AssertionError: तेज़ बुखार
+E   assert 'medium' == 'critical'
+E     
+E     - critical
+E     + medium
+_ test_all_audit_and_shipped_warning_phrases_escalate[hi-\u092a\u093e\u0928\u0940 \u0928\u0939\u0940\u0902 \u092a\u0940 \u0930\u0939\u0947] _
+app\tests\test_triage_safety.py:30: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert result["rule_status"] == "needs vet review"
+           ^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'rule_status'
+_ test_all_audit_and_shipped_warning_phrases_escalate[hi-\u0905\u091a\u093e\u0928\u0915 \u092e\u0943\u0924\u094d\u092f\u0941] _
+app\tests\test_triage_safety.py:27: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert extract_symptoms(text), text
+E   AssertionError: अचानक मृत्यु
+E   assert []
+E    +  where [] = extract_symptoms('अचानक मृत्यु')
+_ test_all_audit_and_shipped_warning_phrases_escalate[mr-\u0936\u094d\u0935\u093e\u0938 \u0918\u0947\u0923\u094d\u092f\u093e\u0938 \u0924\u094d\u0930\u093e\u0938] _
+app\tests\test_triage_safety.py:30: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert result["rule_status"] == "needs vet review"
+           ^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'rule_status'
+_ test_all_audit_and_shipped_warning_phrases_escalate[mr-\u0909\u092d\u0947 \u0930\u093e\u0939\u0942 \u0936\u0915\u0924 \u0928\u093e\u0939\u0940] _
+app\tests\test_triage_safety.py:30: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert result["rule_status"] == "needs vet review"
+           ^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'rule_status'
+_ test_all_audit_and_shipped_warning_phrases_escalate[mr-\u092a\u0947\u091f\u0915\u0947 \u092f\u0947\u0923\u0947_0] _
+app\tests\test_triage_safety.py:27: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert extract_symptoms(text), text
+E   AssertionError: पेटके येणे
+E   assert []
+E    +  where [] = extract_symptoms('पेटके येणे')
+_ test_all_audit_and_shipped_warning_phrases_escalate[mr-\u0924\u0940\u0935\u094d\u0930 \u0930\u0915\u094d\u0924\u0938\u094d\u0930\u093e\u0935] _
+app\tests\test_triage_safety.py:30: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert result["rule_status"] == "needs vet review"
+           ^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'rule_status'
+_ test_all_audit_and_shipped_warning_phrases_escalate[mr-\u092a\u094b\u091f \u092b\u0941\u0917\u0923\u0947] _
+app\tests\test_triage_safety.py:30: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert result["rule_status"] == "needs vet review"
+           ^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'rule_status'
+_ test_all_audit_and_shipped_warning_phrases_escalate[mr-\u0924\u0940\u0935\u094d\u0930 \u0924\u093e\u092a] _
+app\tests\test_triage_safety.py:28: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert result["severity"] == "critical", text
+E   AssertionError: तीव्र ताप
+E   assert 'medium' == 'critical'
+E     
+E     - critical
+E     + medium
+_ test_all_audit_and_shipped_warning_phrases_escalate[mr-\u092a\u093e\u0923\u0940 \u092a\u0940\u0924 \u0928\u093e\u0939\u0940] _
+app\tests\test_triage_safety.py:30: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert result["rule_status"] == "needs vet review"
+           ^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'rule_status'
+_ test_all_audit_and_shipped_warning_phrases_escalate[mr-\u0905\u091a\u093e\u0928\u0915 \u092e\u0943\u0924\u094d\u092f\u0942_0] _
+app\tests\test_triage_safety.py:27: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert extract_symptoms(text), text
+E   AssertionError: अचानक मृत्यू
+E   assert []
+E    +  where [] = extract_symptoms('अचानक मृत्यू')
+_ test_all_audit_and_shipped_warning_phrases_escalate[en-My cow cannot breathe] _
+app\tests\test_triage_safety.py:27: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert extract_symptoms(text), text
+E   AssertionError: My cow cannot breathe
+E   assert []
+E    +  where [] = extract_symptoms('My cow cannot breathe')
+__ test_all_audit_and_shipped_warning_phrases_escalate[en-My cow is choking] __
+app\tests\test_triage_safety.py:27: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert extract_symptoms(text), text
+E   AssertionError: My cow is choking
+E   assert []
+E    +  where [] = extract_symptoms('My cow is choking')
+_ test_all_audit_and_shipped_warning_phrases_escalate[en-My cow is unconscious] _
+app\tests\test_triage_safety.py:27: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert extract_symptoms(text), text
+E   AssertionError: My cow is unconscious
+E   assert []
+E    +  where [] = extract_symptoms('My cow is unconscious')
+____ test_all_audit_and_shipped_warning_phrases_escalate[en-sudden death1] ____
+app\tests\test_triage_safety.py:27: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert extract_symptoms(text), text
+E   AssertionError: sudden death
+E   assert []
+E    +  where [] = extract_symptoms('sudden death')
+_ test_all_audit_and_shipped_warning_phrases_escalate[en-My cow has seizures] _
+app\tests\test_triage_safety.py:30: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert result["rule_status"] == "needs vet review"
+           ^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'rule_status'
+_ test_all_audit_and_shipped_warning_phrases_escalate[en-My cow cannot stand] _
+app\tests\test_triage_safety.py:30: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert result["rule_status"] == "needs vet review"
+           ^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'rule_status'
+_ test_all_audit_and_shipped_warning_phrases_escalate[en-My cow has high fever] _
+app\tests\test_triage_safety.py:28: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert result["severity"] == "critical", text
+E   AssertionError: My cow has high fever
+E   assert 'medium' == 'critical'
+E     
+E     - critical
+E     + medium
+_ test_all_audit_and_shipped_warning_phrases_escalate[en-very high temperature] _
+app\tests\test_triage_safety.py:28: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert result["severity"] == "critical", text
+E   AssertionError: very high temperature
+E   assert 'medium' == 'critical'
+E     
+E     - critical
+E     + medium
+_ test_all_audit_and_shipped_warning_phrases_escalate[hi-\u092e\u0947\u0930\u0940 \u0917\u093e\u092f \u0915\u094b \u0926\u094c\u0930\u0947 \u092a\u0921\u093c \u0930\u0939\u0947 \u0939\u0948\u0902] _
+app\tests\test_triage_safety.py:27: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert extract_symptoms(text), text
+E   AssertionError: मेरी गाय को दौरे पड़ रहे हैं
+E   assert []
+E    +  where [] = extract_symptoms('मेरी गाय को दौरे पड़ रहे हैं')
+_ test_all_audit_and_shipped_warning_phrases_escalate[hi-\u092e\u0947\u0930\u0940 \u0917\u093e\u092f \u092c\u0947\u0939\u094b\u0936 \u0939\u0948] _
+app\tests\test_triage_safety.py:27: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert extract_symptoms(text), text
+E   AssertionError: मेरी गाय बेहोश है
+E   assert []
+E    +  where [] = extract_symptoms('मेरी गाय बेहोश है')
+_ test_all_audit_and_shipped_warning_phrases_escalate[hi-\u092e\u0947\u0930\u0940 \u0917\u093e\u092f \u0938\u093e\u0902\u0938 \u0928\u0939\u0940\u0902 \u0932\u0947 \u092a\u093e \u0930\u0939\u0940 \u0939\u0948] _
+app\tests\test_triage_safety.py:30: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert result["rule_status"] == "needs vet review"
+           ^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'rule_status'
+_ test_all_audit_and_shipped_warning_phrases_escalate[hi-\u092e\u0947\u0930\u0940 \u0917\u093e\u092f \u0916\u0921\u093c\u0940 \u0928\u0939\u0940\u0902 \u0939\u094b \u092a\u093e \u0930\u0939\u0940] _
+app\tests\test_triage_safety.py:27: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert extract_symptoms(text), text
+E   AssertionError: मेरी गाय खड़ी नहीं हो पा रही
+E   assert []
+E    +  where [] = extract_symptoms('मेरी गाय खड़ी नहीं हो पा रही')
+_ test_all_audit_and_shipped_warning_phrases_escalate[hi-\u0924\u0947\u091c \u092c\u0941\u0916\u093e\u0930] _
+app\tests\test_triage_safety.py:28: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert result["severity"] == "critical", text
+E   AssertionError: तेज बुखार
+E   assert 'medium' == 'critical'
+E     
+E     - critical
+E     + medium
+_ test_all_audit_and_shipped_warning_phrases_escalate[hi-\u092c\u0939\u0941\u0924 \u0924\u0947\u091c\u093c \u092c\u0941\u0916\u093e\u0930] _
+app\tests\test_triage_safety.py:28: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert result["severity"] == "critical", text
+E   AssertionError: बहुत तेज़ बुखार
+E   assert 'medium' == 'critical'
+E     
+E     - critical
+E     + medium
+_ test_all_audit_and_shipped_warning_phrases_escalate[mr-\u092e\u093e\u091d\u0940 \u0917\u093e\u092f \u0909\u092d\u0940 \u0930\u093e\u0939\u0942 \u0936\u0915\u0924 \u0928\u093e\u0939\u0940] _
+app\tests\test_triage_safety.py:27: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert extract_symptoms(text), text
+E   AssertionError: माझी गाय उभी राहू शकत नाही
+E   assert []
+E    +  where [] = extract_symptoms('माझी गाय उभी राहू शकत नाही')
+_ test_all_audit_and_shipped_warning_phrases_escalate[mr-\u092e\u093e\u091d\u0940 \u0917\u093e\u092f \u092c\u0947\u0936\u0941\u0926\u094d\u0927 \u0906\u0939\u0947] _
+app\tests\test_triage_safety.py:27: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert extract_symptoms(text), text
+E   AssertionError: माझी गाय बेशुद्ध आहे
+E   assert []
+E    +  where [] = extract_symptoms('माझी गाय बेशुद्ध आहे')
+_ test_all_audit_and_shipped_warning_phrases_escalate[mr-\u092e\u093e\u091d\u0940 \u0917\u093e\u092f \u0936\u094d\u0935\u093e\u0938 \u0918\u0947\u090a \u0936\u0915\u0924 \u0928\u093e\u0939\u0940] _
+app\tests\test_triage_safety.py:30: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert result["rule_status"] == "needs vet review"
+           ^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'rule_status'
+_ test_all_audit_and_shipped_warning_phrases_escalate[mr-\u0916\u0942\u092a \u0924\u093e\u092a] _
+app\tests\test_triage_safety.py:28: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert result["severity"] == "critical", text
+E   AssertionError: खूप ताप
+E   assert 'medium' == 'critical'
+E     
+E     - critical
+E     + medium
+_ test_all_audit_and_shipped_warning_phrases_escalate[mr-\u092a\u0947\u091f\u0915\u0947 \u092f\u0947\u0923\u0947_1] _
+app\tests\test_triage_safety.py:27: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert extract_symptoms(text), text
+E   AssertionError: पेटके येणे
+E   assert []
+E    +  where [] = extract_symptoms('पेटके येणे')
+_ test_all_audit_and_shipped_warning_phrases_escalate[mr-\u0905\u091a\u093e\u0928\u0915 \u092e\u0943\u0924\u094d\u092f\u0942_1] _
+app\tests\test_triage_safety.py:27: in test_all_audit_and_shipped_warning_phrases_escalate
+    assert extract_symptoms(text), text
+E   AssertionError: अचानक मृत्यू
+E   assert []
+E    +  where [] = extract_symptoms('अचानक मृत्यू')
+_ test_negated_and_normal_signs_do_not_trigger_critical[No bleeding and no seizures] _
+app\tests\test_triage_safety.py:40: in test_negated_and_normal_signs_do_not_trigger_critical
+    assert result["severity"] != "critical"
+E   AssertionError: assert 'critical' != 'critical'
+_ test_negated_and_normal_signs_do_not_trigger_critical[\u092e\u0947\u0930\u0940 \u0917\u093e\u092f \u0938\u093e\u092e\u093e\u0928\u094d\u092f \u0938\u093e\u0902\u0938 \u0932\u0947 \u0930\u0939\u0940 \u0939\u0948] _
+app\tests\test_triage_safety.py:40: in test_negated_and_normal_signs_do_not_trigger_critical
+    assert result["severity"] != "critical"
+E   AssertionError: assert 'critical' != 'critical'
+_ test_negated_and_normal_signs_do_not_trigger_critical[\u0938\u093e\u0902\u0938 \u0932\u0947\u0928\u0947 \u092e\u0947\u0902 \u0924\u0915\u0932\u0940\u092b \u0928\u0939\u0940\u0902 \u0939\u0948] _
+app\tests\test_triage_safety.py:40: in test_negated_and_normal_signs_do_not_trigger_critical
+    assert result["severity"] != "critical"
+E   AssertionError: assert 'critical' != 'critical'
+_ test_negated_and_normal_signs_do_not_trigger_critical[\u0915\u094b\u0908 \u0926\u094c\u0930\u093e \u0928\u0939\u0940\u0902 \u0939\u0948] _
+app\tests\test_triage_safety.py:40: in test_negated_and_normal_signs_do_not_trigger_critical
+    assert result["severity"] != "critical"
+E   AssertionError: assert 'critical' != 'critical'
+_ test_negated_and_normal_signs_do_not_trigger_critical[\u092e\u093e\u091d\u0940 \u0917\u093e\u092f \u0938\u093e\u092e\u093e\u0928\u094d\u092f \u0936\u094d\u0935\u093e\u0938 \u0918\u0947\u0924 \u0906\u0939\u0947] _
+app\tests\test_triage_safety.py:40: in test_negated_and_normal_signs_do_not_trigger_critical
+    assert result["severity"] != "critical"
+E   AssertionError: assert 'critical' != 'critical'
+_ test_negated_and_normal_signs_do_not_trigger_critical[\u0936\u094d\u0935\u093e\u0938 \u0918\u0947\u0923\u094d\u092f\u093e\u0938 \u0924\u094d\u0930\u093e\u0938 \u0928\u093e\u0939\u0940] _
+app\tests\test_triage_safety.py:40: in test_negated_and_normal_signs_do_not_trigger_critical
+    assert result["severity"] != "critical"
+E   AssertionError: assert 'critical' != 'critical'
+_ test_negated_and_normal_signs_do_not_trigger_critical[\u0930\u0915\u094d\u0924\u0938\u094d\u0930\u093e\u0935 \u0928\u093e\u0939\u0940] _
+app\tests\test_triage_safety.py:40: in test_negated_and_normal_signs_do_not_trigger_critical
+    assert result["severity"] != "critical"
+E   AssertionError: assert 'critical' != 'critical'
+____________ test_unknown_reports_require_review_not_low[vomiting] ____________
+app\tests\test_triage_safety.py:55: in test_unknown_reports_require_review_not_low
+    assert result["severity"] == "medium"
+E   AssertionError: assert 'low' == 'medium'
+E     
+E     - medium
+E     + low
+_______ test_unknown_reports_require_review_not_low[something is wrong] _______
+app\tests\test_triage_safety.py:55: in test_unknown_reports_require_review_not_low
+    assert result["severity"] == "medium"
+E   AssertionError: assert 'low' == 'medium'
+E     
+E     - medium
+E     + low
+_ test_unknown_reports_require_review_not_low[\u0905\u091c\u0940\u092c \u0939\u093e\u0932\u0924] _
+app\tests\test_triage_safety.py:55: in test_unknown_reports_require_review_not_low
+    assert result["severity"] == "medium"
+E   AssertionError: assert 'low' == 'medium'
+E     
+E     - medium
+E     + low
+_ test_unknown_reports_require_review_not_low[\u0915\u093e\u0939\u0940\u0924\u0930\u0940 \u092c\u0930\u0947 \u0928\u093e\u0939\u0940] _
+app\tests\test_triage_safety.py:55: in test_unknown_reports_require_review_not_low
+    assert result["severity"] == "medium"
+E   AssertionError: assert 'low' == 'medium'
+E     
+E     - medium
+E     + low
+__________________ test_audited_duration_variants[two days] ___________________
+app\tests\test_triage_safety.py:62: in test_audited_duration_variants
+    assert extract_duration_days(text) == 2
+E   AssertionError: assert None == 2
+E    +  where None = extract_duration_days('two days')
+_______ test_audited_duration_variants[\u0926\u094b \u0926\u093f\u0928] _______
+app\tests\test_triage_safety.py:62: in test_audited_duration_variants
+    assert extract_duration_days(text) == 2
+E   AssertionError: assert None == 2
+E    +  where None = extract_duration_days('दो दिन')
+_ test_audited_duration_variants[\u0926\u094b \u0926\u093f\u0928\u094b\u0902 \u0938\u0947] _
+app\tests\test_triage_safety.py:62: in test_audited_duration_variants
+    assert extract_duration_days(text) == 2
+E   AssertionError: assert None == 2
+E    +  where None = extract_duration_days('दो दिनों से')
+______________ test_temperature_urgency_is_not_lowered_by_cough _______________
+app\tests\test_triage_safety.py:69: in test_temperature_urgency_is_not_lowered_by_cough
+    assert after["severity"] == "high"
+E   AssertionError: assert 'medium' == 'high'
+E     
+E     - high
+E     + medium
+_______________ test_adding_symptoms_never_lowers_urgency[39.3] _______________
+app\tests\test_triage_safety.py:82: in test_adding_symptoms_never_lowers_urgency
+    assert rank[result["severity"]] >= rank[previous["severity"]]
+E   assert 1 >= 2
+___ test_neutral_online_report_honors_structured_observations[observation0] ___
+app\tests\test_workflow_safety.py:26: in test_neutral_online_report_honors_structured_observations
+    assert body["triage"]["severity"] == "critical"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'severity'
+---------------------------- Captured stderr setup ----------------------------
+2026-11-08 20:00:17,318 DEBUG asyncio Using proactor: IocpProactor
+2026-11-08 20:00:19,381 INFO alg.app Seeded demo dataset (users=6)
+2026-11-08 20:00:19,661 INFO alg.access POST /api/v1/auth/login 200 277.3ms request_id=ffd2aa82-0ec9-473c-9467-896f03136f7a
+2026-11-08 20:00:19,662 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/login "HTTP/1.1 200 OK"
+----------------------------- Captured log setup ------------------------------
+DEBUG    asyncio:proactor_events.py:631 Using proactor: IocpProactor
+INFO     alg.app:main.py:53 Seeded demo dataset (users=6)
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/login 200 277.3ms request_id=ffd2aa82-0ec9-473c-9467-896f03136f7a
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/login "HTTP/1.1 200 OK"
+---------------------------- Captured stderr call -----------------------------
+2026-11-08 20:00:19,724 INFO alg.access GET /api/v1/animals 200 60.4ms request_id=21b4cbdc-1174-4754-99eb-391f244b9675
+2026-11-08 20:00:19,725 INFO httpx2 HTTP Request: GET http://testserver/api/v1/animals "HTTP/1.1 200 OK"
+2026-11-08 20:00:19,776 INFO alg.access POST /api/v1/health/cases 201 49.2ms request_id=03e606a2-63d4-4ec4-b269-cdb581427fed
+2026-11-08 20:00:19,777 INFO httpx2 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 GET /api/v1/animals 200 60.4ms request_id=21b4cbdc-1174-4754-99eb-391f244b9675
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/animals "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/health/cases 201 49.2ms request_id=03e606a2-63d4-4ec4-b269-cdb581427fed
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+___ test_neutral_online_report_honors_structured_observations[observation1] ___
+app\tests\test_workflow_safety.py:26: in test_neutral_online_report_honors_structured_observations
+    assert body["triage"]["severity"] == "critical"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'severity'
+---------------------------- Captured stderr call -----------------------------
+2026-11-08 20:00:19,794 INFO alg.access GET /api/v1/animals 200 7.8ms request_id=488f5c89-24b3-456d-8d75-d8f8651bc0f5
+2026-11-08 20:00:19,795 INFO httpx2 HTTP Request: GET http://testserver/api/v1/animals "HTTP/1.1 200 OK"
+2026-11-08 20:00:19,816 INFO alg.access POST /api/v1/health/cases 201 20.4ms request_id=359aec89-6b5e-4467-9595-24f9a3ea5c2e
+2026-11-08 20:00:19,818 INFO httpx2 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 GET /api/v1/animals 200 7.8ms request_id=488f5c89-24b3-456d-8d75-d8f8651bc0f5
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/animals "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/health/cases 201 20.4ms request_id=359aec89-6b5e-4467-9595-24f9a3ea5c2e
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+___ test_neutral_online_report_honors_structured_observations[observation2] ___
+app\tests\test_workflow_safety.py:26: in test_neutral_online_report_honors_structured_observations
+    assert body["triage"]["severity"] == "critical"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'severity'
+---------------------------- Captured stderr call -----------------------------
+2026-11-08 20:00:19,839 INFO alg.access GET /api/v1/animals 200 10.1ms request_id=c9d36761-173d-4e77-93cd-f2d8fb052cbf
+2026-11-08 20:00:19,840 INFO httpx2 HTTP Request: GET http://testserver/api/v1/animals "HTTP/1.1 200 OK"
+2026-11-08 20:00:19,862 INFO alg.access POST /api/v1/health/cases 201 19.8ms request_id=1b407ee9-7b33-4f8d-890b-9bc902e918b4
+2026-11-08 20:00:19,863 INFO httpx2 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 GET /api/v1/animals 200 10.1ms request_id=c9d36761-173d-4e77-93cd-f2d8fb052cbf
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/animals "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/health/cases 201 19.8ms request_id=1b407ee9-7b33-4f8d-890b-9bc902e918b4
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+_ test_unresolved_animal_still_gets_emergency_workflow[en-My cow cannot breathe-immediately] _
+app\tests\test_workflow_safety.py:44: in test_unresolved_animal_still_gets_emergency_workflow
+    assert body["intent"] == "health"
+E   AssertionError: assert 'animal_record' == 'health'
+E     
+E     - health
+E     + animal_record
+---------------------------- Captured stderr call -----------------------------
+2026-11-08 20:00:19,964 INFO alg.access POST /api/v1/ai/query 200 90.0ms request_id=cd4a34ab-0112-43fa-b3ba-d665dc47926b
+2026-11-08 20:00:19,965 INFO httpx2 HTTP Request: POST http://testserver/api/v1/ai/query "HTTP/1.1 200 OK"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 POST /api/v1/ai/query 200 90.0ms request_id=cd4a34ab-0112-43fa-b3ba-d665dc47926b
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/ai/query "HTTP/1.1 200 OK"
+_ test_unresolved_animal_still_gets_emergency_workflow[hi-\u092e\u0947\u0930\u0940 \u0917\u093e\u092f \u092c\u0947\u0939\u094b\u0936 \u0939\u0948-\u0924\u0941\u0930\u0902\u0924] _
+app\tests\test_workflow_safety.py:44: in test_unresolved_animal_still_gets_emergency_workflow
+    assert body["intent"] == "health"
+E   AssertionError: assert 'animal_record' == 'health'
+E     
+E     - health
+E     + animal_record
+---------------------------- Captured stderr call -----------------------------
+2026-11-08 20:00:19,990 INFO alg.access POST /api/v1/ai/query 200 14.1ms request_id=f4bf74c6-e582-4b12-a287-ec4f0e14635c
+2026-11-08 20:00:19,991 INFO httpx2 HTTP Request: POST http://testserver/api/v1/ai/query "HTTP/1.1 200 OK"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 POST /api/v1/ai/query 200 14.1ms request_id=f4bf74c6-e582-4b12-a287-ec4f0e14635c
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/ai/query "HTTP/1.1 200 OK"
+_ test_unresolved_animal_still_gets_emergency_workflow[mr-\u092e\u093e\u091d\u0940 \u0917\u093e\u092f \u092c\u0947\u0936\u0941\u0926\u094d\u0927 \u0906\u0939\u0947-\u0924\u094d\u0935\u0930\u093f\u0924] _
+app\tests\test_workflow_safety.py:44: in test_unresolved_animal_still_gets_emergency_workflow
+    assert body["intent"] == "health"
+E   AssertionError: assert 'animal_record' == 'health'
+E     
+E     - health
+E     + animal_record
+---------------------------- Captured stderr call -----------------------------
+2026-11-08 20:00:20,015 INFO alg.access POST /api/v1/ai/query 200 15.4ms request_id=238267e0-98d3-48c8-989b-e34be0248948
+2026-11-08 20:00:20,016 INFO httpx2 HTTP Request: POST http://testserver/api/v1/ai/query "HTTP/1.1 200 OK"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 POST /api/v1/ai/query 200 15.4ms request_id=238267e0-98d3-48c8-989b-e34be0248948
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/ai/query "HTTP/1.1 200 OK"
+___________________ test_unknown_health_report_is_reviewed ____________________
+app\tests\test_workflow_safety.py:59: in test_unknown_health_report_is_reviewed
+    assert response.json()["triage"]["severity"] == "medium"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'severity'
+---------------------------- Captured stderr call -----------------------------
+2026-11-08 20:00:20,036 INFO alg.access GET /api/v1/animals 200 10.6ms request_id=739ac339-9fd0-41d2-ba72-e1d85ea46d22
+2026-11-08 20:00:20,037 INFO httpx2 HTTP Request: GET http://testserver/api/v1/animals "HTTP/1.1 200 OK"
+2026-11-08 20:00:20,061 INFO alg.access POST /api/v1/health/cases 201 22.5ms request_id=64b5919b-03bd-4a5e-8860-4bf1a9050865
+2026-11-08 20:00:20,062 INFO httpx2 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 GET /api/v1/animals 200 10.6ms request_id=739ac339-9fd0-41d2-ba72-e1d85ea46d22
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/animals "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/health/cases 201 22.5ms request_id=64b5919b-03bd-4a5e-8860-4bf1a9050865
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+__ test_offline_warning_uses_same_gate_trace_followup_and_preserves_identity __
+app\tests\test_workflow_safety.py:86: in test_offline_warning_uses_same_gate_trace_followup_and_preserves_identity
+    assert approval
+E   assert None
+---------------------------- Captured stderr call -----------------------------
+2026-11-08 20:00:20,084 INFO alg.access GET /api/v1/animals 200 11.3ms request_id=2148a4cd-3832-4faa-9956-aebbcf31fe3d
+2026-11-08 20:00:20,085 INFO httpx2 HTTP Request: GET http://testserver/api/v1/animals "HTTP/1.1 200 OK"
+2026-11-08 20:00:20,131 INFO alg.access POST /api/v1/sync/batch 200 43.9ms request_id=6a322694-8d9f-4e91-8d1a-21e67e475797
+2026-11-08 20:00:20,132 INFO httpx2 HTTP Request: POST http://testserver/api/v1/sync/batch "HTTP/1.1 200 OK"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 GET /api/v1/animals 200 11.3ms request_id=2148a4cd-3832-4faa-9956-aebbcf31fe3d
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/animals "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/sync/batch 200 43.9ms request_id=6a322694-8d9f-4e91-8d1a-21e67e475797
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/sync/batch "HTTP/1.1 200 OK"
+_ test_existing_offline_case_is_retriaged_without_overwriting_professional_record _
+app\tests\test_workflow_safety.py:113: in test_existing_offline_case_is_retriaged_without_overwriting_professional_record
+    assert case.severity == "critical"
+E   AssertionError: assert 'medium' == 'critical'
+E     
+E     - critical
+E     + medium
+---------------------------- Captured stderr call -----------------------------
+2026-11-08 20:00:20,160 INFO alg.access GET /api/v1/animals 200 10.5ms request_id=27be3f5e-3a8a-4758-8ac1-acb1c1d5cefe
+2026-11-08 20:00:20,161 INFO httpx2 HTTP Request: GET http://testserver/api/v1/animals "HTTP/1.1 200 OK"
+2026-11-08 20:00:20,210 INFO alg.access POST /api/v1/health/cases 201 46.9ms request_id=2d2c4908-6c00-43cd-b8f8-1e8a9e7fc90a
+2026-11-08 20:00:20,211 INFO httpx2 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+2026-11-08 20:00:20,226 INFO alg.access GET /api/v1/animals 200 10.0ms request_id=79bfa138-5a4d-4cd3-8043-6cd9e46890d9
+2026-11-08 20:00:20,227 INFO httpx2 HTTP Request: GET http://testserver/api/v1/animals "HTTP/1.1 200 OK"
+2026-11-08 20:00:20,246 INFO alg.access POST /api/v1/sync/batch 200 16.6ms request_id=5808fce5-9aaa-48d5-aa2b-0b7d72d2a47b
+2026-11-08 20:00:20,247 INFO httpx2 HTTP Request: POST http://testserver/api/v1/sync/batch "HTTP/1.1 200 OK"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 GET /api/v1/animals 200 10.5ms request_id=27be3f5e-3a8a-4758-8ac1-acb1c1d5cefe
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/animals "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/health/cases 201 46.9ms request_id=2d2c4908-6c00-43cd-b8f8-1e8a9e7fc90a
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+INFO     alg.access:middleware.py:30 GET /api/v1/animals 200 10.0ms request_id=79bfa138-5a4d-4cd3-8043-6cd9e46890d9
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/animals "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/sync/batch 200 16.6ms request_id=5808fce5-9aaa-48d5-aa2b-0b7d72d2a47b
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/sync/batch "HTTP/1.1 200 OK"
+_ test_workflow_blocks_unsafe_localized_output_and_records_event[Your cow has mastitis.] _
+app\tests\test_workflow_safety.py:129: in test_workflow_blocks_unsafe_localized_output_and_records_event
+    assert body["escalated"] is True
+E   assert False is True
+---------------------------- Captured stderr call -----------------------------
+2026-11-08 20:00:20,275 INFO alg.access GET /api/v1/animals 200 11.4ms request_id=9fa2ccd0-e89f-4e7f-b3be-cd5e317c8b4e
+2026-11-08 20:00:20,276 INFO httpx2 HTTP Request: GET http://testserver/api/v1/animals "HTTP/1.1 200 OK"
+2026-11-08 20:00:20,297 INFO alg.access POST /api/v1/health/cases 201 20.2ms request_id=c3d910d3-e367-4843-baea-9073a3d95cea
+2026-11-08 20:00:20,298 INFO httpx2 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 GET /api/v1/animals 200 11.4ms request_id=9fa2ccd0-e89f-4e7f-b3be-cd5e317c8b4e
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/animals "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/health/cases 201 20.2ms request_id=c3d910d3-e367-4843-baea-9073a3d95cea
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+_ test_workflow_blocks_unsafe_localized_output_and_records_event[\u0926\u0935\u093e \u0915\u0940 \u096b \u092e\u093f\u0932\u0940 \u092e\u093e\u0924\u094d\u0930\u093e \u0926\u0947\u0902\u0964] _
+app\tests\test_workflow_safety.py:129: in test_workflow_blocks_unsafe_localized_output_and_records_event
+    assert body["escalated"] is True
+E   assert False is True
+---------------------------- Captured stderr call -----------------------------
+2026-11-08 20:00:20,317 INFO alg.access GET /api/v1/animals 200 8.3ms request_id=ddef6126-f362-4eb9-af35-0aaf29b30cf2
+2026-11-08 20:00:20,318 INFO httpx2 HTTP Request: GET http://testserver/api/v1/animals "HTTP/1.1 200 OK"
+2026-11-08 20:00:20,342 INFO alg.access POST /api/v1/health/cases 201 23.0ms request_id=d48b8a34-d90f-4a65-972d-fed8f0d84e43
+2026-11-08 20:00:20,344 INFO httpx2 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 GET /api/v1/animals 200 8.3ms request_id=ddef6126-f362-4eb9-af35-0aaf29b30cf2
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/animals "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/health/cases 201 23.0ms request_id=d48b8a34-d90f-4a65-972d-fed8f0d84e43
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+_ test_workflow_blocks_unsafe_localized_output_and_records_event[\u092a\u0936\u0941\u0935\u0948\u0926\u094d\u092f\u093e\u0902\u0928\u0940 \u092f\u093e \u0909\u092a\u091a\u093e\u0930\u093e\u0932\u093e \u092e\u0902\u091c\u0941\u0930\u0940 \u0926\u093f\u0932\u0940 \u0906\u0939\u0947.] _
+app\tests\test_workflow_safety.py:129: in test_workflow_blocks_unsafe_localized_output_and_records_event
+    assert body["escalated"] is True
+E   assert False is True
+---------------------------- Captured stderr call -----------------------------
+2026-11-08 20:00:20,363 INFO alg.access GET /api/v1/animals 200 8.4ms request_id=7b55c0e2-7733-493e-aa22-915ab127f6f6
+2026-11-08 20:00:20,365 INFO httpx2 HTTP Request: GET http://testserver/api/v1/animals "HTTP/1.1 200 OK"
+2026-11-08 20:00:20,384 INFO alg.access POST /api/v1/health/cases 201 17.9ms request_id=048e7e28-ab08-48ff-8758-8d8444d30a47
+2026-11-08 20:00:20,385 INFO httpx2 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 GET /api/v1/animals 200 8.4ms request_id=7b55c0e2-7733-493e-aa22-915ab127f6f6
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/animals "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/health/cases 201 17.9ms request_id=048e7e28-ab08-48ff-8758-8d8444d30a47
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/health/cases "HTTP/1.1 201 Created"
+______________ test_unsafe_llm_structure_is_blocked_and_audited _______________
+app\tests\test_workflow_safety.py:150: in test_unsafe_llm_structure_is_blocked_and_audited
+    assert interaction.workflow["safety_events"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'safety_events'
+---------------------------- Captured stderr call -----------------------------
+2026-11-08 20:00:20,406 INFO alg.access POST /api/v1/ai/query 200 10.4ms request_id=63e9d560-c819-4f05-8b0b-5e0b1f87cbff
+2026-11-08 20:00:20,407 INFO httpx2 HTTP Request: POST http://testserver/api/v1/ai/query "HTTP/1.1 200 OK"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 POST /api/v1/ai/query 200 10.4ms request_id=63e9d560-c819-4f05-8b0b-5e0b1f87cbff
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/ai/query "HTTP/1.1 200 OK"
+_____________ test_safety_scan_blocks_unsafe_output[en-diagnosis] _____________
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: Your cow has mastitis.
+E   assert True is False
+_________ test_safety_scan_blocks_unsafe_output[en-confirmed-disease] _________
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: This is definitely foot-and-mouth disease.
+E   assert True is False
+__________ test_safety_scan_blocks_unsafe_output[en-diagnosis-label] __________
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: Diagnosis: rabies.
+E   assert True is False
+_____________ test_safety_scan_blocks_unsafe_output[hi-diagnosis] _____________
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: आपकी गाय को थनैला है।
+E   assert True is False
+_________ test_safety_scan_blocks_unsafe_output[hi-confirmed-disease] _________
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: यह खुरपका-मुंहपका रोग है।
+E   assert True is False
+______________ test_safety_scan_blocks_unsafe_output[hi-rabies] _______________
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: पशु को रेबीज है।
+E   assert True is False
+_____________ test_safety_scan_blocks_unsafe_output[mr-diagnosis] _____________
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: तुमच्या गायीला स्तनदाह झाला आहे.
+E   assert True is False
+_________ test_safety_scan_blocks_unsafe_output[mr-confirmed-disease] _________
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: हे लाळ्या खुरकूत रोगाचे निदान आहे.
+E   assert True is False
+______________ test_safety_scan_blocks_unsafe_output[mr-rabies] _______________
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: तुमच्या पशूला रेबीज आहे.
+E   assert True is False
+__________ test_safety_scan_blocks_unsafe_output[attached-ascii-mg] ___________
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: Give 5mg of medicine now.
+E   assert True is False
+___________ test_safety_scan_blocks_unsafe_output[spaced-ascii-ml] ____________
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: Inject 2 ml of medicine.
+E   assert True is False
+__________ test_safety_scan_blocks_unsafe_output[attached-ascii-ml] ___________
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: Inject 2mL of medicine.
+E   assert True is False
+_____________ test_safety_scan_blocks_unsafe_output[decimal-dose] _____________
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: Give 0.5 ml of medicine.
+E   assert True is False
+________ test_safety_scan_blocks_unsafe_output[attached-devanagari-mg] ________
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: Give ५mg of medicine.
+E   assert True is False
+__________ test_safety_scan_blocks_unsafe_output[unicode-square-mg] ___________
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: Give 5㎎ of medicine.
+E   assert True is False
+_________ test_safety_scan_blocks_unsafe_output[unicode-fullwidth-mg] _________
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: Give 5ｍｇ of medicine.
+E   assert True is False
+_________ test_safety_scan_blocks_unsafe_output[hi-devanagari-milli] __________
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: दवा की ५ मिली मात्रा दें।
+E   assert True is False
+_____ test_safety_scan_blocks_unsafe_output[hi-devanagari-abbreviated-ml] _____
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: दवा की ५ मि.ली. मात्रा दें।
+E   assert True is False
+_________ test_safety_scan_blocks_unsafe_output[mr-devanagari-milli] __________
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: औषधाचे ५ मिली द्या.
+E   assert True is False
+_____ test_safety_scan_blocks_unsafe_output[mr-devanagari-abbreviated-ml] _____
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: औषधाचे ५ मि.ली. द्या.
+E   assert True is False
+______ test_safety_scan_blocks_unsafe_output[attached-devanagari-milli] _______
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: औषधाचे ५मिली द्या.
+E   assert True is False
+__ test_safety_scan_blocks_unsafe_output[attached-devanagari-abbreviated-ml] __
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: औषधाचे ५मि.ली. द्या.
+E   assert True is False
+_____________ test_safety_scan_blocks_unsafe_output[en-medicine] ______________
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: Give amoxicillin twice daily.
+E   assert True is False
+______ test_safety_scan_blocks_unsafe_output[en-antibiotic-instruction] _______
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: Start an antibiotic course now.
+E   assert True is False
+_____________ test_safety_scan_blocks_unsafe_output[hi-medicine] ______________
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: पशु को अमोक्सिसिलिन दें।
+E   assert True is False
+______ test_safety_scan_blocks_unsafe_output[hi-antibiotic-instruction] _______
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: एंटीबायोटिक शुरू करें।
+E   assert True is False
+_____ test_safety_scan_blocks_unsafe_output[hi-prescription-instruction] ______
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: यह दवा दिन में दो बार दें।
+E   assert True is False
+_____________ test_safety_scan_blocks_unsafe_output[mr-medicine] ______________
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: पशूला अमॉक्सिसिलिन द्या.
+E   assert True is False
+______ test_safety_scan_blocks_unsafe_output[mr-antibiotic-instruction] _______
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: प्रतिजैविक सुरू करा.
+E   assert True is False
+_____ test_safety_scan_blocks_unsafe_output[mr-prescription-instruction] ______
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: हे औषध दिवसातून दोनदा द्या.
+E   assert True is False
+_________ test_safety_scan_blocks_unsafe_output[en-fake-vet-approval] _________
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: A veterinarian has approved this treatment.
+E   assert True is False
+____ test_safety_scan_blocks_unsafe_output[en-fake-approval-confirmation] _____
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: Vet approval is confirmed.
+E   assert True is False
+_______ test_safety_scan_blocks_unsafe_output[en-fake-doctor-approval] ________
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: The prescription has been approved by the doctor.
+E   assert True is False
+_________ test_safety_scan_blocks_unsafe_output[hi-fake-vet-approval] _________
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: पशु चिकित्सक ने इस उपचार को मंजूरी दे दी है।
+E   assert True is False
+_______ test_safety_scan_blocks_unsafe_output[hi-fake-doctor-approval] ________
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: डॉक्टर ने इस दवा को स्वीकृति दे दी है।
+E   assert True is False
+_________ test_safety_scan_blocks_unsafe_output[mr-fake-vet-approval] _________
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: पशुवैद्यांनी या उपचाराला मंजुरी दिली आहे.
+E   assert True is False
+_______ test_safety_scan_blocks_unsafe_output[mr-fake-doctor-approval] ________
+app\tests\test_llm_safety.py:201: in test_safety_scan_blocks_unsafe_output
+    assert safe is False, f"Unsafe software-policy output was accepted: {text}"
+E   AssertionError: Unsafe software-policy output was accepted: डॉक्टरांनी हे औषध मंजूर केले आहे.
+E   assert True is False
+_ test_safety_scan_allows_disclaimers_and_negations[en-prescription-negation] _
+app\tests\test_llm_safety.py:236: in test_safety_scan_allows_disclaimers_and_negations
+    assert safety_scan(text) == (True, None)
+E   AssertionError: assert (False, 'bloc...sing: dosage') == (True, None)
+E     
+E     At index 0 diff: False != True
+E     Use -v to get more diff
+_ test_safety_scan_allows_disclaimers_and_negations[en-existing-safety-replacement] _
+app\tests\test_llm_safety.py:236: in test_safety_scan_allows_disclaimers_and_negations
+    assert safety_scan(text) == (True, None)
+E   AssertionError: assert (False, 'bloc...sing: dosage') == (True, None)
+E     
+E     At index 0 diff: False != True
+E     Use -v to get more diff
+____________ test_disclaimer_does_not_whitelist_unsafe_clause[en] _____________
+app\tests\test_llm_safety.py:254: in test_disclaimer_does_not_whitelist_unsafe_clause
+    assert safe is False
+E   assert True is False
+____________ test_disclaimer_does_not_whitelist_unsafe_clause[hi] _____________
+app\tests\test_llm_safety.py:254: in test_disclaimer_does_not_whitelist_unsafe_clause
+    assert safe is False
+E   assert True is False
+____________ test_disclaimer_does_not_whitelist_unsafe_clause[mr] _____________
+app\tests\test_llm_safety.py:254: in test_disclaimer_does_not_whitelist_unsafe_clause
+    assert safe is False
+E   assert True is False
+_____ test_structure_request_rejects_unknown_fields_without_retry[notes] ______
+app\tests\test_llm_safety.py:293: in test_structure_request_rejects_unknown_fields_without_retry
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774412A50>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774412A50> = LLMService()
+___ test_structure_request_rejects_unknown_fields_without_retry[confidence] ___
+app\tests\test_llm_safety.py:293: in test_structure_request_rejects_unknown_fields_without_retry
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A28450>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A28450> = LLMService()
+___ test_structure_request_rejects_unknown_fields_without_retry[diagnosis] ____
+app\tests\test_llm_safety.py:293: in test_structure_request_rejects_unknown_fields_without_retry
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x000001377475B3E0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x000001377475B3E0> = LLMService()
+____ test_structure_request_rejects_unknown_fields_without_retry[approved] ____
+app\tests\test_llm_safety.py:293: in test_structure_request_rejects_unknown_fields_without_retry
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x000001377441AC60>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x000001377441AC60> = LLMService()
+_ test_structure_request_rejects_wrong_types_without_coercion[integer-intent] _
+app\tests\test_llm_safety.py:327: in test_structure_request_rejects_wrong_types_without_coercion
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': None, 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': None, 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137749B3D90>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137749B3D90> = LLMService()
+__ test_structure_request_rejects_wrong_types_without_coercion[null-intent] ___
+app\tests\test_llm_safety.py:327: in test_structure_request_rejects_wrong_types_without_coercion
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': None, 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': None, 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137747A5490>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137747A5490> = LLMService()
+_ test_structure_request_rejects_wrong_types_without_coercion[string-symptoms] _
+app\tests\test_llm_safety.py:327: in test_structure_request_rejects_wrong_types_without_coercion
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['f', 'e', 'v', 'e', 'r'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['f', 'e', 'v', 'e', 'r'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774931C10>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774931C10> = LLMService()
+_ test_structure_request_rejects_wrong_types_without_coercion[object-symptoms] _
+app\tests\test_llm_safety.py:327: in test_structure_request_rejects_wrong_types_without_coercion
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A35D30>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A35D30> = LLMService()
+_ test_structure_request_rejects_wrong_types_without_coercion[integer-symptom-item] _
+app\tests\test_llm_safety.py:327: in test_structure_request_rejects_wrong_types_without_coercion
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['1'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['1'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137749DF6B0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137749DF6B0> = LLMService()
+_ test_structure_request_rejects_wrong_types_without_coercion[null-symptom-item] _
+app\tests\test_llm_safety.py:327: in test_structure_request_rejects_wrong_types_without_coercion
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': [], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': [], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x000001377496B650>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x000001377496B650> = LLMService()
+_ test_structure_request_rejects_wrong_types_without_coercion[object-symptom-item] _
+app\tests\test_llm_safety.py:327: in test_structure_request_rejects_wrong_types_without_coercion
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   assert {'intent': 'health', 'symptoms': ["{'name': 'fever'}"], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ["{'name': 'fever'}"], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A39750>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A39750> = LLMService()
+_ test_structure_request_rejects_wrong_types_without_coercion[integer-animal-code] _
+app\tests\test_llm_safety.py:327: in test_structure_request_rejects_wrong_types_without_coercion
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 123, 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 123, 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A3A1D0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A3A1D0> = LLMService()
+_ test_structure_request_rejects_wrong_types_without_coercion[boolean-animal-code] _
+app\tests\test_llm_safety.py:327: in test_structure_request_rejects_wrong_types_without_coercion
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': True, 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': True, 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137746E0A60>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137746E0A60> = LLMService()
+_ test_structure_request_rejects_wrong_types_without_coercion[array-animal-code] _
+app\tests\test_llm_safety.py:327: in test_structure_request_rejects_wrong_types_without_coercion
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': ['COW-001'], 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': ['COW-001'], 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137746E1550>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137746E1550> = LLMService()
+_ test_structure_request_rejects_wrong_types_without_coercion[object-animal-code] _
+app\tests\test_llm_safety.py:327: in test_structure_request_rejects_wrong_types_without_coercion
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': {'tag': 'COW-001'}, 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': {'tag': 'COW-001'}, 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A487D0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A487D0> = LLMService()
+_ test_structure_request_rejects_wrong_types_without_coercion[null-language] __
+app\tests\test_llm_safety.py:327: in test_structure_request_rejects_wrong_types_without_coercion
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': None, ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': None, ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A49190>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A49190> = LLMService()
+_ test_structure_request_rejects_wrong_types_without_coercion[integer-language] _
+app\tests\test_llm_safety.py:327: in test_structure_request_rejects_wrong_types_without_coercion
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 1, ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 1, ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137749426C0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137749426C0> = LLMService()
+_ test_structure_request_rejects_wrong_types_without_coercion[array-language] _
+app\tests\test_llm_safety.py:327: in test_structure_request_rejects_wrong_types_without_coercion
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': ['en'], ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': ['en'], ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137749400A0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137749400A0> = LLMService()
+_ test_structure_request_rejects_wrong_types_without_coercion[string-duration] _
+app\tests\test_llm_safety.py:327: in test_structure_request_rejects_wrong_types_without_coercion
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137744CF7A0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137744CF7A0> = LLMService()
+_ test_structure_request_rejects_wrong_types_without_coercion[float-duration] _
+app\tests\test_llm_safety.py:327: in test_structure_request_rejects_wrong_types_without_coercion
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137748F60D0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137748F60D0> = LLMService()
+_ test_structure_request_rejects_wrong_types_without_coercion[boolean-duration] _
+app\tests\test_llm_safety.py:327: in test_structure_request_rejects_wrong_types_without_coercion
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774960780>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774960780> = LLMService()
+_ test_structure_request_rejects_wrong_types_without_coercion[array-duration] _
+app\tests\test_llm_safety.py:327: in test_structure_request_rejects_wrong_types_without_coercion
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137748A4EB0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137748A4EB0> = LLMService()
+_ test_structure_request_rejects_wrong_types_without_coercion[object-duration] _
+app\tests\test_llm_safety.py:327: in test_structure_request_rejects_wrong_types_without_coercion
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A0AEE0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A0AEE0> = LLMService()
+______ test_structure_request_rejects_invalid_values[unsupported-intent] ______
+app\tests\test_llm_safety.py:349: in test_structure_request_rejects_invalid_values
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': None, 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': None, 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137747D2940>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137747D2940> = LLMService()
+_____ test_structure_request_rejects_invalid_values[noncanonical-intent] ______
+app\tests\test_llm_safety.py:349: in test_structure_request_rejects_invalid_values
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': None, 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': None, 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A44370>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A44370> = LLMService()
+_________ test_structure_request_rejects_invalid_values[empty-intent] _________
+app\tests\test_llm_safety.py:349: in test_structure_request_rejects_invalid_values
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': None, 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': None, 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A442D0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A442D0> = LLMService()
+_____ test_structure_request_rejects_invalid_values[unsupported-language] _____
+app\tests\test_llm_safety.py:349: in test_structure_request_rejects_invalid_values
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'fr', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'fr', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A476B0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A476B0> = LLMService()
+____ test_structure_request_rejects_invalid_values[noncanonical-language] _____
+app\tests\test_llm_safety.py:349: in test_structure_request_rejects_invalid_values
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'EN', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'EN', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A09D60>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A09D60> = LLMService()
+________ test_structure_request_rejects_invalid_values[empty-language] ________
+app\tests\test_llm_safety.py:349: in test_structure_request_rejects_invalid_values
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': '', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': '', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x000001377452BB60>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x000001377452BB60> = LLMService()
+______ test_structure_request_rejects_invalid_values[negative-duration] _______
+app\tests\test_llm_safety.py:349: in test_structure_request_rejects_invalid_values
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774960B90>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774960B90> = LLMService()
+_ test_structure_request_rejects_invalid_values[duration-above-rule-engine-bound] _
+app\tests\test_llm_safety.py:349: in test_structure_request_rejects_invalid_values
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137748F61C0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137748F61C0> = LLMService()
+______ test_structure_request_rejects_invalid_values[unbounded-duration] ______
+app\tests\test_llm_safety.py:349: in test_structure_request_rejects_invalid_values
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x000001377479C870>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x000001377479C870> = LLMService()
+_____ test_structure_request_rejects_invalid_values[diagnosis-as-symptom] _____
+app\tests\test_llm_safety.py:349: in test_structure_request_rejects_invalid_values
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['mastitis'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['mastitis'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x000001377449D360>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x000001377449D360> = LLMService()
+_______ test_structure_request_rejects_invalid_values[unknown-symptom] ________
+app\tests\test_llm_safety.py:349: in test_structure_request_rejects_invalid_values
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['invented_symptom'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['invented_symptom'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137749400A0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137749400A0> = LLMService()
+____________ test_structure_request_rejects_missing_fields[intent] ____________
+app\tests\test_llm_safety.py:358: in test_structure_request_rejects_missing_fields
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', 'duration_days': 2, ...} is None
+E    +  where {'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', 'duration_days': 2, ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137749CA120>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137749CA120> = LLMService()
+___________ test_structure_request_rejects_missing_fields[symptoms] ___________
+app\tests\test_llm_safety.py:358: in test_structure_request_rejects_missing_fields
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'animal_code': 'COW-001', 'language': 'en', 'duration_days': 2, ...} is None
+E    +  where {'intent': 'health', 'animal_code': 'COW-001', 'language': 'en', 'duration_days': 2, ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A45D60>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A45D60> = LLMService()
+_________ test_structure_request_rejects_missing_fields[animal_code] __________
+app\tests\test_llm_safety.py:358: in test_structure_request_rejects_missing_fields
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'language': 'en', 'duration_days': 2} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'language': 'en', 'duration_days': 2} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A44BE0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A44BE0> = LLMService()
+___________ test_structure_request_rejects_missing_fields[language] ___________
+app\tests\test_llm_safety.py:358: in test_structure_request_rejects_missing_fields
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'duration_days': 2} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'duration_days': 2} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A47B10>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A47B10> = LLMService()
+________ test_structure_request_rejects_missing_fields[duration_days] _________
+app\tests\test_llm_safety.py:358: in test_structure_request_rejects_missing_fields
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en'} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en'} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A46DA0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A46DA0> = LLMService()
+__ test_structure_request_rejects_allowlisted_but_ungrounded_symptoms[fever] __
+app\tests\test_llm_safety.py:367: in test_structure_request_rejects_allowlisted_but_ungrounded_symptoms
+    assert LLMService().structure_request("hello", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': None, 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': None, 'language': 'en', ...} = structure_request('hello', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774469180>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774469180> = LLMService()
+_ test_structure_request_rejects_allowlisted_but_ungrounded_symptoms[breathing_difficulty] _
+app\tests\test_llm_safety.py:367: in test_structure_request_rejects_allowlisted_but_ungrounded_symptoms
+    assert LLMService().structure_request("hello", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['breathing_difficulty'], 'animal_code': None, 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['breathing_difficulty'], 'animal_code': None, 'language': 'en', ...} = structure_request('hello', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137749426C0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137749426C0> = LLMService()
+_ test_structure_request_rejects_allowlisted_but_ungrounded_symptoms[convulsions] _
+app\tests\test_llm_safety.py:367: in test_structure_request_rejects_allowlisted_but_ungrounded_symptoms
+    assert LLMService().structure_request("hello", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['convulsions'], 'animal_code': None, 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['convulsions'], 'animal_code': None, 'language': 'en', ...} = structure_request('hello', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x000001377449CB90>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x000001377449CB90> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[en-diagnosis] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'Your cow has mastitis.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'Your cow has mastitis.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137744B3D40>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137744B3D40> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[en-confirmed-disease] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'This is definitely foot-and-mouth disease.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'This is definitely foot-and-mouth disease.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137748F61C0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137748F61C0> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[en-diagnosis-label] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'Diagnosis: rabies.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'Diagnosis: rabies.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774960730>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774960730> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[hi-diagnosis] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'आपकी गाय को थनैला है।', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'आपकी गाय को थनैला है।', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x000001377452BB60>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x000001377452BB60> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[hi-confirmed-disease] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'यह खुरपका-मुंहपका रोग है।', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'यह खुरपका-मुंहपका रोग है।', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137747D0910>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137747D0910> = LLMService()
+__ test_structure_request_rejects_unsafe_string_in_allowed_field[hi-rabies] ___
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'पशु को रेबीज है।', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'पशु को रेबीज है।', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A46760>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A46760> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[mr-diagnosis] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'तुमच्या गायीला स्तनदाह झाला आहे.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'तुमच्या गायीला स्तनदाह झाला आहे.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A44A50>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A44A50> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[mr-confirmed-disease] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'हे लाळ्या खुरकूत रोगाचे निदान आहे.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'हे लाळ्या खुरकूत रोगाचे निदान आहे.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A45CC0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A45CC0> = LLMService()
+__ test_structure_request_rejects_unsafe_string_in_allowed_field[mr-rabies] ___
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'तुमच्या पशूला रेबीज आहे.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'तुमच्या पशूला रेबीज आहे.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A47DE0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A47DE0> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[attached-ascii-mg] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'Give 5mg of medicine now.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'Give 5mg of medicine now.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137747F5400>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137747F5400> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[spaced-ascii-mg] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'Give 5 mg of medicine now.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'Give 5 mg of medicine now.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774558730>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774558730> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[spaced-ascii-ml] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'Inject 2 ml of medicine.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'Inject 2 ml of medicine.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137748F72F0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137748F72F0> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[attached-ascii-ml] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'Inject 2mL of medicine.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'Inject 2mL of medicine.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137744B18B0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137744B18B0> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[weight-based-dose] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'Give 5 mg/kg of medicine.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'Give 5 mg/kg of medicine.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774101220>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774101220> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[decimal-dose] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'Give 0.5 ml of medicine.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'Give 0.5 ml of medicine.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137744F6580>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137744F6580> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[attached-devanagari-mg] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'Give ५mg of medicine.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'Give ५mg of medicine.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137744CF930>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137744CF930> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[unicode-square-mg] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'Give 5㎎ of medicine.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'Give 5㎎ of medicine.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A45B30>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A45B30> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[unicode-fullwidth-mg] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'Give 5ｍｇ of medicine.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'Give 5ｍｇ of medicine.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A47610>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A47610> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[hi-devanagari-milli] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'दवा की ५ मिली मात्रा दें।', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'दवा की ५ मिली मात्रा दें।', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A44E60>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A44E60> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[hi-devanagari-abbreviated-ml] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'दवा की ५ मि.ली. मात्रा दें।', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'दवा की ५ मि.ली. मात्रा दें।', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A45180>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A45180> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[mr-devanagari-milli] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'औषधाचे ५ मिली द्या.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'औषधाचे ५ मिली द्या.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A453B0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A453B0> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[mr-devanagari-abbreviated-ml] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'औषधाचे ५ मि.ली. द्या.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'औषधाचे ५ मि.ली. द्या.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137744CE800>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137744CE800> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[attached-devanagari-milli] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'औषधाचे ५मिली द्या.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'औषधाचे ५मिली द्या.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774942850>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774942850> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[attached-devanagari-abbreviated-ml] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'औषधाचे ५मि.ली. द्या.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'औषधाचे ५मि.ली. द्या.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x000001377479CF50>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x000001377479CF50> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[en-medicine] __
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'Give amoxicillin twice daily.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'Give amoxicillin twice daily.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137744B3D40>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137744B3D40> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[en-antibiotic-instruction] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'Start an antibiotic course now.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'Start an antibiotic course now.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774462F80>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774462F80> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[en-prescription] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'I prescribe penicillin.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'I prescribe penicillin.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774558730>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774558730> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[hi-medicine] __
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'पशु को अमोक्सिसिलिन दें।', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'पशु को अमोक्सिसिलिन दें।', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137747D38E0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137747D38E0> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[hi-antibiotic-instruction] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'एंटीबायोटिक शुरू करें।', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'एंटीबायोटिक शुरू करें।', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A47E30>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A47E30> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[hi-prescription-instruction] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'यह दवा दिन में दो बार दें।', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'यह दवा दिन में दो बार दें।', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A45F90>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A45F90> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[mr-medicine] __
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'पशूला अमॉक्सिसिलिन द्या.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'पशूला अमॉक्सिसिलिन द्या.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A45D10>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A45D10> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[mr-antibiotic-instruction] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'प्रतिजैविक सुरू करा.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'प्रतिजैविक सुरू करा.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A47D40>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A47D40> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[mr-prescription-instruction] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'हे औषध दिवसातून दोनदा द्या.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'हे औषध दिवसातून दोनदा द्या.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A456D0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A456D0> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[en-fake-vet-approval] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'A veterinarian has approved this treatment.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'A veterinarian has approved this treatment.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A08EB0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A08EB0> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[en-fake-approval-confirmation] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'Vet approval is confirmed.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'Vet approval is confirmed.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774558AF0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774558AF0> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[en-fake-doctor-approval] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'The prescription has been approved by the doctor.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'The prescription has been approved by the doctor.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137748F5B30>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137748F5B30> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[hi-fake-vet-approval] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'पशु चिकित्सक ने इस उपचार को मंजूरी दे दी है।', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'पशु चिकित्सक ने इस उपचार को मंजूरी दे दी है।', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137744B18B0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137744B18B0> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[hi-fake-doctor-approval] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'डॉक्टर ने इस दवा को स्वीकृति दे दी है।', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'डॉक्टर ने इस दवा को स्वीकृति दे दी है।', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x000001377479D360>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x000001377479D360> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[mr-fake-vet-approval] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'पशुवैद्यांनी या उपचाराला मंजुरी दिली आहे.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'पशुवैद्यांनी या उपचाराला मंजुरी दिली आहे.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774943CA0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774943CA0> = LLMService()
+_ test_structure_request_rejects_unsafe_string_in_allowed_field[mr-fake-doctor-approval] _
+app\tests\test_llm_safety.py:376: in test_structure_request_rejects_unsafe_string_in_allowed_field
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'डॉक्टरांनी हे औषध मंजूर केले आहे.', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'डॉक्टरांनी हे औषध मंजूर केले आहे.', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137744CF570>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137744CF570> = LLMService()
+__ test_structure_request_rejects_entire_unsafe_raw_structure[raw-diagnosis] __
+app\tests\test_llm_safety.py:396: in test_structure_request_rejects_entire_unsafe_raw_structure
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A44FF0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A44FF0> = LLMService()
+__ test_structure_request_rejects_entire_unsafe_raw_structure[raw-medicine] ___
+app\tests\test_llm_safety.py:396: in test_structure_request_rejects_entire_unsafe_raw_structure
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A44CD0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A44CD0> = LLMService()
+____ test_structure_request_rejects_entire_unsafe_raw_structure[raw-dose] _____
+app\tests\test_llm_safety.py:396: in test_structure_request_rejects_entire_unsafe_raw_structure
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A463A0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A463A0> = LLMService()
+_ test_structure_request_rejects_entire_unsafe_raw_structure[nested-unsafe-extra] _
+app\tests\test_llm_safety.py:396: in test_structure_request_rejects_entire_unsafe_raw_structure
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A45D10>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A45D10> = LLMService()
+_ test_structure_request_rejects_entire_unsafe_raw_structure[unsafe-object-symptoms] _
+app\tests\test_llm_safety.py:396: in test_structure_request_rejects_entire_unsafe_raw_structure
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A45CC0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A45CC0> = LLMService()
+_ test_structure_request_rejects_entire_unsafe_raw_structure[unsafe-symptom-item] _
+app\tests\test_llm_safety.py:396: in test_structure_request_rejects_entire_unsafe_raw_structure
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever', 'औषधाचे ५ मि.ली. द्या.'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever', 'औषधाचे ५ मि.ली. द्या.'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A45860>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A45860> = LLMService()
+__ test_structure_request_rejects_entire_unsafe_raw_structure[unsafe-intent] __
+app\tests\test_llm_safety.py:396: in test_structure_request_rejects_entire_unsafe_raw_structure
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': None, 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': None, 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A46DF0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A46DF0> = LLMService()
+_ test_structure_request_rejects_entire_unsafe_raw_structure[unsafe-language] _
+app\tests\test_llm_safety.py:396: in test_structure_request_rejects_entire_unsafe_raw_structure
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'दवा की ५ मिली मात्रा दें।', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'दवा की ५ मिली मात्रा दें।', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A46760>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A46760> = LLMService()
+_ test_structure_request_rejects_entire_unsafe_raw_structure[unsafe-duration] _
+app\tests\test_llm_safety.py:396: in test_structure_request_rejects_entire_unsafe_raw_structure
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") is None
+E   AssertionError: assert {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} is None
+E    +  where {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...} = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A445F0>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A445F0> = LLMService()
+_____ test_structure_request_malformed_json_falls_back_without_retry[{}] ______
+app\tests\test_llm_safety.py:403: in test_structure_request_malformed_json_falls_back_without_retry
+    assert LLMService().structure_request("hello", "en") is None
+E   AssertionError: assert {'intent': None, 'symptoms': []} is None
+E    +  where {'intent': None, 'symptoms': []} = structure_request('hello', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A44A50>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A44A50> = LLMService()
+_______ test_structure_request_retries_transient_failure_once[timeout] ________
+app\tests\test_llm_safety.py:427: in test_structure_request_retries_transient_failure_once
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") == structure
+E   AssertionError: assert None == {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...}
+E    +  where None = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x00000137744CF430>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x00000137744CF430> = LLMService()
+---------------------------- Captured stderr call -----------------------------
+2026-11-08 20:00:22,834 WARNING alg.llm gemini_structured_request_failed error=ReadTimeout
+------------------------------ Captured log call ------------------------------
+WARNING  alg.llm:llm.py:62 gemini_structured_request_failed error=ReadTimeout
+______ test_structure_request_retries_transient_failure_once[connection] ______
+app\tests\test_llm_safety.py:427: in test_structure_request_retries_transient_failure_once
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") == structure
+E   AssertionError: assert None == {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...}
+E    +  where None = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A45F90>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A45F90> = LLMService()
+---------------------------- Captured stderr call -----------------------------
+2026-11-08 20:00:22,849 WARNING alg.llm gemini_structured_request_failed error=ConnectError
+------------------------------ Captured log call ------------------------------
+WARNING  alg.llm:llm.py:62 gemini_structured_request_failed error=ConnectError
+_________ test_structure_request_retries_transient_failure_once[429] __________
+app\tests\test_llm_safety.py:427: in test_structure_request_retries_transient_failure_once
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") == structure
+E   AssertionError: assert None == {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...}
+E    +  where None = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A44780>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A44780> = LLMService()
+---------------------------- Captured stderr call -----------------------------
+2026-11-08 20:00:22,863 WARNING alg.llm gemini_structured_request_failed error=HTTPStatusError
+------------------------------ Captured log call ------------------------------
+WARNING  alg.llm:llm.py:62 gemini_structured_request_failed error=HTTPStatusError
+_________ test_structure_request_retries_transient_failure_once[500] __________
+app\tests\test_llm_safety.py:427: in test_structure_request_retries_transient_failure_once
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") == structure
+E   AssertionError: assert None == {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...}
+E    +  where None = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A47070>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A47070> = LLMService()
+---------------------------- Captured stderr call -----------------------------
+2026-11-08 20:00:22,877 WARNING alg.llm gemini_structured_request_failed error=HTTPStatusError
+------------------------------ Captured log call ------------------------------
+WARNING  alg.llm:llm.py:62 gemini_structured_request_failed error=HTTPStatusError
+_________ test_structure_request_retries_transient_failure_once[503] __________
+app\tests\test_llm_safety.py:427: in test_structure_request_retries_transient_failure_once
+    assert LLMService().structure_request("Cow COW-001 has fever for 2 days.", "en") == structure
+E   AssertionError: assert None == {'intent': 'health', 'symptoms': ['fever'], 'animal_code': 'COW-001', 'language': 'en', ...}
+E    +  where None = structure_request('Cow COW-001 has fever for 2 days.', 'en')
+E    +    where structure_request = <app.services.llm.LLMService object at 0x0000013774A46D00>.structure_request
+E    +      where <app.services.llm.LLMService object at 0x0000013774A46D00> = LLMService()
+---------------------------- Captured stderr call -----------------------------
+2026-11-08 20:00:22,890 WARNING alg.llm gemini_structured_request_failed error=HTTPStatusError
+------------------------------ Captured log call ------------------------------
+WARNING  alg.llm:llm.py:62 gemini_structured_request_failed error=HTTPStatusError
+_ test_structure_request_persistent_transient_failure_has_two_call_bound[timeout] _
+app\tests\test_llm_safety.py:439: in test_structure_request_persistent_transient_failure_has_two_call_bound
+    _assert_provider_calls(provider_post, 2)
+app\tests\test_llm_safety.py:148: in _assert_provider_calls
+    assert post.call_count == expected
+E   AssertionError: assert 1 == 2
+E    +  where 1 = <Mock id='1337687891920'>.call_count
+---------------------------- Captured stderr call -----------------------------
+2026-11-08 20:00:22,904 WARNING alg.llm gemini_structured_request_failed error=ReadTimeout
+------------------------------ Captured log call ------------------------------
+WARNING  alg.llm:llm.py:62 gemini_structured_request_failed error=ReadTimeout
+_ test_structure_request_persistent_transient_failure_has_two_call_bound[connection] _
+app\tests\test_llm_safety.py:439: in test_structure_request_persistent_transient_failure_has_two_call_bound
+    _assert_provider_calls(provider_post, 2)
+app\tests\test_llm_safety.py:148: in _assert_provider_calls
+    assert post.call_count == expected
+E   AssertionError: assert 1 == 2
+E    +  where 1 = <Mock id='1337687892256'>.call_count
+---------------------------- Captured stderr call -----------------------------
+2026-11-08 20:00:22,920 WARNING alg.llm gemini_structured_request_failed error=ConnectError
+------------------------------ Captured log call ------------------------------
+WARNING  alg.llm:llm.py:62 gemini_structured_request_failed error=ConnectError
+_ test_structure_request_persistent_transient_failure_has_two_call_bound[429] _
+app\tests\test_llm_safety.py:439: in test_structure_request_persistent_transient_failure_has_two_call_bound
+    _assert_provider_calls(provider_post, 2)
+app\tests\test_llm_safety.py:148: in _assert_provider_calls
+    assert post.call_count == expected
+E   AssertionError: assert 1 == 2
+E    +  where 1 = <Mock id='1337687891920'>.call_count
+---------------------------- Captured stderr call -----------------------------
+2026-11-08 20:00:22,939 WARNING alg.llm gemini_structured_request_failed error=HTTPStatusError
+------------------------------ Captured log call ------------------------------
+WARNING  alg.llm:llm.py:62 gemini_structured_request_failed error=HTTPStatusError
+_ test_structure_request_persistent_transient_failure_has_two_call_bound[503] _
+app\tests\test_llm_safety.py:439: in test_structure_request_persistent_transient_failure_has_two_call_bound
+    _assert_provider_calls(provider_post, 2)
+app\tests\test_llm_safety.py:148: in _assert_provider_calls
+    assert post.call_count == expected
+E   AssertionError: assert 1 == 2
+E    +  where 1 = <Mock id='1337687893600'>.call_count
+---------------------------- Captured stderr call -----------------------------
+2026-11-08 20:00:22,961 WARNING alg.llm gemini_structured_request_failed error=HTTPStatusError
+------------------------------ Captured log call ------------------------------
+WARNING  alg.llm:llm.py:62 gemini_structured_request_failed error=HTTPStatusError
+____ test_translation_blocks_unsafe_provider_output_and_persists_audit[en] ____
+app\tests\test_llm_safety.py:473: in test_translation_blocks_unsafe_provider_output_and_persists_audit
+    _assert_translation_blocked(response, unsafe_text, forbidden_fragments)
+app\tests\test_llm_safety.py:176: in _assert_translation_blocked
+    assert unsafe_text not in response.text
+E   assert 'Your cow ha...s treatment.' not in '{"translate...r":"gemini"}'
+E     
+E     'Your cow has masti...ved this treatment.' is contained here:
+E       {"translated":"Your cow has mastitis. Give 5mg penicillin. A veterinarian has approved this treatment.","provider":"gemini"}
+---------------------------- Captured stderr setup ----------------------------
+2026-11-08 20:00:23,265 INFO alg.access POST /api/v1/auth/login 200 269.5ms request_id=6b613ea9-13b3-4ada-977e-9dcc30e28106
+2026-11-08 20:00:23,266 INFO httpx2 HTTP Request: POST http://testserver/api/v1/auth/login "HTTP/1.1 200 OK"
+----------------------------- Captured log setup ------------------------------
+INFO     alg.access:middleware.py:30 POST /api/v1/auth/login 200 269.5ms request_id=6b613ea9-13b3-4ada-977e-9dcc30e28106
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/auth/login "HTTP/1.1 200 OK"
+---------------------------- Captured stderr call -----------------------------
+2026-11-08 20:00:23,292 INFO alg.access GET /api/v1/admin/audit-logs 200 23.0ms request_id=9235c198-ebcb-444f-ba4b-31b5150127b7
+2026-11-08 20:00:23,293 INFO httpx2 HTTP Request: GET http://testserver/api/v1/admin/audit-logs?action=safety.output_blocked&page_size=100 "HTTP/1.1 200 OK"
+2026-11-08 20:00:23,300 INFO alg.access POST /api/v1/ai/translate 200 5.0ms request_id=cee31866-b7d1-4875-aa5c-694c8f6fa7fc
+2026-11-08 20:00:23,301 INFO httpx2 HTTP Request: POST http://testserver/api/v1/ai/translate "HTTP/1.1 200 OK"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 GET /api/v1/admin/audit-logs 200 23.0ms request_id=9235c198-ebcb-444f-ba4b-31b5150127b7
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/admin/audit-logs?action=safety.output_blocked&page_size=100 "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/ai/translate 200 5.0ms request_id=cee31866-b7d1-4875-aa5c-694c8f6fa7fc
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/ai/translate "HTTP/1.1 200 OK"
+____ test_translation_blocks_unsafe_provider_output_and_persists_audit[hi] ____
+app\tests\test_llm_safety.py:473: in test_translation_blocks_unsafe_provider_output_and_persists_audit
+    _assert_translation_blocked(response, unsafe_text, forbidden_fragments)
+app\tests\test_llm_safety.py:176: in _assert_translation_blocked
+    assert unsafe_text not in response.text
+E   assert 'आपकी गाय को...री दे दी है।' not in '{"translate...r":"gemini"}'
+E     
+E     'आपकी गाय को थनैला ...को मंजूरी दे दी है।' is contained here:
+E       {"translated":"आपकी गाय को थनैला है। दवा की ५ मिली मात्रा दें। पशु चिकित्सक ने इस उपचार को मंजूरी दे दी है।","provider":"gemini"}
+---------------------------- Captured stderr call -----------------------------
+2026-11-08 20:00:23,329 INFO alg.access GET /api/v1/admin/audit-logs 200 5.5ms request_id=60db1518-ac46-4aa6-982d-a0c7f0024303
+2026-11-08 20:00:23,330 INFO httpx2 HTTP Request: GET http://testserver/api/v1/admin/audit-logs?action=safety.output_blocked&page_size=100 "HTTP/1.1 200 OK"
+2026-11-08 20:00:23,335 INFO alg.access POST /api/v1/ai/translate 200 3.4ms request_id=ae37284f-45d9-4fc0-8ee1-75e3d5ec4aae
+2026-11-08 20:00:23,336 INFO httpx2 HTTP Request: POST http://testserver/api/v1/ai/translate "HTTP/1.1 200 OK"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 GET /api/v1/admin/audit-logs 200 5.5ms request_id=60db1518-ac46-4aa6-982d-a0c7f0024303
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/admin/audit-logs?action=safety.output_blocked&page_size=100 "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/ai/translate 200 3.4ms request_id=ae37284f-45d9-4fc0-8ee1-75e3d5ec4aae
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/ai/translate "HTTP/1.1 200 OK"
+____ test_translation_blocks_unsafe_provider_output_and_persists_audit[mr] ____
+app\tests\test_llm_safety.py:473: in test_translation_blocks_unsafe_provider_output_and_persists_audit
+    _assert_translation_blocked(response, unsafe_text, forbidden_fragments)
+app\tests\test_llm_safety.py:176: in _assert_translation_blocked
+    assert unsafe_text not in response.text
+E   assert 'तुमच्या गाय...री दिली आहे.' not in '{"translate...r":"gemini"}'
+E     
+E     'तुमच्या गायीला स्त...ला मंजुरी दिली आहे.' is contained here:
+E       {"translated":"तुमच्या गायीला स्तनदाह झाला आहे. औषधाचे ५ मि.ली. द्या. पशुवैद्यांनी या उपचाराला मंजुरी दिली आहे.","provider":"gemini"}
+---------------------------- Captured stderr call -----------------------------
+2026-11-08 20:00:23,367 INFO alg.access GET /api/v1/admin/audit-logs 200 5.7ms request_id=bac1fbe6-e5a4-44ff-bf14-c638acbdbd08
+2026-11-08 20:00:23,368 INFO httpx2 HTTP Request: GET http://testserver/api/v1/admin/audit-logs?action=safety.output_blocked&page_size=100 "HTTP/1.1 200 OK"
+2026-11-08 20:00:23,374 INFO alg.access POST /api/v1/ai/translate 200 3.6ms request_id=ffd2d332-d25e-4dd6-bef9-e0514cfffb89
+2026-11-08 20:00:23,375 INFO httpx2 HTTP Request: POST http://testserver/api/v1/ai/translate "HTTP/1.1 200 OK"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 GET /api/v1/admin/audit-logs 200 5.7ms request_id=bac1fbe6-e5a4-44ff-bf14-c638acbdbd08
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/admin/audit-logs?action=safety.output_blocked&page_size=100 "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/ai/translate 200 3.6ms request_id=ffd2d332-d25e-4dd6-bef9-e0514cfffb89
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/ai/translate "HTTP/1.1 200 OK"
+_ test_translation_missing_provider_blocks_unsafe_source_echo_and_persists_audit[en] _
+app\tests\test_llm_safety.py:490: in test_translation_missing_provider_blocks_unsafe_source_echo_and_persists_audit
+    _assert_translation_blocked(response, unsafe_text, forbidden_fragments)
+app\tests\test_llm_safety.py:176: in _assert_translation_blocked
+    assert unsafe_text not in response.text
+E   assert 'Your cow ha...s treatment.' not in '{"translate...vider key."}'
+E     
+E     'Your cow has masti...ved this treatment.' is contained here:
+E       {"translated":"Your cow has mastitis. Give 5mg penicillin. A veterinarian has approved this treatment.","provider":"local-templates","note":"LLM translation is not configured. Standard advisories are already localized; free-form translation requires an LLM provider key."}
+E     ?                +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+---------------------------- Captured stderr call -----------------------------
+2026-11-08 20:00:23,407 INFO alg.access GET /api/v1/admin/audit-logs 200 5.2ms request_id=afff3baf-6db4-4fdc-adc4-0edd9da7bfa7
+2026-11-08 20:00:23,408 INFO httpx2 HTTP Request: GET http://testserver/api/v1/admin/audit-logs?action=safety.output_blocked&page_size=100 "HTTP/1.1 200 OK"
+2026-11-08 20:00:23,411 INFO alg.access POST /api/v1/ai/translate 200 2.7ms request_id=21be8f91-581b-4ce4-8622-2a6148da74c1
+2026-11-08 20:00:23,412 INFO httpx2 HTTP Request: POST http://testserver/api/v1/ai/translate "HTTP/1.1 200 OK"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 GET /api/v1/admin/audit-logs 200 5.2ms request_id=afff3baf-6db4-4fdc-adc4-0edd9da7bfa7
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/admin/audit-logs?action=safety.output_blocked&page_size=100 "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/ai/translate 200 2.7ms request_id=21be8f91-581b-4ce4-8622-2a6148da74c1
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/ai/translate "HTTP/1.1 200 OK"
+_ test_translation_missing_provider_blocks_unsafe_source_echo_and_persists_audit[hi] _
+app\tests\test_llm_safety.py:490: in test_translation_missing_provider_blocks_unsafe_source_echo_and_persists_audit
+    _assert_translation_blocked(response, unsafe_text, forbidden_fragments)
+app\tests\test_llm_safety.py:176: in _assert_translation_blocked
+    assert unsafe_text not in response.text
+E   assert 'आपकी गाय को...री दे दी है।' not in '{"translate...vider key."}'
+E     
+E     'आपकी गाय को थनैला ...को मंजूरी दे दी है।' is contained here:
+E       {"translated":"आपकी गाय को थनैला है। दवा की ५ मिली मात्रा दें। पशु चिकित्सक ने इस उपचार को मंजूरी दे दी है।","provider":"local-templates","note":"LLM translation is not configured. Standard advisories are already localized; free-form translation requires an LLM provider key."}
+E     ?                ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+---------------------------- Captured stderr call -----------------------------
+2026-11-08 20:00:23,437 INFO alg.access GET /api/v1/admin/audit-logs 200 6.2ms request_id=8aa22b03-e849-4fc2-b9db-150f3fe88487
+2026-11-08 20:00:23,438 INFO httpx2 HTTP Request: GET http://testserver/api/v1/admin/audit-logs?action=safety.output_blocked&page_size=100 "HTTP/1.1 200 OK"
+2026-11-08 20:00:23,444 INFO alg.access POST /api/v1/ai/translate 200 4.2ms request_id=e3f3110b-e6ba-48ff-a3e8-a4c8689d3bd0
+2026-11-08 20:00:23,445 INFO httpx2 HTTP Request: POST http://testserver/api/v1/ai/translate "HTTP/1.1 200 OK"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 GET /api/v1/admin/audit-logs 200 6.2ms request_id=8aa22b03-e849-4fc2-b9db-150f3fe88487
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/admin/audit-logs?action=safety.output_blocked&page_size=100 "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/ai/translate 200 4.2ms request_id=e3f3110b-e6ba-48ff-a3e8-a4c8689d3bd0
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/ai/translate "HTTP/1.1 200 OK"
+_ test_translation_missing_provider_blocks_unsafe_source_echo_and_persists_audit[mr] _
+app\tests\test_llm_safety.py:490: in test_translation_missing_provider_blocks_unsafe_source_echo_and_persists_audit
+    _assert_translation_blocked(response, unsafe_text, forbidden_fragments)
+app\tests\test_llm_safety.py:176: in _assert_translation_blocked
+    assert unsafe_text not in response.text
+E   assert 'तुमच्या गाय...री दिली आहे.' not in '{"translate...vider key."}'
+E     
+E     'तुमच्या गायीला स्त...ला मंजुरी दिली आहे.' is contained here:
+E       {"translated":"तुमच्या गायीला स्तनदाह झाला आहे. औषधाचे ५ मि.ली. द्या. पशुवैद्यांनी या उपचाराला मंजुरी दिली आहे.","provider":"local-templates","note":"LLM translation is not configured. Standard advisories are already localized; free-form translation requires an LLM provider key."}
+E     ?                ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+---------------------------- Captured stderr call -----------------------------
+2026-11-08 20:00:23,468 INFO alg.access GET /api/v1/admin/audit-logs 200 4.0ms request_id=045f43a3-7332-4871-9b70-21e595d0c773
+2026-11-08 20:00:23,469 INFO httpx2 HTTP Request: GET http://testserver/api/v1/admin/audit-logs?action=safety.output_blocked&page_size=100 "HTTP/1.1 200 OK"
+2026-11-08 20:00:23,472 INFO alg.access POST /api/v1/ai/translate 200 2.5ms request_id=919d06dd-59a2-46b2-a2ad-3634778b3e32
+2026-11-08 20:00:23,473 INFO httpx2 HTTP Request: POST http://testserver/api/v1/ai/translate "HTTP/1.1 200 OK"
+------------------------------ Captured log call ------------------------------
+INFO     alg.access:middleware.py:30 GET /api/v1/admin/audit-logs 200 4.0ms request_id=045f43a3-7332-4871-9b70-21e595d0c773
+INFO     httpx2:_client.py:1084 HTTP Request: GET http://testserver/api/v1/admin/audit-logs?action=safety.output_blocked&page_size=100 "HTTP/1.1 200 OK"
+INFO     alg.access:middleware.py:30 POST /api/v1/ai/translate 200 2.5ms request_id=919d06dd-59a2-46b2-a2ad-3634778b3e32
+INFO     httpx2:_client.py:1084 HTTP Request: POST http://testserver/api/v1/ai/translate "HTTP/1.1 200 OK"
+=========================== short test summary info ===========================
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[en-difficulty breathing]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[en-unable to stand]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[en-convulsion]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[en-severe bleeding]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[en-bloat]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[en-high fever]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[en-not drinking]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[en-sudden death0]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[hi-\u0938\u093e\u0902\u0938 \u0932\u0947\u0928\u0947 \u092e\u0947\u0902 \u0924\u0915\u0932\u0940\u092b]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[hi-\u0916\u0921\u093c\u0947 \u0928\u0939\u0940\u0902 \u0939\u094b \u092a\u093e \u0930\u0939\u0947]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[hi-\u0926\u094c\u0930\u093e \u092f\u093e \u0910\u0902\u0920\u0928]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[hi-\u0917\u0902\u092d\u0940\u0930 \u0930\u0915\u094d\u0924\u0938\u094d\u0930\u093e\u0935]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[hi-\u092a\u0947\u091f \u092b\u0942\u0932\u0928\u093e]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[hi-\u0924\u0947\u091c\u093c \u092c\u0941\u0916\u093e\u0930]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[hi-\u092a\u093e\u0928\u0940 \u0928\u0939\u0940\u0902 \u092a\u0940 \u0930\u0939\u0947]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[hi-\u0905\u091a\u093e\u0928\u0915 \u092e\u0943\u0924\u094d\u092f\u0941]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[mr-\u0936\u094d\u0935\u093e\u0938 \u0918\u0947\u0923\u094d\u092f\u093e\u0938 \u0924\u094d\u0930\u093e\u0938]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[mr-\u0909\u092d\u0947 \u0930\u093e\u0939\u0942 \u0936\u0915\u0924 \u0928\u093e\u0939\u0940]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[mr-\u092a\u0947\u091f\u0915\u0947 \u092f\u0947\u0923\u0947_0]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[mr-\u0924\u0940\u0935\u094d\u0930 \u0930\u0915\u094d\u0924\u0938\u094d\u0930\u093e\u0935]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[mr-\u092a\u094b\u091f \u092b\u0941\u0917\u0923\u0947]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[mr-\u0924\u0940\u0935\u094d\u0930 \u0924\u093e\u092a]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[mr-\u092a\u093e\u0923\u0940 \u092a\u0940\u0924 \u0928\u093e\u0939\u0940]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[mr-\u0905\u091a\u093e\u0928\u0915 \u092e\u0943\u0924\u094d\u092f\u0942_0]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[en-My cow cannot breathe]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[en-My cow is choking]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[en-My cow is unconscious]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[en-sudden death1]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[en-My cow has seizures]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[en-My cow cannot stand]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[en-My cow has high fever]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[en-very high temperature]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[hi-\u092e\u0947\u0930\u0940 \u0917\u093e\u092f \u0915\u094b \u0926\u094c\u0930\u0947 \u092a\u0921\u093c \u0930\u0939\u0947 \u0939\u0948\u0902]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[hi-\u092e\u0947\u0930\u0940 \u0917\u093e\u092f \u092c\u0947\u0939\u094b\u0936 \u0939\u0948]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[hi-\u092e\u0947\u0930\u0940 \u0917\u093e\u092f \u0938\u093e\u0902\u0938 \u0928\u0939\u0940\u0902 \u0932\u0947 \u092a\u093e \u0930\u0939\u0940 \u0939\u0948]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[hi-\u092e\u0947\u0930\u0940 \u0917\u093e\u092f \u0916\u0921\u093c\u0940 \u0928\u0939\u0940\u0902 \u0939\u094b \u092a\u093e \u0930\u0939\u0940]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[hi-\u0924\u0947\u091c \u092c\u0941\u0916\u093e\u0930]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[hi-\u092c\u0939\u0941\u0924 \u0924\u0947\u091c\u093c \u092c\u0941\u0916\u093e\u0930]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[mr-\u092e\u093e\u091d\u0940 \u0917\u093e\u092f \u0909\u092d\u0940 \u0930\u093e\u0939\u0942 \u0936\u0915\u0924 \u0928\u093e\u0939\u0940]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[mr-\u092e\u093e\u091d\u0940 \u0917\u093e\u092f \u092c\u0947\u0936\u0941\u0926\u094d\u0927 \u0906\u0939\u0947]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[mr-\u092e\u093e\u091d\u0940 \u0917\u093e\u092f \u0936\u094d\u0935\u093e\u0938 \u0918\u0947\u090a \u0936\u0915\u0924 \u0928\u093e\u0939\u0940]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[mr-\u0916\u0942\u092a \u0924\u093e\u092a]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[mr-\u092a\u0947\u091f\u0915\u0947 \u092f\u0947\u0923\u0947_1]
+FAILED app/tests/test_triage_safety.py::test_all_audit_and_shipped_warning_phrases_escalate[mr-\u0905\u091a\u093e\u0928\u0915 \u092e\u0943\u0924\u094d\u092f\u0942_1]
+FAILED app/tests/test_triage_safety.py::test_negated_and_normal_signs_do_not_trigger_critical[No bleeding and no seizures]
+FAILED app/tests/test_triage_safety.py::test_negated_and_normal_signs_do_not_trigger_critical[\u092e\u0947\u0930\u0940 \u0917\u093e\u092f \u0938\u093e\u092e\u093e\u0928\u094d\u092f \u0938\u093e\u0902\u0938 \u0932\u0947 \u0930\u0939\u0940 \u0939\u0948]
+FAILED app/tests/test_triage_safety.py::test_negated_and_normal_signs_do_not_trigger_critical[\u0938\u093e\u0902\u0938 \u0932\u0947\u0928\u0947 \u092e\u0947\u0902 \u0924\u0915\u0932\u0940\u092b \u0928\u0939\u0940\u0902 \u0939\u0948]
+FAILED app/tests/test_triage_safety.py::test_negated_and_normal_signs_do_not_trigger_critical[\u0915\u094b\u0908 \u0926\u094c\u0930\u093e \u0928\u0939\u0940\u0902 \u0939\u0948]
+FAILED app/tests/test_triage_safety.py::test_negated_and_normal_signs_do_not_trigger_critical[\u092e\u093e\u091d\u0940 \u0917\u093e\u092f \u0938\u093e\u092e\u093e\u0928\u094d\u092f \u0936\u094d\u0935\u093e\u0938 \u0918\u0947\u0924 \u0906\u0939\u0947]
+FAILED app/tests/test_triage_safety.py::test_negated_and_normal_signs_do_not_trigger_critical[\u0936\u094d\u0935\u093e\u0938 \u0918\u0947\u0923\u094d\u092f\u093e\u0938 \u0924\u094d\u0930\u093e\u0938 \u0928\u093e\u0939\u0940]
+FAILED app/tests/test_triage_safety.py::test_negated_and_normal_signs_do_not_trigger_critical[\u0930\u0915\u094d\u0924\u0938\u094d\u0930\u093e\u0935 \u0928\u093e\u0939\u0940]
+FAILED app/tests/test_triage_safety.py::test_unknown_reports_require_review_not_low[vomiting]
+FAILED app/tests/test_triage_safety.py::test_unknown_reports_require_review_not_low[something is wrong]
+FAILED app/tests/test_triage_safety.py::test_unknown_reports_require_review_not_low[\u0905\u091c\u0940\u092c \u0939\u093e\u0932\u0924]
+FAILED app/tests/test_triage_safety.py::test_unknown_reports_require_review_not_low[\u0915\u093e\u0939\u0940\u0924\u0930\u0940 \u092c\u0930\u0947 \u0928\u093e\u0939\u0940]
+FAILED app/tests/test_triage_safety.py::test_audited_duration_variants[two days]
+FAILED app/tests/test_triage_safety.py::test_audited_duration_variants[\u0926\u094b \u0926\u093f\u0928]
+FAILED app/tests/test_triage_safety.py::test_audited_duration_variants[\u0926\u094b \u0926\u093f\u0928\u094b\u0902 \u0938\u0947]
+FAILED app/tests/test_triage_safety.py::test_temperature_urgency_is_not_lowered_by_cough
+FAILED app/tests/test_triage_safety.py::test_adding_symptoms_never_lowers_urgency[39.3]
+FAILED app/tests/test_workflow_safety.py::test_neutral_online_report_honors_structured_observations[observation0]
+FAILED app/tests/test_workflow_safety.py::test_neutral_online_report_honors_structured_observations[observation1]
+FAILED app/tests/test_workflow_safety.py::test_neutral_online_report_honors_structured_observations[observation2]
+FAILED app/tests/test_workflow_safety.py::test_unresolved_animal_still_gets_emergency_workflow[en-My cow cannot breathe-immediately]
+FAILED app/tests/test_workflow_safety.py::test_unresolved_animal_still_gets_emergency_workflow[hi-\u092e\u0947\u0930\u0940 \u0917\u093e\u092f \u092c\u0947\u0939\u094b\u0936 \u0939\u0948-\u0924\u0941\u0930\u0902\u0924]
+FAILED app/tests/test_workflow_safety.py::test_unresolved_animal_still_gets_emergency_workflow[mr-\u092e\u093e\u091d\u0940 \u0917\u093e\u092f \u092c\u0947\u0936\u0941\u0926\u094d\u0927 \u0906\u0939\u0947-\u0924\u094d\u0935\u0930\u093f\u0924]
+FAILED app/tests/test_workflow_safety.py::test_unknown_health_report_is_reviewed
+FAILED app/tests/test_workflow_safety.py::test_offline_warning_uses_same_gate_trace_followup_and_preserves_identity
+FAILED app/tests/test_workflow_safety.py::test_existing_offline_case_is_retriaged_without_overwriting_professional_record
+FAILED app/tests/test_workflow_safety.py::test_workflow_blocks_unsafe_localized_output_and_records_event[Your cow has mastitis.]
+FAILED app/tests/test_workflow_safety.py::test_workflow_blocks_unsafe_localized_output_and_records_event[\u0926\u0935\u093e \u0915\u0940 \u096b \u092e\u093f\u0932\u0940 \u092e\u093e\u0924\u094d\u0930\u093e \u0926\u0947\u0902\u0964]
+FAILED app/tests/test_workflow_safety.py::test_workflow_blocks_unsafe_localized_output_and_records_event[\u092a\u0936\u0941\u0935\u0948\u0926\u094d\u092f\u093e\u0902\u0928\u0940 \u092f\u093e \u0909\u092a\u091a\u093e\u0930\u093e\u0932\u093e \u092e\u0902\u091c\u0941\u0930\u0940 \u0926\u093f\u0932\u0940 \u0906\u0939\u0947.]
+FAILED app/tests/test_workflow_safety.py::test_unsafe_llm_structure_is_blocked_and_audited
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[en-diagnosis]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[en-confirmed-disease]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[en-diagnosis-label]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[hi-diagnosis]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[hi-confirmed-disease]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[hi-rabies]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[mr-diagnosis]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[mr-confirmed-disease]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[mr-rabies]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[attached-ascii-mg]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[spaced-ascii-ml]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[attached-ascii-ml]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[decimal-dose]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[attached-devanagari-mg]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[unicode-square-mg]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[unicode-fullwidth-mg]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[hi-devanagari-milli]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[hi-devanagari-abbreviated-ml]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[mr-devanagari-milli]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[mr-devanagari-abbreviated-ml]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[attached-devanagari-milli]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[attached-devanagari-abbreviated-ml]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[en-medicine]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[en-antibiotic-instruction]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[hi-medicine]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[hi-antibiotic-instruction]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[hi-prescription-instruction]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[mr-medicine]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[mr-antibiotic-instruction]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[mr-prescription-instruction]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[en-fake-vet-approval]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[en-fake-approval-confirmation]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[en-fake-doctor-approval]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[hi-fake-vet-approval]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[hi-fake-doctor-approval]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[mr-fake-vet-approval]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_blocks_unsafe_output[mr-fake-doctor-approval]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_allows_disclaimers_and_negations[en-prescription-negation]
+FAILED app/tests/test_llm_safety.py::test_safety_scan_allows_disclaimers_and_negations[en-existing-safety-replacement]
+FAILED app/tests/test_llm_safety.py::test_disclaimer_does_not_whitelist_unsafe_clause[en]
+FAILED app/tests/test_llm_safety.py::test_disclaimer_does_not_whitelist_unsafe_clause[hi]
+FAILED app/tests/test_llm_safety.py::test_disclaimer_does_not_whitelist_unsafe_clause[mr]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unknown_fields_without_retry[notes]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unknown_fields_without_retry[confidence]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unknown_fields_without_retry[diagnosis]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unknown_fields_without_retry[approved]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_wrong_types_without_coercion[integer-intent]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_wrong_types_without_coercion[null-intent]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_wrong_types_without_coercion[string-symptoms]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_wrong_types_without_coercion[object-symptoms]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_wrong_types_without_coercion[integer-symptom-item]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_wrong_types_without_coercion[null-symptom-item]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_wrong_types_without_coercion[object-symptom-item]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_wrong_types_without_coercion[integer-animal-code]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_wrong_types_without_coercion[boolean-animal-code]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_wrong_types_without_coercion[array-animal-code]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_wrong_types_without_coercion[object-animal-code]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_wrong_types_without_coercion[null-language]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_wrong_types_without_coercion[integer-language]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_wrong_types_without_coercion[array-language]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_wrong_types_without_coercion[string-duration]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_wrong_types_without_coercion[float-duration]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_wrong_types_without_coercion[boolean-duration]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_wrong_types_without_coercion[array-duration]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_wrong_types_without_coercion[object-duration]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_invalid_values[unsupported-intent]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_invalid_values[noncanonical-intent]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_invalid_values[empty-intent]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_invalid_values[unsupported-language]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_invalid_values[noncanonical-language]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_invalid_values[empty-language]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_invalid_values[negative-duration]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_invalid_values[duration-above-rule-engine-bound]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_invalid_values[unbounded-duration]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_invalid_values[diagnosis-as-symptom]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_invalid_values[unknown-symptom]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_missing_fields[intent]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_missing_fields[symptoms]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_missing_fields[animal_code]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_missing_fields[language]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_missing_fields[duration_days]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_allowlisted_but_ungrounded_symptoms[fever]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_allowlisted_but_ungrounded_symptoms[breathing_difficulty]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_allowlisted_but_ungrounded_symptoms[convulsions]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[en-diagnosis]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[en-confirmed-disease]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[en-diagnosis-label]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[hi-diagnosis]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[hi-confirmed-disease]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[hi-rabies]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[mr-diagnosis]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[mr-confirmed-disease]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[mr-rabies]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[attached-ascii-mg]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[spaced-ascii-mg]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[spaced-ascii-ml]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[attached-ascii-ml]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[weight-based-dose]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[decimal-dose]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[attached-devanagari-mg]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[unicode-square-mg]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[unicode-fullwidth-mg]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[hi-devanagari-milli]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[hi-devanagari-abbreviated-ml]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[mr-devanagari-milli]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[mr-devanagari-abbreviated-ml]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[attached-devanagari-milli]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[attached-devanagari-abbreviated-ml]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[en-medicine]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[en-antibiotic-instruction]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[en-prescription]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[hi-medicine]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[hi-antibiotic-instruction]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[hi-prescription-instruction]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[mr-medicine]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[mr-antibiotic-instruction]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[mr-prescription-instruction]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[en-fake-vet-approval]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[en-fake-approval-confirmation]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[en-fake-doctor-approval]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[hi-fake-vet-approval]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[hi-fake-doctor-approval]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[mr-fake-vet-approval]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_unsafe_string_in_allowed_field[mr-fake-doctor-approval]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_entire_unsafe_raw_structure[raw-diagnosis]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_entire_unsafe_raw_structure[raw-medicine]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_entire_unsafe_raw_structure[raw-dose]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_entire_unsafe_raw_structure[nested-unsafe-extra]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_entire_unsafe_raw_structure[unsafe-object-symptoms]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_entire_unsafe_raw_structure[unsafe-symptom-item]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_entire_unsafe_raw_structure[unsafe-intent]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_entire_unsafe_raw_structure[unsafe-language]
+FAILED app/tests/test_llm_safety.py::test_structure_request_rejects_entire_unsafe_raw_structure[unsafe-duration]
+FAILED app/tests/test_llm_safety.py::test_structure_request_malformed_json_falls_back_without_retry[{}]
+FAILED app/tests/test_llm_safety.py::test_structure_request_retries_transient_failure_once[timeout]
+FAILED app/tests/test_llm_safety.py::test_structure_request_retries_transient_failure_once[connection]
+FAILED app/tests/test_llm_safety.py::test_structure_request_retries_transient_failure_once[429]
+FAILED app/tests/test_llm_safety.py::test_structure_request_retries_transient_failure_once[500]
+FAILED app/tests/test_llm_safety.py::test_structure_request_retries_transient_failure_once[503]
+FAILED app/tests/test_llm_safety.py::test_structure_request_persistent_transient_failure_has_two_call_bound[timeout]
+FAILED app/tests/test_llm_safety.py::test_structure_request_persistent_transient_failure_has_two_call_bound[connection]
+FAILED app/tests/test_llm_safety.py::test_structure_request_persistent_transient_failure_has_two_call_bound[429]
+FAILED app/tests/test_llm_safety.py::test_structure_request_persistent_transient_failure_has_two_call_bound[503]
+FAILED app/tests/test_llm_safety.py::test_translation_blocks_unsafe_provider_output_and_persists_audit[en]
+FAILED app/tests/test_llm_safety.py::test_translation_blocks_unsafe_provider_output_and_persists_audit[hi]
+FAILED app/tests/test_llm_safety.py::test_translation_blocks_unsafe_provider_output_and_persists_audit[mr]
+FAILED app/tests/test_llm_safety.py::test_translation_missing_provider_blocks_unsafe_source_echo_and_persists_audit[en]
+FAILED app/tests/test_llm_safety.py::test_translation_missing_provider_blocks_unsafe_source_echo_and_persists_audit[hi]
+FAILED app/tests/test_llm_safety.py::test_translation_missing_provider_blocks_unsafe_source_echo_and_persists_audit[mr]

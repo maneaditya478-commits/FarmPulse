@@ -1,0 +1,54 @@
+uid=26_1 RootWebArea "AI Livestock Guardian" focusable focused url="http://127.0.0.1:5173/farmer/market"
+  uid=26_2 banner
+    uid=26_3 button focusable invalid="false"
+    uid=26_4 StaticText "Farmer"
+    uid=26_5 combobox "भाषा" expandable focusable hasPopup="menu" invalid="false" value="मराठी"
+      uid=26_6 option "English" focusable selectable
+      uid=26_7 option "हिन्दी" focusable selectable
+      uid=26_8 option "मराठी" focusable selectable selected
+    uid=26_9 button "सूचना" focusable invalid="false"
+    uid=26_10 button "R" focusable invalid="false"
+  uid=26_11 main
+    uid=26_12 heading "Market intelligence" level="1"
+    uid=26_13 StaticText "District prices include their source, unit and observation date. Demonstration rows are explicitly flagged and never presented as live mandi feeds."
+    uid=26_14 StaticText "Demonstration environment."
+    uid=26_15 StaticText "Records labelled \"Sample data\" are seeded examples, not live farm observations. AI output is advisory and requires professional confirmation."
+    uid=26_16 StaticText "DISTRICT"
+    uid=26_17 textbox editable="plaintext" focusable focused invalid="false" settable value="QA-NO-SUCH-DISTRICT"
+    uid=26_18 StaticText "CATEGORY"
+    uid=26_19 combobox expandable focusable hasPopup="menu" invalid="false" value="buffalo"
+      uid=26_20 option "buffalo" focusable selectable selected
+      uid=26_21 option "cattle" focusable selectable
+      uid=26_22 option "chicken" focusable selectable
+      uid=26_23 option "egg" focusable selectable
+      uid=26_24 option "goat" focusable selectable
+      uid=26_25 option "milk" focusable selectable
+    uid=26_26 StaticText "WINDOW"
+    uid=26_27 combobox expandable focusable hasPopup="menu" invalid="false" value="90 days"
+      uid=26_28 option "30 days" focusable selectable
+      uid=26_29 option "90 days" focusable selectable selected
+      uid=26_30 option "180 days" focusable selectable
+      uid=26_31 option "1 year" focusable selectable
+    uid=26_32 StaticText "No trend data for this district and category"
+    uid=26_33 StaticText "Try another district or category."
+    uid=26_34 StaticText "buffalo"
+    uid=26_35 StaticText "·"
+    uid=26_36 StaticText "QA-NO-SUCH-DISTRICT"
+    uid=26_37 StaticText "Prices are informational. Verify at the local market before any transaction."
+    uid=26_38 StaticText "Sources:"
+    uid=26_39 StaticText "—"
+    uid=26_40 heading "Source register" level="2"
+    uid=26_41 StaticText "Demonstration rows are explicitly flagged and are not live mandi feeds."
+    uid=26_42 StaticText "Demonstration dataset — verify against Agmarknet / MSAMB before commercial use"
+    uid=26_43 StaticText "Sample data"
+    uid=26_44 StaticText "Latest observation"
+    uid=26_45 StaticText "07 Nov 2026"
+    uid=26_46 StaticText "·"
+    uid=26_47 StaticText "Nashik, Pune"
+    uid=26_48 link "Open source" focusable url="https://agmarknet.gov.in/"
+      uid=26_49 StaticText "Open source"
+    uid=26_50 heading "Price records" level="2"
+    uid=26_51 StaticText "No price records"
+    uid=26_52 StaticText "Prices are informational. The platform does not execute sales or guarantee a price."
+    uid=26_53 StaticText "डेमो डेटा स्पष्टपणे चिन्हांकित आहे. लसीकरण प्रोटोकॉल सत्यापित संदर्भांवर आधारित आहेत. पशुवैद्यकीय निर्णय अधिकृत तज्ञाद्वारे घेतले जातात."
+    uid=26_54 StaticText "Built for the GAVS Hackathon"
