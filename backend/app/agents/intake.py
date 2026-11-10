@@ -164,6 +164,7 @@ def record_node(state: GuardianState) -> dict:
 
     if state.get("intent") == "health" and animal is None:
         updates["halt_reason"] = "animal_not_resolved"
+        updates["halt"] = True
         updates["trace"] = updates["trace"] + [_event("record", "no animal matched; urgency assessment continues without creating a case", "warning")]
 
     if animal is not None:
@@ -247,8 +248,14 @@ def respond_node(state: GuardianState) -> dict:
     intent = state.get("intent", "animal_record")
     data = dict(state.get("data") or {})
 
+    # If halted (no animal resolved) but still a critical health emergency,
+    # provide the emergency safety response AND the halt message.
     if state.get("halt"):
-        text = _localized_halt(lang)
+        triage = state.get("triage") or {}
+        if intent == "health" and triage.get("severity") == "critical":
+            text = safety_refusal(lang, emergency=True) + " " + _localized_halt(lang)
+        else:
+            text = _localized_halt(lang)
     elif intent == "health":
         triage = state.get("triage") or {}
         case = state.get("case")

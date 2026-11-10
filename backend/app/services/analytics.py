@@ -132,8 +132,15 @@ def overview(db: Session, user) -> dict:
         alerts.append({"type": "vaccination", "severity": "medium", "message": f"{due} vaccination(s) due within 30 days"})
     if critical_cases:
         alerts.append({"type": "health", "severity": "critical", "message": f"{len(critical_cases)} high-priority health case(s) open"})
+    # For admin, aggregate environmental flags across all farms; for others, use their farm scope
     if farm_ids is None:
-        env = db.scalar(select(EnvironmentalRecord).order_by(EnvironmentalRecord.recorded_at.desc()))
+        # Admin: get latest env record per farm and assess all
+        env_records = db.scalars(
+            select(EnvironmentalRecord)
+            .distinct(EnvironmentalRecord.farm_id)
+            .order_by(EnvironmentalRecord.farm_id, EnvironmentalRecord.recorded_at.desc())
+        ).all()
+        env = env_records  # pass list to assess_environment
     elif farm_ids:
         env = db.scalar(
             select(EnvironmentalRecord).where(EnvironmentalRecord.farm_id.in_(farm_ids)).order_by(EnvironmentalRecord.recorded_at.desc())

@@ -141,6 +141,7 @@ def safety_node(state: GuardianState) -> dict:
         if case.vet_diagnosis or case.vet_treatment:
             detail = "existing veterinarian-authored record preserved; AI cannot modify diagnosis or treatment"
         if escalated:
+            # Always create a new pending approval on re-escalation; previous approvals may be stale
             existing = db.scalar(
                 select(AgentApproval).where(
                     AgentApproval.case_id == case.id,
@@ -159,6 +160,13 @@ def safety_node(state: GuardianState) -> dict:
                         reason="Urgency rules require a registered veterinarian to confirm diagnosis and treatment.",
                     )
                 )
+            else:
+                # Re-escalation: reset any non-pending status to pending
+                if existing.status != "pending":
+                    existing.status = "pending"
+                    existing.decided_by = None
+                    existing.decided_at = None
+                    existing.reason = "Case re-escalated due to new observations requiring veterinary re-approval."
             detail = "escalated for veterinary approval; no diagnosis or prescription generated"
         record_audit(
             db,

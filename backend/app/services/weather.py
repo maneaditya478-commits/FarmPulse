@@ -102,22 +102,26 @@ def get_weather(farm: Farm | None) -> dict[str, Any]:
         }
 
 
-def assess_environment(record: EnvironmentalRecord | None) -> list[dict[str, str]]:
-    """Validated threshold checks. Environmental observations never confirm disease."""
-    flags: list[dict[str, str]] = []
+def assess_environment(record: EnvironmentalRecord | list[EnvironmentalRecord] | None) -> list[dict[str, str]]:
+    """Validated threshold checks. Environmental observations never confirm disease.
+    Accepts a single record or a list (e.g., latest per farm for admin overview)."""
     if not record:
-        return flags
-    if record.temperature_c is not None:
-        if record.temperature_c >= 40:
-            flags.append({"code": "heat_stress", "severity": "high", "message": "High ambient temperature may increase heat stress risk."})
-        elif record.temperature_c >= 36:
-            flags.append({"code": "heat_watch", "severity": "medium", "message": "Warm conditions — ensure shade and drinking water."})
-        elif record.temperature_c <= 5:
-            flags.append({"code": "cold_stress", "severity": "medium", "message": "Cold conditions — ensure dry bedding and shelter."})
-    if record.humidity_pct is not None and record.humidity_pct >= 85:
-        flags.append({"code": "high_humidity", "severity": "medium", "message": "High humidity can reduce shed ventilation quality."})
-    if record.shed_cleanliness is not None and record.shed_cleanliness <= 2:
-        flags.append({"code": "shed_hygiene", "severity": "high", "message": "Low shed cleanliness — improve cleaning and bedding."})
-    if record.water_available is False:
-        flags.append({"code": "water_unavailable", "severity": "critical", "message": "Water unavailability is an urgent animal welfare risk."})
+        return []
+    if isinstance(record, EnvironmentalRecord):
+        record = [record]
+    flags: list[dict[str, str]] = []
+    for r in record:
+        if r.temperature_c is not None:
+            if r.temperature_c >= 40:
+                flags.append({"code": "heat_stress", "severity": "high", "message": "High ambient temperature may increase heat stress risk."})
+            elif r.temperature_c >= 36:
+                flags.append({"code": "heat_watch", "severity": "medium", "message": "Warm conditions — ensure shade and drinking water."})
+            elif r.temperature_c <= 5:
+                flags.append({"code": "cold_stress", "severity": "medium", "message": "Cold conditions — ensure dry bedding and shelter."})
+        if r.humidity_pct is not None and r.humidity_pct >= 85:
+            flags.append({"code": "high_humidity", "severity": "medium", "message": "High humidity can reduce shed ventilation quality."})
+        if r.shed_cleanliness is not None and r.shed_cleanliness <= 2:
+            flags.append({"code": "shed_hygiene", "severity": "high", "message": "Low shed cleanliness — improve cleaning and bedding."})
+        if r.water_available is False:
+            flags.append({"code": "water_unavailable", "severity": "critical", "message": "Water unavailability is an urgent animal welfare risk."})
     return flags

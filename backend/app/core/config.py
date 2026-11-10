@@ -60,10 +60,13 @@ class Settings(BaseSettings):
 
     @model_validator(mode="after")
     def validate_deployment_security(self) -> "Settings":
-        if self.environment.strip().lower() in {"development", "test", "testing"}:
+        env = self.environment.strip().lower()
+        is_dev_env = env in {"development", "test", "testing"}
+        if is_dev_env:
             return self
         if self.seed_demo_data:
             raise ValueError("SEED_DEMO_DATA must be false outside development and test environments")
+        # Reject known weak/default JWT secrets in any non-dev environment
         if len(self.jwt_secret.strip()) < 32 or self.jwt_secret.strip() in {
             DEVELOPMENT_JWT_SECRET,
             "replace-with-a-long-random-secret",

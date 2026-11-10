@@ -4,8 +4,9 @@ import logging
 from contextlib import asynccontextmanager
 from pathlib import Path
 
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from app.api.v1 import (
@@ -29,8 +30,10 @@ from app.api.v1 import (
 )
 from app.core.config import settings
 from app.core.database import Base, SessionLocal, engine
-from app.core.errors import install_error_handlers
+from app.core.deps import get_current_user
+from app.core.errors import AppError, install_error_handlers
 from app.core.middleware import ObservabilityMiddleware, RateLimitMiddleware
+from app.models import User
 
 logging.basicConfig(
     level=logging.DEBUG if settings.debug else logging.INFO,
@@ -104,7 +107,8 @@ for module in (
 
 upload_path = Path(settings.upload_dir)
 upload_path.mkdir(parents=True, exist_ok=True)
-app.mount("/uploads", StaticFiles(directory=str(upload_path)), name="uploads")
+# Serve uploads with authentication - see /api/v1/uploads/{filename} endpoint
+# app.mount("/uploads", StaticFiles(directory=str(upload_path)), name="uploads")
 
 
 @app.get("/", tags=["System"])
@@ -116,6 +120,16 @@ def root() -> dict:
         "docs": "/docs",
         "api": settings.api_v1_prefix,
     }
+
+
+@app.get("/uploads/{filename}", tags=["System"])
+def serve_upload(filename: str, user: User = Depends(get_current_user)) -> FileResponse:
+    """Serve uploaded files with authentication."""
+    from pathlib import Path
+    file_path = Path(settings.upload_dir) / filename
+    if not file_path.is_file():
+        raise AppError(status.HTTP_404_NOT_FOUND, "file_not_found", "Uploaded file not found")
+    return FileResponse(file_path)
 
 
 @app.get("/health", tags=["System"])

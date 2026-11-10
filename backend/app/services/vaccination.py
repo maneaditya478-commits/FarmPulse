@@ -115,7 +115,6 @@ def mark_given(
     previous_date = vaccination.administered_on
     previous_batch = vaccination.batch_no
     vaccination.administered_on = given_on
-    vaccination.status = "given"
     vaccination.batch_no = batch_no
     vaccination.administered_by = administered_by
     vaccination.certificate_ref = certificate_ref
@@ -125,11 +124,16 @@ def mark_given(
     vaccine = db.get(VaccineCatalog, vaccination.vaccine_id)
     booster = vaccine.booster_days if vaccine else None
     if booster:
+        # Booster scheduled: keep status so schedule_items picks it up as due/overdue
         next_due = given_on + timedelta(days=booster)
         vaccination.due_on = next_due
         vaccination.notes = (
             (vaccination.notes or "") + f" Next booster scheduled {next_due.isoformat()} per verified protocol."
         ).strip()
+        vaccination.status = "due"
+    else:
+        # No booster: final dose, mark as given
+        vaccination.status = "given"
     return vaccination
 
 

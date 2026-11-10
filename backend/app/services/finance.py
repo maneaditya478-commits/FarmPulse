@@ -111,9 +111,11 @@ def financial_summary(db: Session, user, period_days: int = 30) -> dict:
         days_with_milk[row.animal_id].add(row.record_date)
     estimated_loss = 0.0
     affected: list[str] = []
+    seen_animals: set[uuid.UUID] = set()
     for case in active_cases:
-        if case.animal_id not in animal_map:
+        if case.animal_id not in animal_map or case.animal_id in seen_animals:
             continue
+        seen_animals.add(case.animal_id)
         total = daily_milk_by_animal.get(case.animal_id, 0.0)
         day_count = max(len(days_with_milk.get(case.animal_id, set())), 1)
         daily_avg = total / day_count
